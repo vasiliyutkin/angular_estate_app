@@ -7,12 +7,11 @@ import { environment } from '../../environments/environment';
 export class AccountService {
   constructor(private http: HttpClient) {}
 
-
-  passwordChange(oldPassword: string, newPassword: string , user: any) {
+  passwordChange(oldPassword: string, newPassword: string, user: any) {
     return this.http.post<any>(`${environment.apiUrl}/auth/password-change`, {
       oldPassword,
       newPassword,
-      user
+      user,
     });
   }
 }

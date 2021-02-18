@@ -10,155 +10,156 @@
   background-color: $light;
   padding-left: 280px !important;
   height: 100vh;
-  overflow:scroll;
+  overflow: scroll;
   margin: 0;
 }
 
-.header{
+.header {
   font-weight: 500;
   font-size: 28px;
   line-height: 42px;
   padding-top: 30px;
 }
-h2{
+h2 {
   font-weight: 600;
   font-size: 20px !important;
   line-height: 30px;
 }
 
-
-.btn-primary{
+.btn-primary {
   color: $light;
   background-color: $primary !important;
-  border:none !important;
+  border: none !important;
 
   &:hover {
-    opacity: .6;
+    opacity: 0.6;
     border-color: $primary;
   }
 }
-.btn-info{
+.btn-info {
   color: $light;
   background-color: $info !important;
-  border:none !important;
+  border: none !important;
 
   &:hover {
-    opacity: .6;
+    opacity: 0.6;
     border-color: $info;
   }
 }
 
-.btn-success{
+.btn-success {
   background-color: $success !important;
-  border:none !important;
+  border: none !important;
 }
 
-.btn-info{
+.btn-info {
   color: $light;
   background-color: $info !important;
-  border:none !important;
+  border: none !important;
 }
 
-.btn-danger{
+.btn-danger {
   color: $light;
   background-color: $danger !important;
-  border:none !important;
+  border: none !important;
 }
 
-.btn-dark{
+.btn-dark {
   color: $light;
   background-color: $dark !important;
-  border:none !important;
+  border: none !important;
 }
 
-.dropdown-button{
+.dropdown-button {
   background-color: $light !important;
-  border: 1px solid #C4C4C4 !important;
+  border: 1px solid #c4c4c4 !important;
   box-sizing: border-box !important;
   border-radius: 4px !important;
-  color:$secondary !important;
+  color: $secondary !important;
   width: 230px;
   padding: 3px !important;
-  
 }
 
-.color-primary{
+.color-primary {
   color: $primary !important;
 }
-.color-secondary{
+.color-secondary {
   color: $secondary !important;
 }
-.color-success{
+.color-success {
   color: $success !important;
 }
-.color-danger{
+.color-danger {
   color: $danger !important;
 }
-.color-info{
+.color-info {
   color: $info !important;
 }
-.color-dark{
+.color-dark {
   color: $dark !important;
 }
-.color-black-50{
+.color-black-50 {
   color: $black-50 !important;
 }
-.color-black-60{
+.color-black-60 {
   color: $black-60 !important;
 }
 
-.bg-primary{
-  color:$light !important;
+.bg-primary {
+  color: $light !important;
   background-color: $primary !important;
 }
-.bg-secondary{
-  color:$light !important;
+.bg-secondary {
+  color: $light !important;
   background-color: $secondary !important;
 }
-.bg-success{
-  color:$light !important;
+.bg-success {
+  color: $light !important;
   background-color: $success !important;
 }
-.bg-danger{
-  color:$light !important;
+.bg-danger {
+  color: $light !important;
   background-color: $danger !important;
 }
-.bg-info{
-  color:$light !important;
+.bg-info {
+  color: $light !important;
   background-color: $info !important;
 }
-.bg-warning{
-  color:$light !important;
+.bg-warning {
+  color: $light !important;
   background-color: $warning !important;
 }
-.bg-black-50{
-  color:$light !important;
+.bg-black-50 {
+  color: $light !important;
   background-color: $black-50 !important;
 }
-.bg-black-60{
-  color:$light !important;
+.bg-black-60 {
+  color: $light !important;
   background-color: $black-60 !important;
 }
 
-// for calander 
-.cal-month-view .cal-open-day-events{
+// for calander
+.cal-month-view .cal-open-day-events {
   background-color: white !important;
   box-shadow: inset 0 0 0px 0 rgba(0, 0, 0, 0.5) !important;
-  color:$dark!important;
+  color: $dark !important;
 }
 
 .cal-month-view .cal-open-day-events .cal-event {
-    display: none !important;
+  display: none !important;
 }
 
-button.dt-button, div.dt-button, a.dt-button, input.dt-button {
-    color:$light !important;
-    background-color: $primary !important;
-    padding: .25rem .5rem !important;
-    border:none !important;
-    background: $primary !important;
-     &:hover {
-    opacity: .6;
+button.dt-button,
+div.dt-button,
+a.dt-button,
+input.dt-button {
+  color: $light !important;
+  background-color: $primary !important;
+  padding: 0.25rem 0.5rem !important;
+  border: none !important;
+  background: $primary !important;
+  &:hover {
+    opacity: 0.6;
     border-color: $primary;
   }
 }
@@ -167,15 +168,19 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button {
 }
 
 .loader {
-  border: 10px solid #f3f3f3; 
-  border-top: 10px solid $primary; 
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid $primary;
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  animation: spin .5s linear infinite;
+  animation: spin 0.5s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

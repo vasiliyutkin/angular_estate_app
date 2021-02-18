@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
-import {  Observable,  } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class FilesService {
-
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService
-    ) {}
+  ) {}
 
   getAllFiles(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/files/`, { headers: this.authenticationService.headers });
+    return this.http.get<any>(`${environment.apiUrl}/files/`, {
+      headers: this.authenticationService.headers,
+    });
   }
 
   getFilesByOrgIdAndState(orgId: string, state: string): Observable<any> {
     return this.http
-      .get<any>(`${environment.apiUrl}/files/${orgId}/${state}`, { headers: this.authenticationService.headers })
+      .get<any>(`${environment.apiUrl}/files/${orgId}/${state}`, {
+        headers: this.authenticationService.headers,
+      })
       .pipe(
         map((files) => {
           return files;
@@ -28,12 +30,12 @@ export class FilesService {
       );
   }
 
-  createFolder(state: string , name: string, orgId: any){
+  createFolder(state: string, name: string, orgId: any) {
     return this.http
       .post<any>(`${environment.apiUrl}/files/create-folder`, {
         state,
         name,
-        orgId
+        orgId,
       })
       .pipe(
         map((data) => {
@@ -42,11 +44,11 @@ export class FilesService {
       );
   }
 
-  updateFolder(fileData: any, orgId: any){
+  updateFolder(fileData: any, orgId: any) {
     return this.http
       .post<any>(`${environment.apiUrl}/files/update-folder`, {
         fileData,
-        orgId
+        orgId,
       })
       .pipe(
         map((data) => {
@@ -55,7 +57,7 @@ export class FilesService {
       );
   }
 
-  copyToAcrchive(orgId: string, state: string, fileData: any){
+  copyToAcrchive(orgId: string, state: string, fileData: any) {
     return this.http
       .post<any>(`${environment.apiUrl}/files/copyToAcrchive`, {
         orgId,
@@ -69,11 +71,11 @@ export class FilesService {
       );
   }
 
-  deleteFolder(fileData: any, orgId: any){
+  deleteFolder(fileData: any, orgId: any) {
     return this.http
       .post<any>(`${environment.apiUrl}/files/delete-folder`, {
         fileData,
-        orgId
+        orgId,
       })
       .pipe(
         map((data) => {
@@ -87,8 +89,9 @@ export class FilesService {
     Object.keys(formData).forEach((key: string) => {
       postData.append(key, formData[key]);
     });
-    return this.http.post<any>(`${environment.apiUrl}/files/upload`, postData)
-    .pipe(
+    return this.http
+      .post<any>(`${environment.apiUrl}/files/upload`, postData)
+      .pipe(
         map((data) => {
           return data;
         })
@@ -98,7 +101,7 @@ export class FilesService {
   deleteFile(fileData: any) {
     return this.http
       .post<any>(`${environment.apiUrl}/files/delete-file`, {
-        fileData
+        fileData,
       })
       .pipe(
         map((data) => {
@@ -106,5 +109,4 @@ export class FilesService {
         })
       );
   }
-
 }

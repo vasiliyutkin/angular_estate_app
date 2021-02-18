@@ -26,7 +26,6 @@ export class AccountComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-
     const user: any = sessionStorage.getItem('user');
     this.userData = JSON.parse(user);
     this.passwordForm = this.formBuilder.group({
@@ -51,7 +50,11 @@ export class AccountComponent implements OnInit {
     }
 
     this.accountService
-      .passwordChange(this.pf.currPassword.value, this.pf.newPassword.value , this.userData)
+      .passwordChange(
+        this.pf.currPassword.value,
+        this.pf.newPassword.value,
+        this.userData
+      )
       .pipe(first())
       .subscribe(
         (_) => {

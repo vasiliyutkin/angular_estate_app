@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authenticationService
-      .sendEmail(this.sf.email.value , this.sf.name.value , '' , 'Meeting')
+      .sendEmail(this.sf.email.value, this.sf.name.value, '', 'Meeting')
       .pipe(first())
       .subscribe((sent: boolean) => {
         if (sent) {

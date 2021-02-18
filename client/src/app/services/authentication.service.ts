@@ -27,11 +27,10 @@ export class AuthenticationService {
   public get headers() {
     const updateHeaders = new HttpHeaders({
       Authorization: `Bearer ${this.currentUserValue}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
     return updateHeaders;
   }
-
 
   getUsers() {
     return this.http
@@ -40,43 +39,46 @@ export class AuthenticationService {
         map((user) => {
           return user;
         })
-    );
+      );
   }
 
   getUserById(userId: string) {
     return this.http
-      .get<any>(`${environment.apiUrl}/auth/user/${userId}`, { headers: this.headers })
+      .get<any>(`${environment.apiUrl}/auth/user/${userId}`, {
+        headers: this.headers,
+      })
       .pipe(
         map((user) => {
           return user;
         })
-    );
+      );
   }
 
   deactivateUserById(userId: string, status: boolean) {
     return this.http
-      .post<any>(`${environment.apiUrl}/auth/deactivate`, { userId, status})
+      .post<any>(`${environment.apiUrl}/auth/deactivate`, { userId, status })
       .pipe(
         map((user) => {
           return user;
         })
-    );
+      );
   }
 
   deleteUserById(userId: string) {
     return this.http
-      .delete<any>(`${environment.apiUrl}/auth/delete/${userId}`, { headers: this.headers })
+      .delete<any>(`${environment.apiUrl}/auth/delete/${userId}`, {
+        headers: this.headers,
+      })
       .pipe(
         map((user) => {
           return user;
         })
-    );
+      );
   }
 
   signUpUser(userData: any) {
-    return this.http
-      .post<any>(`${environment.apiUrl}/auth/signUp`, {
-        userData,
+    return this.http.post<any>(`${environment.apiUrl}/auth/signUp`, {
+      userData,
     });
   }
 
@@ -88,7 +90,7 @@ export class AuthenticationService {
       })
       .pipe(
         map((data) => {
-          const { accessToken, userData} = data;
+          const { accessToken, userData } = data;
           localStorage.setItem('currentUser', JSON.stringify(accessToken));
           localStorage.setItem('user', JSON.stringify(userData));
           sessionStorage.setItem('user', JSON.stringify(userData));
@@ -122,17 +124,22 @@ export class AuthenticationService {
     return this.http.post<any>(`${environment.apiUrl}/auth/password-change`, {
       oldPassword,
       newPassword,
-      user
+      user,
     });
   }
 
-  sendEmail(email: string, name?: string , message?: string, location?: string ): Observable<boolean> {
+  sendEmail(
+    email: string,
+    name?: string,
+    message?: string,
+    location?: string
+  ): Observable<boolean> {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/sendEmail`, {
         name,
         email,
         message,
-        location
+        location,
       })
       .pipe(map((res) => res.ok));
   }
