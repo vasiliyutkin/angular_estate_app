@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     const currentUser = this.authenticationService.currentUserValue;
     if (currentUser) {
       const currentData = this.authenticationService.currentUserInfo;
-      if (currentData){
+      if (currentData) {
         sessionStorage.setItem('user', JSON.stringify(currentData));
         return true;
       }

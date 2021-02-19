@@ -1,13 +1,10 @@
-
-
-
-$primary: #66CBFF;
-$success:  #29CC97;
+$primary: #66cbff;
+$success: #29cc97;
 $secondary: #767883;
-$info: #3751FF;
-$warning: #FEC400;
-$danger:#ED4320;
-$light: #F8F8F8;
+$info: #3751ff;
+$warning: #fec400;
+$danger: #ed4320;
+$light: #f8f8f8;
 $dark: #515151;
 
 $black-10: rgba(0, 0, 0, 0.1);
@@ -29,17 +26,17 @@ $white-70: rgba(255, 255, 255, 0.7);
 $white-80: rgba(255, 255, 255, 0.8);
 $white-90: rgba(255, 255, 255, 0.9);
 $white: #fff;
-$light-100:#EBEBEB;
+$light-100: #ebebeb;
 
 $theme-colors: (
-  "primary":    $primary,
-  "success":    $success,
-  "secondary":  $secondary,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
+  'primary': $primary,
+  'success': $success,
+  'secondary': $secondary,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
 );
 
 $line-height-base: 1.7;
@@ -47,7 +44,7 @@ $line-heights: (
   10: 10 * $line-height-base,
   15: 15 * $line-height-base,
   20: 20 * $line-height-base,
-  25: 25 * $line-height-base
+  25: 25 * $line-height-base,
 );
 
 $spacer: 1rem !default;
@@ -55,13 +52,20 @@ $spacers: () !default;
 $spacers: map-merge(
   (
     0: 0,
-    1: ($spacer * .25),
-    2: ($spacer * .5),
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
     3: $spacer,
-    4: ($spacer * 1.5),
-    5: ($spacer * 10)
+    4: (
+      $spacer * 1.5,
+    ),
+    5: (
+      $spacer * 10,
+    ),
   ),
   $spacers
 );
 $def-margin: 32px;
-
