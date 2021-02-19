@@ -16,38 +16,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'bankingAdmin',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'dashboard',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'files',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'files/:state/:id',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'folders',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'folders/:id',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-
-      {
-        path: 'mtl-info/:id',
+        path: 'main',
         component: LoginComponent,
         canActivate: [AuthGuard],
       },
@@ -57,24 +26,14 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'api',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
         path: 'account',
-        component: LoginComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'help',
         component: LoginComponent,
         canActivate: [AuthGuard],
       },
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'dashboard' },
+  { path: '**', redirectTo: 'main' },
 ];
 
 @NgModule({

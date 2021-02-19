@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:watch": "ng build --output-path dist --watch"
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
