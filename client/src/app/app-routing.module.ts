@@ -8,6 +8,15 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+
+  /* {
+    path: '',
+    component: LoginComponent,
     canActivate: [AuthGuard],
     children: [
       {
@@ -33,7 +42,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'main' },
+  { path: '**', redirectTo: 'main' }, */
 ];
 
 @NgModule({

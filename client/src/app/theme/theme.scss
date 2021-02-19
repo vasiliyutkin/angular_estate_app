@@ -1,30 +1,4 @@
 @import './variables.scss';
-.wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-  background-color: $black-20;
-}
-
-.main {
-  background-color: $light;
-  padding-left: 280px !important;
-  height: 100vh;
-  overflow: scroll;
-  margin: 0;
-}
-
-.header {
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 42px;
-  padding-top: 30px;
-}
-h2 {
-  font-weight: 600;
-  font-size: 20px !important;
-  line-height: 30px;
-}
 
 .btn-primary {
   color: $light;
@@ -36,6 +10,7 @@ h2 {
     border-color: $primary;
   }
 }
+
 .btn-info {
   color: $light;
   background-color: $info !important;
@@ -72,7 +47,7 @@ h2 {
 
 .dropdown-button {
   background-color: $light !important;
-  border: 1px solid #c4c4c4 !important;
+  border: 1px solid $white !important;
   box-sizing: border-box !important;
   border-radius: 4px !important;
   color: $secondary !important;
@@ -83,24 +58,31 @@ h2 {
 .color-primary {
   color: $primary !important;
 }
+
 .color-secondary {
   color: $secondary !important;
 }
+
 .color-success {
   color: $success !important;
 }
+
 .color-danger {
   color: $danger !important;
 }
+
 .color-info {
   color: $info !important;
 }
+
 .color-dark {
   color: $dark !important;
 }
+
 .color-black-50 {
   color: $black-50 !important;
 }
+
 .color-black-60 {
   color: $black-60 !important;
 }
@@ -109,78 +91,38 @@ h2 {
   color: $light !important;
   background-color: $primary !important;
 }
+
 .bg-secondary {
   color: $light !important;
   background-color: $secondary !important;
 }
+
 .bg-success {
   color: $light !important;
   background-color: $success !important;
 }
+
 .bg-danger {
   color: $light !important;
   background-color: $danger !important;
 }
+
 .bg-info {
   color: $light !important;
   background-color: $info !important;
 }
+
 .bg-warning {
   color: $light !important;
   background-color: $warning !important;
 }
+
 .bg-black-50 {
   color: $light !important;
   background-color: $black-50 !important;
 }
+
 .bg-black-60 {
   color: $light !important;
   background-color: $black-60 !important;
-}
-
-// for calander
-.cal-month-view .cal-open-day-events {
-  background-color: white !important;
-  box-shadow: inset 0 0 0px 0 rgba(0, 0, 0, 0.5) !important;
-  color: $dark !important;
-}
-
-.cal-month-view .cal-open-day-events .cal-event {
-  display: none !important;
-}
-
-button.dt-button,
-div.dt-button,
-a.dt-button,
-input.dt-button {
-  color: $light !important;
-  background-color: $primary !important;
-  padding: 0.25rem 0.5rem !important;
-  border: none !important;
-  background: $primary !important;
-  &:hover {
-    opacity: 0.6;
-    border-color: $primary;
-  }
-}
-.invalidDropdown {
-  border-color: #dc3545 !important;
-}
-
-.loader {
-  border: 10px solid #f3f3f3;
-  border-top: 10px solid $primary;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 0.5s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

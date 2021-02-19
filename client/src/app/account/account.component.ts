@@ -5,7 +5,6 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { AccountService } from '../services/account.service';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -20,10 +19,7 @@ export class AccountComponent implements OnInit {
   passwordNotification = '';
   userData;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private accountService: AccountService
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   async ngOnInit() {
     const user: any = sessionStorage.getItem('user');
@@ -42,7 +38,7 @@ export class AccountComponent implements OnInit {
     return this.pf.newPassword.value === this.pf.confirmPassword.value;
   }
 
-  updatePassword() {
+  /*   updatePassword() {
     this.passwordFormSubmitted = true;
 
     if (this.passwordForm.invalid || !this.passwordsMatch) {
@@ -70,5 +66,5 @@ export class AccountComponent implements OnInit {
           this.passwordError = err;
         }
       );
-  }
+  } */
 }
