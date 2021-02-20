@@ -2,7 +2,6 @@ package service
 
 import (
 	"be/model"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -34,7 +33,7 @@ func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	h, ok := s.rest.routes[r.URL.Path]
 	if !ok {
-		log.Printf("no handler for %q found", r.URL.Path)
+		http.FileServer(http.Dir("../../client/dist/fe")).ServeHTTP(w, r)
 		return
 	}
 
