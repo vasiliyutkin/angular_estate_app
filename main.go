@@ -4,13 +4,20 @@ import (
 	"be/server/model"
 	"be/server/service"
 	"be/server/store"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
 	dbConn := "test:test@(localhost:3306)/test"
 	db, err := store.New(dbConn)
 	if err != nil {
@@ -19,6 +26,6 @@ func main() {
 
 	m := model.New(db)
 
-	log.Println("Server is started on port :3000")
-	log.Fatal(http.ListenAndServe(":3000", service.New(m)))
+	log.Println("Server is started on port :", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), service.New(m)))
 }
