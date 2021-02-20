@@ -1,32 +1,19 @@
 package main
 
 import (
-	"io"
+	"be/service"
 	"log"
 	"net/http"
-	"os"
 )
 
-type Handler struct{}
-
-func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	h.Index(w, r)
-}
-
-func (h Handler) Index(w http.ResponseWriter, r *http.Request) {
-	fd, err := os.Open("../../client/dist/index.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	defer fd.Close()
-	io.Copy(w, fd)
-}
-
 func main() {
-	fs := http.FileServer(http.Dir("../../client/dist"))
-	http.Handle("/", http.StripPrefix("/", fs))
+	//fs := http.FileServer(http.Dir("../../client/dist"))
+	//http.Handle("/", http.StripPrefix("/", fs))
+	//go func() {log.Fatal(http.ListenAndServe(":3300", http.FileServer(http.Dir("../../client/dist"))))}()
 
-	log.Println("Starting.......")
-	log.Fatal(http.ListenAndServe(":4200", nil))
+	s := service.NewREST()
+	s.AddRoute("/auth/signin", service.YoHandler())
+
+	log.Println("Server is started on port :3000")
+	log.Fatal(http.ListenAndServe(":3000", s))
 }
