@@ -6,19 +6,19 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services';
 
 @Component({
-  templateUrl: 'login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: 'auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
   loginForm: FormGroup;
-  scheduleForm: FormGroup;
+  registrationForm: FormGroup;
   forgotForm: FormGroup;
   loading = false;
-  scheduleFormSubmitted = false;
+  registrationFormSubmitted = false;
   forgotFormSubmited = false;
   forgotPassword = false;
   loginFormSubmitted = false;
-  scheduleDemoMode = true;
+  registrationMode = true;
   returnUrl: string;
   loginError = '';
   scheduleError = '';
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.scheduleForm = this.formBuilder.group({
+    this.registrationForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
     });
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   get sf() {
-    return this.scheduleForm.controls;
+    return this.registrationForm.controls;
   }
 
   get lf() {
@@ -98,9 +98,9 @@ export class LoginComponent implements OnInit {
   }
 
   scheduleDemo() {
-    this.scheduleFormSubmitted = true;
+    this.registrationFormSubmitted = true;
 
-    if (this.scheduleForm.invalid) {
+    if (this.registrationForm.invalid) {
       return;
     }
     this.authenticationService
@@ -110,17 +110,17 @@ export class LoginComponent implements OnInit {
         if (sent) {
           this.scheduleError = null;
           this.meetingInfo = `Meeting for ${this.sf.name.value}: ${this.sf.email.value} was successfully scheduled!`;
-          this.scheduleFormSubmitted = false;
-          this.scheduleForm.reset();
+          this.registrationFormSubmitted = false;
+          this.registrationForm.reset();
           setTimeout(() => {
             this.meetingInfo = null;
-            this.scheduleFormSubmitted = false;
+            this.registrationFormSubmitted = false;
           }, 3000);
         } else {
           this.meetingInfo = null;
           this.scheduleError = 'Meeting was not sceduled';
           setTimeout(() => {
-            this.scheduleFormSubmitted = null;
+            this.registrationFormSubmitted = null;
           }, 3000);
         }
       });

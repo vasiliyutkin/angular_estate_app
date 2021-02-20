@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login';
+import { AuthComponent } from './auth';
 import { AuthGuard } from './helpers';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: AuthComponent,
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'auth',
+    component: AuthComponent,
   },
+  { path: '**', redirectTo: '' },
 
   /* {
     path: '',
@@ -42,7 +43,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'main' }, */
+  , */
 ];
 
 @NgModule({

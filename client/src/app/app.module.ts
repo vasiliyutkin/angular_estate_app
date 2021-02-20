@@ -11,13 +11,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login';
+import { AuthComponent } from './auth';
 import { SpinnerComponent } from './component_library/spinner';
 
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SpinnerComponent],
+  declarations: [AppComponent, AuthComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     NgbModule,

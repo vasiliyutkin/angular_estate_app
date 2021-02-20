@@ -5,4 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+  loading = true;
+
+  constructor() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
+  }
+}
