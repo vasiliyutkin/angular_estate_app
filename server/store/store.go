@@ -7,7 +7,7 @@ type Store struct {
 }
 
 func New(conn string) (*Store, error) {
-	db, err := sqlx.Open("mysql", conn)
+	db, err := sqlx.Connect("mysql", conn)
 	if err != nil {
 		return nil, err
 	}
