@@ -28,5 +28,5 @@ func main() {
 	http.Handle("/", http.StripPrefix("/", fs))
 
 	log.Println("Starting.......")
-	log.Fatal(http.ListenAndServe(":4200", nil))
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }

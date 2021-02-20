@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import './variables';
 
 .btn-primary {
   color: $light;
@@ -79,14 +79,6 @@
   color: $dark !important;
 }
 
-.color-black-50 {
-  color: $black-50 !important;
-}
-
-.color-black-60 {
-  color: $black-60 !important;
-}
-
 .bg-primary {
   color: $light !important;
   background-color: $primary !important;
@@ -115,14 +107,4 @@
 .bg-warning {
   color: $light !important;
   background-color: $warning !important;
-}
-
-.bg-black-50 {
-  color: $light !important;
-  background-color: $black-50 !important;
-}
-
-.bg-black-60 {
-  color: $light !important;
-  background-color: $black-60 !important;
 }

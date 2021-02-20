@@ -1,13 +1,22 @@
-$primary: #66cbff;
-$success: #29cc97;
+// COLOR VARS
+$primary: #669bbc;
+$success: #466362;
 $secondary: #767883;
-$info: #3751ff;
-$warning: #fec400;
-$danger: #ed4320;
-$light: #f8f8f8;
-$dark: #515151;
-$white: #fff;
+$info: #8896ab;
+$warning: #fed766;
+$danger: #f45b69;
 
+$light: #eff1f3;
+$white: #ffffff;
+$grey: #fffafb;
+$green: #7a7978;
+$light-green: #a8c686;
+$dark: #2b2c28;
+
+// FONT
+$default-font-size: 1.6rem;
+
+// THEMES
 $theme-colors: (
   'primary': $primary,
   'success': $success,
@@ -19,4 +28,8 @@ $theme-colors: (
   'dark': $dark,
 );
 
-$def-margin: 32px;
+// SPACES
+$space-small: 0.8rem;
+$space-medium: 1.6rem;
+$space-big: 3.2rem;
+$space-large: 6.4rem;

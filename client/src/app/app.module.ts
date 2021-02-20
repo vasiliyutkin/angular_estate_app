@@ -12,11 +12,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login';
+import { SpinnerComponent } from './component_library/spinner';
 
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     NgbModule,

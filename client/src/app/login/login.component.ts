@@ -30,11 +30,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService
-  ) {
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/dashboard']);
-    }
-  }
+  ) {}
 
   ngOnInit() {
     this.scheduleForm = this.formBuilder.group({
