@@ -1,6 +1,6 @@
 package model
 
-import "be/store"
+import "be/server/store"
 
 type Model struct {
 	store *store.Store

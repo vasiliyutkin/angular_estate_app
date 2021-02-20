@@ -1,7 +1,7 @@
 package service
 
 import (
-	"be/model"
+	"be/server/model"
 	"net/http"
 	"strings"
 )

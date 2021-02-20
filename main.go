@@ -1,9 +1,9 @@
 package main
 
 import (
-	"be/model"
-	"be/service"
-	"be/store"
+	"be/server/model"
+	"be/server/service"
+	"be/server/store"
 	"log"
 	"net/http"
 
