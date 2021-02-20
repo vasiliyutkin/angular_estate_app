@@ -33,7 +33,7 @@ func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	h, ok := s.rest.routes[r.URL.Path]
 	if !ok {
-		http.FileServer(http.Dir("../../client/dist/fe")).ServeHTTP(w, r)
+		http.FileServer(http.Dir("client/dist/fe")).ServeHTTP(w, r)
 		return
 	}
 
