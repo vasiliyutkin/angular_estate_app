@@ -4,47 +4,39 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 html {
-  // This defines what 1rem is
-  font-size: 80%; //1 rem = 10px; 10px/16px = 62.5%
+  font-size: 80%;
 
   @include respond(tab-land) {
-    // width < 1200?
-    font-size: 80%; //1 rem = 9px, 9/16 = 50%
+    font-size: 80%;
   }
-
   @include respond(tab-port) {
-    // width < 900?
-    font-size: 60%; //1 rem = 8px, 8/16 = 50%
+    font-size: 60%;
   }
-
   @include respond(big-desktop) {
-    font-size: 120%; //1rem = 12, 12/16
+    font-size: 120%;
   }
 }
 
 body {
-  box-sizing: border-box;
-
   @include respond(tab-port) {
     padding: 0;
   }
-
-  background: linear-gradient(
-      to left top,
-      rgba(239, 241, 243, 0.9),
-      rgba(255, 255, 255, 0.8)
-    ),
-    url(../../../assets/images/5556744.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  height: 100vh;
 }
 
-::selection {
-  background-color: $secondary;
-  color: $white;
+html,
+body {
+  background: linear-gradient(to right bottom, $flash-white, $platinum);
+  overflow: auto;
+  min-height: 100%;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
