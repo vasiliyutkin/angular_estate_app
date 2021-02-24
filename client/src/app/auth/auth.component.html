@@ -13,6 +13,11 @@
             (click)="registrationMode = false; forgotPassword = false">
             Login to Account
         </span>
+
+        <span [ngClass]="{'btn-light-blue': !registrationMode }" class="btn btn-sm btn-outline-dark border-1 ml-5"
+            routerLink="/dashboard">
+            Dashboard
+        </span>
     </div>
 
     <div class="col-md-6 offset-md-3 mt-4" *ngIf="registrationMode && !forgotPassword">
@@ -99,7 +104,7 @@
                             </div>
                         </div>
                         <div class="text-right mt-3" (click)='forgotPassword = true'>
-                            <span class="btn btn-sm btn-light pr-0">Forgot Password?</span>
+                            <span class="btn btn-sm btn-light">Forgot Password?</span>
                         </div>
                     </div>
 

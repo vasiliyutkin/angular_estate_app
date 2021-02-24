@@ -13,17 +13,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth';
 import { SpinnerComponent } from './component_library/spinner';
-import { ScrollTopComponent } from './component_library/scroll_top';
 
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    SpinnerComponent,
-    ScrollTopComponent,
-  ],
+  declarations: [AppComponent, AuthComponent, SpinnerComponent, DashboardComponent, MainComponent],
   imports: [
     BrowserModule,
     NgbModule,

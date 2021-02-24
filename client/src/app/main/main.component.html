@@ -1,0 +1,25 @@
+<header class="header">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/auth" routerLinkActive="active-link">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<div class="container main-content mt-5 mb-5">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="fixed-bottom">
+    <div class="container"></div>
+</footer>
