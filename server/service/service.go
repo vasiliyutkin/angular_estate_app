@@ -2,6 +2,7 @@ package service
 
 import (
 	"be/server/model"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -19,6 +20,11 @@ func New(m *model.Model) *Service {
 }
 
 func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if !strings.HasPrefix(r.URL.Path, "/api/") {
+		http.FileServer(http.Dir("client/dist/fe")).ServeHTTP(w, r)
+		return
+	}
+
 	ctx := r.Context()
 	r.ParseForm()
 
@@ -33,7 +39,7 @@ func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	h, ok := s.rest.routes[r.URL.Path]
 	if !ok {
-		http.FileServer(http.Dir("client/dist/fe")).ServeHTTP(w, r)
+		log.Printf("not implemented handler for %q", r.URL.Path)
 		return
 	}
 
