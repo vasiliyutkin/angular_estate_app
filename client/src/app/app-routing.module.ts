@@ -9,21 +9,21 @@ import { AuthGuard } from './helpers';
 
 const routes: Routes = [
   {
-    path: '',
-    component: MainComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-    ],
-  },
-  {
     path: 'auth',
     canActivate: [AuthGuard],
     component: AuthComponent,
   },
-  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+  {
+    path: '',
+    component: MainComponent,
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      },
+    ],
+  },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
