@@ -2,6 +2,9 @@ package store
 
 import (
 	"be/server/store/scripts"
+	"fmt"
+	"log"
+
 	"github.com/jmoiron/sqlx"
 )
 
@@ -21,11 +24,13 @@ func (s *Store) Close() error {
 	return s.db.Close()
 }
 
-func (s *Store) Init() error {
-	_, err := s.db.Exec(scripts.CreateTableUser)
-	if err != nil {
-		return err
+// DatabaseUpdate executes scripts to update database.
+func (s *Store) DatabaseUpdate() error {
+	for _, script := range scripts.ToExecute() {
+		if _, err := s.db.Exec(s.db.Rebind(script.Query)); err != nil {
+			return fmt.Errorf("execute %q: %w", script.Title, err)
+		}
+		log.Printf("executed %q", script.Title)
 	}
-
 	return nil
 }

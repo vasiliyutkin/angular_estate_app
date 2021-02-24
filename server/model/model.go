@@ -15,7 +15,7 @@ func New(dbConn string) (*Model, error) {
 		return nil, fmt.Errorf("connecting to database: %w", err)
 	}
 
-	if err := s.Init(); err != nil {
+	if err := s.DatabaseUpdate(); err != nil {
 		return nil, fmt.Errorf("init database: %w", err)
 	}
 
