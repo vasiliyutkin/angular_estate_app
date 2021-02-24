@@ -2,8 +2,10 @@ package service
 
 import (
 	"be/server/model"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -20,8 +22,21 @@ func New(m *model.Model) *Service {
 }
 
 func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	log.Println(r.URL.Path)
+
 	if !strings.HasPrefix(r.URL.Path, "/api/") {
-		http.FileServer(http.Dir("client/dist/fe")).ServeHTTP(w, r)
+		if strings.Contains(r.URL.Path, ".") {
+			http.FileServer(http.Dir("client/dist/fe")).ServeHTTP(w, r)
+			return
+		}
+
+		fd, err := os.Open("client/dist/fe/index.html")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer fd.Close()
+		io.Copy(w, fd)
 		return
 	}
 
