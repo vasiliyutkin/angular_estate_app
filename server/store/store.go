@@ -1,13 +1,16 @@
 package store
 
-import "github.com/jmoiron/sqlx"
+import (
+	"be/server/store/scripts"
+	"github.com/jmoiron/sqlx"
+)
 
 type Store struct {
 	db *sqlx.DB
 }
 
 func New(conn string) (*Store, error) {
-	db, err := sqlx.Connect("mysql", conn)
+	db, err := sqlx.Open("postgres", conn)
 	if err != nil {
 		return nil, err
 	}
@@ -16,4 +19,13 @@ func New(conn string) (*Store, error) {
 
 func (s *Store) Close() error {
 	return s.db.Close()
+}
+
+func (s *Store) Init() error {
+	_, err := s.db.Exec(scripts.CreateTableUser)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
