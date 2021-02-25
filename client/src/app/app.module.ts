@@ -21,6 +21,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { AboutComponent } from './about/about.component';
+import { NavigationComponent } from './component_library/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AboutComponent } from './about/about.component';
     SignupComponent,
     ForgotComponent,
     AboutComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

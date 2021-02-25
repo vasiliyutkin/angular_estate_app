@@ -1,0 +1,38 @@
+<header class="header">
+    <a routerLink="/" class="logo">
+        <img src="../../assets/images/logo.svg" alt="app_logo">
+    </a>
+
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+
+    <ul class="menu">
+        <li>
+            <a class="nav-link" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a class="nav-link" routerLink="/about" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact: true}">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a class="nav-link" routerLink="/signin" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact: true}">
+                Sign In
+            </a>
+        </li>
+
+        <li>
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact: true}">
+                Sign Up
+            </a>
+        </li>
+    </ul>
+</header>
