@@ -11,15 +11,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth';
-import { SpinnerComponent } from './component_library/spinner';
+import { SpinnerComponent } from './component_library/spinner/spinner.component';
 
-import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { ForgotComponent } from './forgot/forgot.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, SpinnerComponent, DashboardComponent, MainComponent],
+  declarations: [
+    AppComponent,
+    SpinnerComponent,
+    DashboardComponent,
+    MainComponent,
+    SigninComponent,
+    SignupComponent,
+    ForgotComponent,
+    AboutComponent,
+  ],
   imports: [
     BrowserModule,
     NgbModule,

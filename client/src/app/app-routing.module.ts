@@ -1,17 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthComponent } from './auth';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { ForgotComponent } from './forgot/forgot.component';
 import { MainComponent } from './main/main.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
 
-import { AuthGuard } from './helpers';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: 'signup',
     canActivate: [AuthGuard],
-    component: AuthComponent,
+    component: SignupComponent,
+  },
+  {
+    path: 'forgot',
+    canActivate: [AuthGuard],
+    component: ForgotComponent,
+  },
+  {
+    path: 'signin',
+    canActivate: [AuthGuard],
+    component: SigninComponent,
   },
   {
     path: '',
@@ -20,6 +33,10 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
       },
     ],
   },

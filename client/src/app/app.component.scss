@@ -1,1 +1,19 @@
 @import '../app/theme/variables.scss';
+
+a {
+  color: $dark !important;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0.6rem 0.4rem 0.6rem 0;
+  transition: all 0.15s;
+  font-size: 1.3rem;
+
+  &:hover {
+    color: $slate-gray !important;
+  }
+
+  &.active-link {
+    color: $slate-gray !important;
+    font-weight: 800 !important;
+  }
+}

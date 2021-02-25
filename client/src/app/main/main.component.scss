@@ -1,14 +1,15 @@
 @import '../theme/variables';
 
-.main-content {
-  padding: 2rem;
+:host {
+  display: flex;
+  align-items: center;
   min-height: 100vh;
-  background-color: $white;
 }
 
-.navbar,
-footer {
-  height: 4rem;
-  background-color: $dark-charkoal !important;
-  color: $white !important;
+.main-content {
+  padding: 3rem 2rem;
+  min-height: 80vh;
+  margin: 6rem auto;
+  background-color: $white;
+  overflow-y: auto;
 }

@@ -1,0 +1,46 @@
+<div class="container mx-auto">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="loginError" class="error alert alert-danger mx-auto mb-3">
+                    {{loginError}}
+                </div>
+
+                <h1 class="text-center mb-5">Sign In</h1>
+
+                <p>Enter your username/email and password.</p>
+
+                <form [formGroup]="loginForm" class="mx-auto" (ngSubmit)="login()">
+                    <div class="form-group mt-5 mb-5">
+                        <input type="text" formControlName="username" class="form-control" placeholder="Email Address"
+                            [ngClass]="{ 'is-invalid': loginFormSubmitted && lf.username.errors }" />
+                        <div *ngIf="loginFormSubmitted && lf.username.errors" class="invalid-feedback">
+                            <div *ngIf="lf.username.errors.required">
+                                Email Address is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-5 mb-3">
+                        <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                            [ngClass]="{ 'is-invalid': loginFormSubmitted && lf.password.errors }" />
+                        <div *ngIf="loginFormSubmitted && lf.password.errors" class="invalid-feedback">
+                            <div *ngIf="lf.password.errors.required">
+                                Password is required
+                            </div>
+                        </div>
+                        <div class="text-right mt-3">
+                            <a routerLink="/forgot" class="btn btn-sm btn-light">Forgot Password?</a>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-self-center">
+                        <button class="btn btn-outline-dark" type="submit">
+                            Log In
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
