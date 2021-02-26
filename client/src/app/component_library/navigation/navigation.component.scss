@@ -3,21 +3,19 @@
 a {
   color: $slate-gray;
   text-transform: uppercase;
-  padding: 0;
-  margin: 0.6rem 0.4rem 0.6rem 0;
-  transition: all 0.15s;
+  margin: 0.4rem 0.3rem 0.4rem 0;
+  transition: all 0.2s;
   font-size: 1.1rem;
 
   &.active-link {
     background-color: $light;
     color: $slate-gray;
-    font-weight: 800;
   }
 }
 
 .header {
   background-color: $white;
-  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0.1rem 0.1rem 0.4rem 0 rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
   z-index: 3;
@@ -33,8 +31,8 @@ a {
 
 .header li a {
   display: block;
-  padding: 20px 20px;
-  border-right: 1px solid $light;
+  padding: 2rem;
+  border-right: 0.1rem solid $light;
   text-decoration: none;
 }
 
@@ -65,23 +63,23 @@ a {
   cursor: pointer;
   display: inline-block;
   float: right;
-  padding: 28px 20px;
+  padding: 2.8rem 2rem;
   position: relative;
   user-select: none;
 }
 
 .header .menu-icon .navicon {
-  background: #333;
+  background: $dark;
   display: block;
   height: 2px;
   position: relative;
   transition: background 0.2s ease-out;
-  width: 18px;
+  width: 1.8rem;
 }
 
 .header .menu-icon .navicon:before,
 .header .menu-icon .navicon:after {
-  background: #333;
+  background: $dark;
   content: '';
   display: block;
   height: 100%;
@@ -91,11 +89,11 @@ a {
 }
 
 .header .menu-icon .navicon:before {
-  top: 5px;
+  top: 0.5rem;
 }
 
 .header .menu-icon .navicon:after {
-  top: -5px;
+  top: -0.5rem;
 }
 
 .header .menu-btn {
@@ -127,14 +125,17 @@ a {
   .header li {
     float: left;
   }
+
   .header li a {
-    padding: 20px 30px;
+    padding: 1.5rem 2rem;
   }
+
   .header .menu {
     clear: none;
     float: right;
     max-height: none;
   }
+
   .header .menu-icon {
     display: none;
   }

@@ -1,14 +1,32 @@
 @import '../theme/variables';
 
 :host {
-  display: flex;
-  align-items: center;
   min-height: 100vh;
 }
 
 .main-content {
-  padding: 3rem 2rem;
-  min-height: 83vh;
-  margin: 10rem auto 2rem auto;
+  padding: 8rem 2rem 10rem 2rem;
+  min-height: 100vh;
   background-color: $white;
+}
+
+footer {
+  margin-top: -7rem;
+  height: 500px;
+  display: block;
+  clip-path: polygon(0% 12%, 100% 0, 100% 100%, 0 100%);
+  background-color: $dark-charkoal;
+
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+
+  h1 {
+    margin: auto;
+    font-size: 5rem;
+    color: $white;
+    text-transform: uppercase;
+  }
 }
