@@ -15,10 +15,16 @@ type Service struct {
 }
 
 func New(m *model.Model) *Service {
-	return &Service{
+	s := &Service{
 		rest:  newREST(),
 		model: m,
 	}
+
+	s.rest.AddRoute("/api/auth/signin", s.SignInHandler)
+	s.rest.AddRoute("/api/auth/signup", s.SignUpHandler)
+	s.rest.AddRoute("/api/auth/reset-password", s.ResetPasswordHandler)
+
+	return s
 }
 
 func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {

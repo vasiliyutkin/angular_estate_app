@@ -14,12 +14,12 @@ type REST struct {
 
 func newREST() *REST {
 	return &REST{
-		routes:      routes(),
+		routes:      make(map[string]http.Handler),
 		middleware:  nil,
 		corsHandler: NewCORS(DefaultCORSOptions()),
 	}
 }
 
-func (s *REST) AddRoute(path string, h http.Handler) {
+func (s *REST) AddRoute(path string, h http.HandlerFunc) {
 	s.routes[path] = h
 }
