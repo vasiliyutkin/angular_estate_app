@@ -28,7 +28,7 @@ func New(m *model.Model) *Service {
 }
 
 func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.URL.Path)
+	log.Println(r.Method, r.URL.Path)
 
 	if !strings.HasPrefix(r.URL.Path, "/api/") {
 		if strings.Contains(r.URL.Path, ".") {

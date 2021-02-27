@@ -1,11 +1,10 @@
 package store
 
 import (
-	"log"
 	"time"
 )
 
-type User struct {
+type user struct {
 	ID        uint32    `db:"id"`
 	Username  string    `db:"username"`
 	Password  string    `db:"password"`
@@ -13,7 +12,7 @@ type User struct {
 	CreatedAt time.Time `db:"created_at"`
 }
 
-func (s *Store) CreateUser(username, password string) (*User, error) {
+func (s *Store) CreateUser(username, password string) (*user, error) {
 	q := `
 		INSERT INTO users
 		(username, password, is_admin)
@@ -25,21 +24,20 @@ func (s *Store) CreateUser(username, password string) (*User, error) {
 	if err := s.db.QueryRowx(s.db.Rebind(q), username, password).Scan(&id); err != nil {
 		return nil, err
 	}
-	log.Println(id)
 
 	return s.GetUser(id)
 }
 
-func (s *Store) GetUser(id uint32) (*User, error) {
-	var u User
+func (s *Store) GetUser(id uint32) (*user, error) {
+	var u user
 	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE id = ?"), id); err != nil {
 		return nil, err
 	}
 	return &u, nil
 }
 
-func (s *Store) GetUserByName(username string) (*User, error) {
-	var u User
+func (s *Store) GetUserByName(username string) (*user, error) {
+	var u user
 	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE username = ?"), username); err != nil {
 		return nil, err
 	}

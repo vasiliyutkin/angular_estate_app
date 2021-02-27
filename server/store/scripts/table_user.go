@@ -4,7 +4,7 @@ func CreateTableUser() Script {
 	return Script{
 		Title: "create table user",
 		Query: `
-		DROP TABLE IF EXISTS users;
+		-- DROP TABLE IF EXISTS users;
 
 		CREATE TABLE IF NOT EXISTS users (
 			id serial NOT NULL,
