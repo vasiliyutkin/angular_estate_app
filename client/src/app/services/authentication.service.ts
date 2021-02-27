@@ -20,6 +20,7 @@ export class AuthenticationService {
   public get currentUserValue(): { accessToken: string } {
     return this.currentUserSubject.value;
   }
+
   public get currentUserInfo() {
     return this.currentUser;
   }
@@ -30,50 +31,6 @@ export class AuthenticationService {
       'Content-Type': 'application/json',
     });
     return updateHeaders;
-  }
-
-  getUsers() {
-    return this.http
-      .get<any>(`${environment.apiUrl}/auth`, { headers: this.headers })
-      .pipe(
-        map((user) => {
-          return user;
-        })
-      );
-  }
-
-  getUserById(userId: string) {
-    return this.http
-      .get<any>(`${environment.apiUrl}/auth/user/${userId}`, {
-        headers: this.headers,
-      })
-      .pipe(
-        map((user) => {
-          return user;
-        })
-      );
-  }
-
-  deactivateUserById(userId: string, status: boolean) {
-    return this.http
-      .post<any>(`${environment.apiUrl}/auth/deactivate`, { userId, status })
-      .pipe(
-        map((user) => {
-          return user;
-        })
-      );
-  }
-
-  deleteUserById(userId: string) {
-    return this.http
-      .delete<any>(`${environment.apiUrl}/auth/delete/${userId}`, {
-        headers: this.headers,
-      })
-      .pipe(
-        map((user) => {
-          return user;
-        })
-      );
   }
 
   signUpUser(userData: any) {
@@ -102,7 +59,7 @@ export class AuthenticationService {
 
   resetPassword(username: string, newPassword: string) {
     return this.http
-      .post<any>(`${environment.apiUrl}/auth/resetPassword`, {
+      .post<any>(`${environment.apiUrl}/auth/reset-password`, {
         username,
         newPassword,
       })
@@ -118,29 +75,5 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     sessionStorage.removeItem('user');
     this.currentUserSubject.next(null);
-  }
-
-  passwordChange(oldPassword: string, newPassword: string, user: any) {
-    return this.http.post<any>(`${environment.apiUrl}/auth/password-change`, {
-      oldPassword,
-      newPassword,
-      user,
-    });
-  }
-
-  sendEmail(
-    email: string,
-    name?: string,
-    message?: string,
-    location?: string
-  ): Observable<boolean> {
-    return this.http
-      .post<any>(`${environment.apiUrl}/auth/sendEmail`, {
-        name,
-        email,
-        message,
-        location,
-      })
-      .pipe(map((res) => res.ok));
   }
 }

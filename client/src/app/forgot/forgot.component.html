@@ -1,5 +1,5 @@
 <div class="container mx-auto">
-    <div class="col-md-6 offset-md-3 mt-4 mb-2">
+    <div class="col-md-6 offset-md-3 mt-4">
         <div class="card">
             <div class="card-body">
                 <div *ngIf="passwordNotification" class="info alert alert-info mx-auto mb-3">
@@ -41,13 +41,13 @@
                                 Password Confirmation is required
                             </div>
                         </div>
-                        <div *ngIf="!passwordsMatch" class="confirmation-failed">
+                        <div *ngIf="!passwordsMatch" class="confirmation-failed mt-2">
                             Passwords doesn't match
                         </div>
                     </div>
 
                     <div class="row justify-content-center align-self-center">
-                        <button class="btn btn-outline-dark mt-4" type="submit">
+                        <button class="btn btn-lg btn-outline-dark mt-4" type="submit">
                             Reset Password
                         </button>
                     </div>

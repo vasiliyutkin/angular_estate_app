@@ -21,8 +21,11 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.required],
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
     });
   }
 
@@ -37,13 +40,17 @@ export class SignupComponent implements OnInit {
       return;
     }
     this.authenticationService
-      .sendEmail(this.sf.email.value, this.sf.name.value, '', 'Meeting')
+      .signUpUser({
+        username: this.sf.username.value,
+        password: this.sf.password.value,
+      })
       .pipe(first())
-      .subscribe((sent: boolean) => {
-        if (sent) {
+      .subscribe((user: any) => {
+        if (user) {
           this.signupError = null;
           this.registrationFormSubmitted = false;
           this.registrationForm.reset();
+          console.log(user);
         } else {
           this.signupError = 'Registration failed';
           setTimeout(() => {

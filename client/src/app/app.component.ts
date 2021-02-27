@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  loading = false;
+  loading = true;
+
+  constructor() {
+    setTimeout(() => (this.loading = false), 1000);
+  }
 }

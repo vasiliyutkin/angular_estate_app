@@ -12,21 +12,8 @@
 
 footer {
   margin-top: -7rem;
-  height: 500px;
+  min-height: 400px;
   display: block;
   clip-path: polygon(0% 12%, 100% 0, 100% 100%, 0 100%);
-  background-color: $dark-charkoal;
-
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  justify-items: center;
-
-  h1 {
-    margin: auto;
-    font-size: 5rem;
-    color: $white;
-    text-transform: uppercase;
-  }
+  background-color: $dark;
 }
