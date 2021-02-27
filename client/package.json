@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently --kill-others \"cd .. && go run main.go\" \"ng serve --open\"",
     "build": "ng build --prod"
   },
   "private": true,
@@ -49,6 +49,7 @@
     "@types/jquery": "^3.5.5",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "concurrently": "^5.2.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",

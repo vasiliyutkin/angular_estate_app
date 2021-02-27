@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   signUpUser(userData: any) {
-    return this.http.post<any>(`${environment.apiUrl}/auth/signUp`, {
+    return this.http.post<any>(`${environment.apiUrl}/auth/signup`, {
       userData,
     });
   }
