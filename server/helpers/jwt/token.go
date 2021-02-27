@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var jwtKey = []byte("my_secret_key")
+var jwtKey = []byte("956a134bab451ad659a3a0b9f4a2098a05e3ddb1d02533a1f41f94da9e737b4c")
 
 type Claims struct {
 	Username       string
