@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,12 +12,12 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class SignupComponent implements OnInit {
   registrationForm: FormGroup;
-  signupError = '';
   registrationFormSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -39,6 +40,7 @@ export class SignupComponent implements OnInit {
     if (this.registrationForm.invalid) {
       return;
     }
+
     this.authenticationService
       .signUpUser({
         username: this.sf.username.value,
@@ -47,15 +49,9 @@ export class SignupComponent implements OnInit {
       .pipe(first())
       .subscribe((user: any) => {
         if (user) {
-          this.signupError = null;
           this.registrationFormSubmitted = false;
           this.registrationForm.reset();
-          console.log(user);
-        } else {
-          this.signupError = 'Registration failed';
-          setTimeout(() => {
-            this.registrationFormSubmitted = null;
-          }, 3000);
+          this.router.navigate(['/signin']);
         }
       });
   }

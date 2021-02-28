@@ -10,31 +10,37 @@
     </label>
 
     <ul class="menu">
-        <li>
+        <li class="navigation-item">
             <a (click)="menu.click()" class="nav-link" routerLink="/" routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{exact: true}">
                 Dashboard
             </a>
         </li>
 
-        <li>
+        <li class="navigation-item">
             <a (click)="menu.click()" class="nav-link" routerLink="/about" routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{exact: true}">
                 About
             </a>
         </li>
 
-        <li>
+        <li *ngIf="!loggedIn" class="auth-item">
+            <a (click)="menu.click()" class="nav-link" routerLink="/signup" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{exact: true}">
+                Sign Up
+            </a>
+        </li>
+
+        <li *ngIf="!loggedIn" class="auth-item">
             <a (click)="menu.click()" class="nav-link" routerLink="/signin" routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{exact: true}">
                 Sign In
             </a>
         </li>
 
-        <li>
-            <a (click)="menu.click()" class="nav-link" routerLink="/signup" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: true}">
-                Sign Up
+        <li *ngIf="loggedIn" class="auth-item">
+            <a (click)="logout(); menu.click()" class="nav-link" routerLink="/">
+                Logout
             </a>
         </li>
     </ul>

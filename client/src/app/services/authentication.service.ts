@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -23,6 +23,10 @@ export class AuthenticationService {
 
   public get currentUserInfo() {
     return this.currentUser;
+  }
+
+  public get loggedIn() {
+    return localStorage.getItem('currentUser') !== null;
   }
 
   public get headers() {

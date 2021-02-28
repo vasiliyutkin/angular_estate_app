@@ -3,9 +3,8 @@
 a {
   color: $slate-gray;
   text-transform: uppercase;
-  margin: 0.4rem 0.3rem 0.4rem 0;
-  transition: all 0.2s;
-  font-size: 1.1rem;
+  margin: 0.3rem 0.2rem 0.3rem 0;
+  font-size: 0.8rem;
 
   &.active-link {
     background-color: $light;
@@ -15,10 +14,10 @@ a {
 
 .header {
   background-color: $white;
-  box-shadow: 0.1rem 0.1rem 0.4rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0.1rem 0.1rem 0.4rem 0 rgba($dark, 0.1);
   position: fixed;
-  width: 100%;
-  z-index: 3;
+  width: 100vw;
+  z-index: 9999;
 }
 
 .header ul {
@@ -31,7 +30,7 @@ a {
 
 .header li a {
   display: block;
-  padding: 2rem;
+  padding: 1rem;
   border-right: 0.1rem solid $light;
   text-decoration: none;
 }
@@ -44,28 +43,29 @@ a {
 .header .logo {
   display: block;
   float: left;
-  padding: 1rem;
-  margin-left: 2rem;
+  padding: 0.5rem;
+  margin-left: 1.5rem;
   text-decoration: none;
 
   img {
-    height: 3rem;
+    height: 2.6rem;
+    margin-top: 0.4rem;
   }
 }
 
 .header .menu {
   clear: both;
   max-height: 0;
-  transition: max-height 0.2s ease-out;
 }
 
 .header .menu-icon {
   cursor: pointer;
   display: inline-block;
   float: right;
-  padding: 2.8rem 2rem;
+  padding: 1.8rem 1.5rem;
   position: relative;
   user-select: none;
+  margin-top: 0.6rem;
 }
 
 .header .menu-icon .navicon {
@@ -123,12 +123,26 @@ a {
 }
 
 @media (min-width: 48em) {
+  .header ul {
+    width: 91%;
+
+    li {
+      &.navigation-item {
+        float: left;
+      }
+
+      &.auth-item {
+        float: right;
+      }
+    }
+  }
+
   .header li {
     float: left;
   }
 
   .header li a {
-    padding: 1.5rem 2rem;
+    padding: 1.4rem;
   }
 
   .header .menu {
@@ -139,5 +153,16 @@ a {
 
   .header .menu-icon {
     display: none;
+  }
+}
+
+@media (max-width: 48em) {
+  .header .menu-btn:checked ~ .menu {
+    max-height: 100vh;
+    min-height: 100vh;
+  }
+
+  .header li a {
+    font-size: 1.1rem;
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot',
@@ -12,16 +13,19 @@ import { AuthenticationService } from '../services/authentication.service';
 export class ForgotComponent implements OnInit {
   forgotForm: FormGroup;
   forgotFormSubmited = false;
-  passwordNotification = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.forgotForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
       newPassword: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
@@ -47,15 +51,10 @@ export class ForgotComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (_) => {
-          this.passwordNotification = 'Password successfully reset';
           this.forgotForm.reset();
-          setTimeout(() => {
-            this.passwordNotification = null;
-          }, 3000);
+          this.router.navigate(['/signin']);
         },
-        (err) => {
-          console.log(err);
-        }
+        (_) => {}
       );
   }
 }

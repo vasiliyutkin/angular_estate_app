@@ -2,12 +2,7 @@
     <div class="col-md-6 offset-md-3 mt-4">
         <div class="card">
             <div class="card-body">
-                <div *ngIf="signupError" class="error alert alert-danger mx-auto mb-3">
-                    {{signupError}}
-                </div>
-
                 <h1 class="text-center mb-5">Sign Up</h1>
-
                 <p>Enter your username and password</p>
 
                 <form [formGroup]="registrationForm" class="mx-auto" (ngSubmit)="signUp()">
@@ -18,7 +13,7 @@
                             <div *ngIf="sf.username.errors.required">
                                 Email is required
                             </div>
-                            <div *ngIf="sf.username.errors.username">
+                            <div *ngIf="sf.username.errors.email">
                                 Invalid Email format
                             </div>
                         </div>

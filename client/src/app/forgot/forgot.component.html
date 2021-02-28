@@ -2,12 +2,7 @@
     <div class="col-md-6 offset-md-3 mt-4">
         <div class="card">
             <div class="card-body">
-                <div *ngIf="passwordNotification" class="info alert alert-info mx-auto mb-3">
-                    {{passwordNotification}}
-                </div>
-
                 <h1 class="text-center mb-5">Forgot Password?</h1>
-
                 <p>Enter your username/email and new password.</p>
 
                 <form [formGroup]="forgotForm" class="mx-auto" (ngSubmit)="resetPassword()">
@@ -16,7 +11,10 @@
                             [ngClass]="{ 'is-invalid': forgotFormSubmited && ff.username.errors }" />
                         <div *ngIf="forgotFormSubmited && ff.username.errors" class="invalid-feedback">
                             <div *ngIf="ff.username.errors.required">
-                                Email Address is required
+                                Email is required
+                            </div>
+                            <div *ngIf="ff.username.errors.email">
+                                Invalid Email format
                             </div>
                         </div>
                     </div>

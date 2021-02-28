@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
   loginForm: FormGroup;
   loginFormSubmitted = false;
-  loginError = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,7 +22,10 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
       password: ['', Validators.required],
     });
   }
@@ -31,6 +33,7 @@ export class SigninComponent implements OnInit {
   get lf() {
     return this.loginForm.controls;
   }
+
   login() {
     this.loginFormSubmitted = true;
 
@@ -41,16 +44,10 @@ export class SigninComponent implements OnInit {
     this.authenticationService
       .login(this.lf.username.value, this.lf.password.value)
       .pipe(first())
-      .subscribe(
-        (_) => {
+      .subscribe((res) => {
+        if (res.ok) {
           this.router.navigate(['/']);
-        },
-        (error) => {
-          this.loginError = error;
-          setTimeout(() => {
-            this.loginError = null;
-          }, 5000);
         }
-      );
+      });
   }
 }
