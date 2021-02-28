@@ -1,4 +1,5 @@
 @import '../../../app/theme/variables';
+@import '../../../app/theme/abstracts/mixins';
 
 a {
   color: $slate-gray;
@@ -156,7 +157,7 @@ a {
   }
 }
 
-@media (max-width: 48em) {
+@include respond(phone) {
   .header .menu-btn:checked ~ .menu {
     max-height: 100vh;
     min-height: 100vh;
