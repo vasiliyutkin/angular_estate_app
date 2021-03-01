@@ -36,18 +36,14 @@ func (s *Service) SignInHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	type signInResponse struct {
-		OK          bool        `json:"ok"`
-		UserData    *model.User `json:"userData"`
+		User        *model.User `json:"user"`
 		AccessToken string      `json:"accessToken"`
 	}
 
-	resp := &signInResponse{
-		OK:          true,
-		UserData:    user,
+	s.responseHandler(w, r, &Response{Data: &signInResponse{
+		User:        user,
 		AccessToken: token,
-	}
-
-	s.responseHandler(w, r, &Response{Data: resp})
+	}})
 }
 
 func (s *Service) SignUpHandler(w http.ResponseWriter, r *http.Request) {
@@ -63,9 +59,21 @@ func (s *Service) SignUpHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	s.responseHandler(w, r, &Response{Data: user})
+	type signUpResponse struct {
+		User *model.User `json:"user"`
+	}
+
+	s.responseHandler(w, r, &Response{Data: &signUpResponse{User: user}})
 }
 
 func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("YO ;)"))
+	req := &userData{}
+	if err := unmarshalRequest(r.Body, &req); err != nil {
+		s.errorHandler(w, r, err)
+		return
+	}
+
+	// TODO ¯\_(ツ)_/¯
+
+	s.responseHandler(w, r, &Response{})
 }

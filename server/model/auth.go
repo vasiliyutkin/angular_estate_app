@@ -20,11 +20,7 @@ func (m *Model) SignIn(username, password string) (*User, error) {
 		return nil, ErrWrongPassword
 	}
 
-	return &User{
-		ID:       u.ID,
-		Username: u.Username,
-		IsAdmin:  u.IsAdmin,
-	}, nil
+	return userFromStore(u), nil
 }
 
 func (m *Model) SignUp(username, password string) (*User, error) {
@@ -47,9 +43,5 @@ func (m *Model) SignUp(username, password string) (*User, error) {
 	if err != nil {
 		return nil, fmt.Errorf("create user %q: %w", username, err)
 	}
-	return &User{
-		ID:       u.ID,
-		Username: u.Username,
-		IsAdmin:  u.IsAdmin,
-	}, nil
+	return userFromStore(u), nil
 }
