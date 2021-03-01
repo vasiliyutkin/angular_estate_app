@@ -49,10 +49,10 @@ export class SigninComponent implements OnInit {
       .subscribe((res) => {
         if (!res.error) {
           this.toasterService.show(
-            `Welcome back ${res.data.userData.username}!`,
+            `Welcome back ${res.data.user.username}!`,
             'You successfully logged into the system'
           );
-          this.router.navigate(['/']);
+          window.location.href = '/';
         }
       });
   }

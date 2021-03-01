@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -25,6 +26,10 @@ export class AuthenticationService {
     return this.user;
   }
 
+  public get isAdmin() {
+    return this.user && this.user.isAdmin;
+  }
+
   public get loggedIn() {
     return localStorage.getItem('jwt') !== null;
   }
@@ -43,11 +48,11 @@ export class AuthenticationService {
       })
       .pipe(
         map((res) => {
-          const { accessToken, userData } = res.data;
+          const { accessToken, user } = res.data;
 
-          localStorage.setItem('jwt', JSON.stringify(accessToken));
-          localStorage.setItem('user', JSON.stringify(userData));
-          sessionStorage.setItem('user', JSON.stringify(userData));
+          localStorage.setItem('jwt', JSON.stringify({ accessToken }));
+          localStorage.setItem('user', JSON.stringify(user));
+          sessionStorage.setItem('user', JSON.stringify(user));
 
           this.jwtSubject.next({ accessToken });
 
@@ -74,5 +79,6 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     sessionStorage.removeItem('user');
     this.jwtSubject.next(null);
+    window.location.href = '/';
   }
 }
