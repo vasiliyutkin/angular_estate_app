@@ -8,7 +8,7 @@ type User struct {
 	Firstname string `json:"firstname"`
 	Lastname  string `json:"lastname"`
 	Mobile    string `json:"mobile"`
-	IsAdmin   bool   `json:"is_admin"`
+	IsAdmin   bool   `json:"isAdmin"`
 }
 
 func userFromStore(u *store.User) *User {
