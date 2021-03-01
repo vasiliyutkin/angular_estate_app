@@ -38,14 +38,14 @@ func (s *Service) responseHandler(w http.ResponseWriter, r *http.Request, resp *
 	w.Write(b)
 }
 
-func (s *Service) errorHandler(w http.ResponseWriter, r *http.Request, err error) {
+func (s *Service) errorHandler(w http.ResponseWriter, r *http.Request, e error) {
 	b, err := json.Marshal(struct {
 		Error string `json:"error"`
 	}{
-		Error: err.Error(),
+		Error: e.Error(),
 	})
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, e.Error(), http.StatusInternalServerError)
 		return
 	}
 
