@@ -14,6 +14,8 @@ func Executed() []Script {
 // ToExecute contains of scripts that should be executed by next deployment.
 func ToExecute() []Script {
 	return []Script{
+		DropTableUser(),
 		CreateTableUser(),
+		AddAdminUser(),
 	}
 }

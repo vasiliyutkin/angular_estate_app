@@ -1,13 +1,14 @@
 package store
 
-import (
-	"time"
-)
+import "time"
 
 type user struct {
 	ID        uint32    `db:"id"`
 	Username  string    `db:"username"`
 	Password  string    `db:"password"`
+	Firstname string    `db:"firstname"`
+	Lastname  string    `db:"lastname"`
+	Mobile    string    `db:"mobile"`
 	IsAdmin   bool      `db:"is_admin"`
 	CreatedAt time.Time `db:"created_at"`
 }
@@ -15,13 +16,14 @@ type user struct {
 func (s *Store) CreateUser(username, password string) (*user, error) {
 	q := `
 		INSERT INTO users
-		(username, password, is_admin)
-		VALUES(?, ?, false)
+			(username, password, firstname, lastname, mobile, is_admin)
+		VALUES
+			(?, ?, ?, ?, ?, false)
 		RETURNING id
 	`
 
 	var id uint32
-	if err := s.db.QueryRowx(s.db.Rebind(q), username, password).Scan(&id); err != nil {
+	if err := s.db.QueryRowx(s.db.Rebind(q), username, password, "", "", "").Scan(&id); err != nil {
 		return nil, err
 	}
 
