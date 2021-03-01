@@ -1,6 +1,8 @@
 package store
 
-import "time"
+import (
+	"time"
+)
 
 type user struct {
 	ID        uint32    `db:"id"`
@@ -11,6 +13,16 @@ type user struct {
 	Mobile    string    `db:"mobile"`
 	IsAdmin   bool      `db:"is_admin"`
 	CreatedAt time.Time `db:"created_at"`
+}
+
+func (s *Store) UserExits(username string) (bool, error) {
+	q := "SELECT EXISTS(SELECT * FROM users WHERE username = ?) AS exists"
+
+	var exists bool
+	if err := s.db.QueryRowx(s.db.Rebind(q), username).Scan(&exists); err != nil {
+		return false, err
+	}
+	return exists, nil
 }
 
 func (s *Store) CreateUser(username, password string) (*user, error) {

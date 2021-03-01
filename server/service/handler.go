@@ -1,6 +1,7 @@
 package service
 
 import (
+	"be/server/model"
 	"encoding/json"
 	"io"
 	"io/ioutil"
@@ -8,13 +9,8 @@ import (
 )
 
 type Response struct {
-	Data  interface{} `json:"data"`
-	Error *Error      `json:"error"`
-}
-
-type Error struct {
-	Code uint32 `json:"code"`
-	Text string `json:"text"`
+	Data  interface{}  `json:"data"`
+	Error *model.Error `json:"error"`
 }
 
 func unmarshalRequest(b io.ReadCloser, v interface{}) error {

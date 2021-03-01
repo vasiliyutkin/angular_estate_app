@@ -2,27 +2,42 @@ package model
 
 import (
 	"fmt"
+	"log"
+	"strings"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
 func (m *Model) SignIn(username, password string) (*User, error) {
+	username = strings.ToLower(username)
 	u, err := m.store.GetUserByName(username)
 	if err != nil {
 		return nil, fmt.Errorf("get user %q: %w", username, err)
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password)); err != nil {
-		return nil, fmt.Errorf("wrong password for user %q: %w", username, err)
+		log.Printf("wrong password for user %q: %v", username, err)
+		return nil, ErrWrongPassword
 	}
 
 	return &User{
 		ID:       u.ID,
 		Username: u.Username,
 		IsAdmin:  u.IsAdmin,
-	}, err
+	}, nil
 }
 
 func (m *Model) SignUp(username, password string) (*User, error) {
+	username = strings.ToLower(username)
+
+	exists, err := m.store.UserExits(username)
+	if err != nil {
+		return nil, fmt.Errorf("check if username %s exists: %w", username, err)
+	}
+	if exists {
+		return nil, ErrUserExists
+	}
+
 	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, fmt.Errorf("hashing password: %w", err)
@@ -36,5 +51,5 @@ func (m *Model) SignUp(username, password string) (*User, error) {
 		ID:       u.ID,
 		Username: u.Username,
 		IsAdmin:  u.IsAdmin,
-	}, err
+	}, nil
 }

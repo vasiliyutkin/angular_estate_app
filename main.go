@@ -19,6 +19,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Println("Server is started on port :", c.Port)
+	log.Println("Server is started on port:", c.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", c.Port), service.New(m)))
 }
