@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +18,8 @@ export class SigninComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    public toasterService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -45,7 +47,11 @@ export class SigninComponent implements OnInit {
       .login(this.lf.username.value, this.lf.password.value)
       .pipe(first())
       .subscribe((res) => {
-        if (res.ok) {
+        if (!res.error) {
+          this.toasterService.show(
+            `Welcome back ${res.data.userData.username}!`,
+            'You successfully logged into the system'
+          );
           this.router.navigate(['/']);
         }
       });

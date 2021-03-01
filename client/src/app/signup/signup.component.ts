@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    public toasterService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -47,10 +49,9 @@ export class SignupComponent implements OnInit {
         password: this.sf.password.value,
       })
       .pipe(first())
-      .subscribe((user: any) => {
-        if (user) {
-          this.registrationFormSubmitted = false;
-          this.registrationForm.reset();
+      .subscribe((res: any) => {
+        if (res) {
+          this.toasterService.show('You successfully signed up');
           this.router.navigate(['/signin']);
         }
       });

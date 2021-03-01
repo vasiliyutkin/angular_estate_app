@@ -18,14 +18,14 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const currentUser: { accessToken: string } = this.authenticationService
-      .currentUserValue;
-    const isLoggedIn = currentUser && currentUser.accessToken;
+    const jwt: { accessToken: string } = this.authenticationService.jwtValue;
+    const isLoggedIn = jwt && jwt.accessToken;
     const isApiUrl = request.url.startsWith(environment.apiUrl);
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.accessToken}`,
+          Authorization: `Bearer ${jwt.accessToken}`,
+          'Content-Type': 'application/json',
         },
       });
     }

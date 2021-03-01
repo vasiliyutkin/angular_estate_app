@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot',
@@ -17,7 +18,8 @@ export class ForgotComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    public toasterService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class ForgotComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (_) => {
-          this.forgotForm.reset();
+          this.toasterService.show('Your password has been resetted');
           this.router.navigate(['/signin']);
         },
         (_) => {}

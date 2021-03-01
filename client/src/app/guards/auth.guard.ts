@@ -11,17 +11,16 @@ import { AuthenticationService } from '../services/authentication.service';
 export class AuthGuard implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this.authenticationService.currentUserValue;
-    if (currentUser) {
-      const currentData = this.authenticationService.currentUserInfo;
-      if (currentData) {
-        sessionStorage.setItem('user', JSON.stringify(currentData));
+  canActivate(_: ActivatedRouteSnapshot, __: RouterStateSnapshot) {
+    const jwt = this.authenticationService.jwtValue;
+    if (jwt) {
+      const user = this.authenticationService.userInfo;
+      if (user) {
+        sessionStorage.setItem('user', JSON.stringify(user));
         return false;
       }
       return false;
     }
-
     return true;
   }
 }

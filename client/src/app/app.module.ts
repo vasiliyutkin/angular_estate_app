@@ -9,9 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
-import { NetworkingInterceptor } from './helpers/networking.interceptor';
-import { AuthenticationInterceptor } from './helpers/authentication.interceptor';
-import { ExceptionsInterceptor } from './helpers/exceptions.interceptor';
+import { NetworkingInterceptor } from './interceptors/networking.interceptor';
+import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { ExceptionsInterceptor } from './interceptors/exceptions.interceptor';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -48,7 +48,7 @@ import { AuthenticationService } from './services/authentication.service';
     ToastrModule.forRoot({
       maxOpened: 1,
       preventDuplicates: true,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-center',
     }),
     MatIconModule,
     ReactiveFormsModule,

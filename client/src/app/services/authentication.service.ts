@@ -7,34 +7,26 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<{ accessToken: string }>;
-  public currentUser: any;
+  private jwtSubject: BehaviorSubject<{ accessToken: string }>;
+  public user: any;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<{ accessToken: string }>(
-      JSON.parse(localStorage.getItem('currentUser'))
+    this.jwtSubject = new BehaviorSubject<{ accessToken: string }>(
+      JSON.parse(localStorage.getItem('jwt'))
     );
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-  public get currentUserValue(): { accessToken: string } {
-    return this.currentUserSubject.value;
+  public get jwtValue(): { accessToken: string } {
+    return this.jwtSubject.value;
   }
 
-  public get currentUserInfo() {
-    return this.currentUser;
+  public get userInfo() {
+    return this.user;
   }
 
   public get loggedIn() {
-    return localStorage.getItem('currentUser') !== null;
-  }
-
-  public get headers() {
-    const updateHeaders = new HttpHeaders({
-      Authorization: `Bearer ${this.currentUserValue}`,
-      'Content-Type': 'application/json',
-    });
-    return updateHeaders;
+    return localStorage.getItem('jwt') !== null;
   }
 
   signUpUser(userData: any) {
@@ -50,13 +42,16 @@ export class AuthenticationService {
         password,
       })
       .pipe(
-        map((data) => {
-          const { accessToken, userData } = data;
-          localStorage.setItem('currentUser', JSON.stringify(accessToken));
+        map((res) => {
+          const { accessToken, userData } = res.data;
+
+          localStorage.setItem('jwt', JSON.stringify(accessToken));
           localStorage.setItem('user', JSON.stringify(userData));
           sessionStorage.setItem('user', JSON.stringify(userData));
-          this.currentUserSubject.next(data);
-          return data;
+
+          this.jwtSubject.next({ accessToken });
+
+          return res;
         })
       );
   }
@@ -68,16 +63,16 @@ export class AuthenticationService {
         newPassword,
       })
       .pipe(
-        map((data) => {
-          return data;
+        map((res) => {
+          return res;
         })
       );
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('jwt');
     localStorage.removeItem('user');
     sessionStorage.removeItem('user');
-    this.currentUserSubject.next(null);
+    this.jwtSubject.next(null);
   }
 }
