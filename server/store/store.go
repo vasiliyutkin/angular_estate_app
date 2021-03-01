@@ -32,5 +32,12 @@ func (s *Store) DatabaseUpdate() error {
 		}
 		log.Printf("executed %q", script.Title)
 	}
+
+	var names []string
+	if err := s.db.Select(&names, "SELECT username FROM users"); err != nil {
+		return fmt.Errorf(";( %w", err)
+	}
+	log.Println("--->", names)
+
 	return nil
 }
