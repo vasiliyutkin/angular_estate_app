@@ -11,6 +11,10 @@ type authRequest struct {
 	Password string `json:"password"`
 }
 
+type authResponse struct {
+	User *model.User `json:"user"`
+}
+
 func (s *Service) LoginHandler(w http.ResponseWriter, r *http.Request) {
 	req := &authRequest{}
 	if err := unmarshalRequest(r.Body, &req); err != nil {
@@ -54,11 +58,7 @@ func (s *Service) SignUpHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	type signUpResponse struct {
-		User *model.User `json:"user"`
-	}
-
-	s.responseHandler(w, r, &Response{Data: &signUpResponse{User: user}})
+	s.responseHandler(w, r, &Response{Data: &authResponse{User: user}})
 }
 
 func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
@@ -68,7 +68,11 @@ func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// TODO ¯\_(ツ)_/¯
+	user, err := s.model.ResetPassword(req.Username, req.Password)
+	if err != nil {
+		s.errorHandler(w, r, err)
+		return
+	}
 
-	s.responseHandler(w, r, &Response{})
+	s.responseHandler(w, r, &Response{Data: &authResponse{User: user}})
 }

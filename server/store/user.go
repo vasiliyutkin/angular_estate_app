@@ -57,3 +57,14 @@ func (s *Store) GetUserByName(username string) (*User, error) {
 	}
 	return &u, nil
 }
+
+func (s *Store) UpdatePassword(id uint32, password string) error {
+	q := `
+		UPDATE users
+		SET password = ?
+		WHERE id = ?
+	`
+
+	_, err := s.db.Exec(s.db.Rebind(q), password, id)
+	return err
+}
