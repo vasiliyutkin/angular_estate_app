@@ -20,7 +20,7 @@ func New(m *model.Model) *Service {
 		model: m,
 	}
 
-	s.rest.AddRoute("/api/auth/signin", s.SignInHandler)
+	s.rest.AddRoute("/api/auth/login", s.LoginHandler)
 	s.rest.AddRoute("/api/auth/signup", s.SignUpHandler)
 	s.rest.AddRoute("/api/auth/reset-password", s.ResetPasswordHandler)
 

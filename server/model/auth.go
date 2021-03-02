@@ -8,7 +8,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (m *Model) SignIn(username, password string) (*User, error) {
+func (m *Model) Login(username, password string) (*User, error) {
 	username = strings.ToLower(username)
 	u, err := m.store.GetUserByName(username)
 	if err != nil {

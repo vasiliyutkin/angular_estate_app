@@ -44,10 +44,7 @@ export class SignupComponent implements OnInit {
     }
 
     this.authenticationService
-      .signUpUser({
-        username: this.sf.username.value,
-        password: this.sf.password.value,
-      })
+      .signUpUser(this.sf.username.value, this.sf.password.value)
       .pipe(first())
       .subscribe((res: any) => {
         if (res) {

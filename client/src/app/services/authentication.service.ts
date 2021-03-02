@@ -34,15 +34,16 @@ export class AuthenticationService {
     return localStorage.getItem('jwt') !== null;
   }
 
-  signUpUser(userData: any) {
+  signUpUser(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/auth/signup`, {
-      userData,
+        username,
+        password,
     });
   }
 
   login(username: string, password: string) {
     return this.http
-      .post<any>(`${environment.apiUrl}/auth/signin`, {
+      .post<any>(`${environment.apiUrl}/auth/login`, {
         username,
         password,
       })
@@ -61,11 +62,11 @@ export class AuthenticationService {
       );
   }
 
-  resetPassword(username: string, newPassword: string) {
+  resetPassword(username: string, password: string) {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/reset-password`, {
         username,
-        newPassword,
+        password,
       })
       .pipe(
         map((res) => {
