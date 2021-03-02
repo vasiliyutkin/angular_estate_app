@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
       .pipe(first())
       .subscribe((res: any) => {
         if (res) {
-          this.toasterService.show('You successfully signed up');
+          this.toasterService.show('Регистрация прошла успешно...');
           this.router.navigate(['/signin']);
         }
       });

@@ -15,7 +15,7 @@ a {
 
 .header {
   background-color: $white;
-  box-shadow: 0.1rem 0.1rem 0.4rem 0 rgba($dark, 0.1);
+  box-shadow: 2px 2px 4px 0 rgba($slate-gray, 0.3);
   position: fixed;
   width: 100vw;
   z-index: 9999;
@@ -26,7 +26,6 @@ a {
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: $white;
 }
 
 .header li a {

@@ -5,6 +5,8 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
+import { userTokenName } from './../services/auth.constants';
+
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({ providedIn: 'root' })
@@ -14,9 +16,9 @@ export class AuthGuard implements CanActivate {
   canActivate(_: ActivatedRouteSnapshot, __: RouterStateSnapshot) {
     const jwt = this.authenticationService.jwtValue;
     if (jwt) {
-      const user = this.authenticationService.userInfo;
+      const user = this.authenticationService.userValue;
       if (user) {
-        sessionStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem(userTokenName, JSON.stringify(user));
         return false;
       }
       return false;

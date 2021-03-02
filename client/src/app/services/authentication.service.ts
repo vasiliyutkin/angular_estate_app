@@ -4,40 +4,42 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
+import { jwtTokenName, userTokenName } from './auth.constants';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private jwtSubject: BehaviorSubject<{ accessToken: string }>;
-  public user: any;
+  private userSubject: BehaviorSubject<any>;
 
   constructor(private http: HttpClient) {
     this.jwtSubject = new BehaviorSubject<{ accessToken: string }>(
-      JSON.parse(localStorage.getItem('jwt'))
+      JSON.parse(localStorage.getItem(jwtTokenName))
     );
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.userSubject = new BehaviorSubject<any>(
+      JSON.parse(localStorage.getItem(userTokenName))
+    );
   }
 
   public get jwtValue(): { accessToken: string } {
     return this.jwtSubject.value;
   }
 
-  public get userInfo() {
-    return this.user;
+  public get userValue() {
+    return this.userSubject.value;
   }
 
   public get isAdmin() {
-    return this.user && this.user.isAdmin;
+    return this.userValue && this.userValue.isAdmin;
   }
 
   public get loggedIn() {
-    return localStorage.getItem('jwt') !== null;
+    return localStorage.getItem(jwtTokenName) !== null;
   }
 
   signUpUser(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/auth/signup`, {
-        username,
-        password,
+      username,
+      password,
     });
   }
 
@@ -51,11 +53,11 @@ export class AuthenticationService {
         map((res) => {
           const { accessToken, user } = res.data;
 
-          localStorage.setItem('jwt', JSON.stringify({ accessToken }));
-          localStorage.setItem('user', JSON.stringify(user));
-          sessionStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem(jwtTokenName, JSON.stringify({ accessToken }));
+          localStorage.setItem(userTokenName, JSON.stringify(user));
 
           this.jwtSubject.next({ accessToken });
+          this.userSubject.next(user);
 
           return res;
         })
@@ -68,18 +70,16 @@ export class AuthenticationService {
         username,
         password,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
-  logout() {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('user');
-    sessionStorage.removeItem('user');
+  logout(): Promise<null> {
+    localStorage.removeItem(jwtTokenName);
+    localStorage.removeItem(userTokenName);
+
     this.jwtSubject.next(null);
-    window.location.href = '/';
+    this.userSubject.next(null);
+
+    return Promise.resolve(null);
   }
 }

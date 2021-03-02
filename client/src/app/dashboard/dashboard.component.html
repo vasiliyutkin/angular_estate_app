@@ -1,3 +1,1 @@
-<h1>{{welcomeText}}</h1>
-<br>
-<h2 *ngIf="isAdmin">{{adminText}}</h2>
+<h1>{{user != null ? user.username : ''}}</h1>

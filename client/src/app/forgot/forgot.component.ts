@@ -53,7 +53,7 @@ export class ForgotComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (_) => {
-          this.toasterService.show('Your password has been resetted');
+          this.toasterService.show('Ваш пароль восстановлен...');
           this.router.navigate(['/signin']);
         },
         (_) => {}

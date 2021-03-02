@@ -3,7 +3,8 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently --kill-others \"go run main.go\" \"cd client && ng serve --open\"",
-    "build": "cd client && ng build --prod"
+    "build": "cd client && ng build --prod",
+    "update": "npm run build && git add . && git commit -am 'project sync commit' && git fetch && git pull && git push"
   },
   "private": true,
   "devDependencies": {
