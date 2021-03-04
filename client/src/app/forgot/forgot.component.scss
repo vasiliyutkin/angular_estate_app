@@ -1,3 +1,5 @@
+@import '../theme/variables';
+
 :host {
   display: flex;
   align-items: center;
@@ -6,6 +8,11 @@
 
 .card {
   padding: 5rem;
+}
+
+.confirmation-failed {
+  color: $danger;
+  font-size: .85rem;
 }
 
 @media (min-height: 200px) and (max-height: 450px) {

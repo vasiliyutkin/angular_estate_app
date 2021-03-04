@@ -17,6 +17,10 @@ export class NavigationComponent {
     return this.authService.loggedIn;
   }
 
+  public get isAdmin(): boolean {
+    return this.loggedIn && this.authService.isAdmin;
+  }
+
   logout(): void {
     this.authService
       .logout()

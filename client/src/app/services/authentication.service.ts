@@ -5,17 +5,18 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { jwtTokenName, userTokenName } from './auth.constants';
+import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private jwtSubject: BehaviorSubject<{ accessToken: string }>;
-  private userSubject: BehaviorSubject<any>;
+  private userSubject: BehaviorSubject<User>;
 
   constructor(private http: HttpClient) {
     this.jwtSubject = new BehaviorSubject<{ accessToken: string }>(
       JSON.parse(localStorage.getItem(jwtTokenName))
     );
-    this.userSubject = new BehaviorSubject<any>(
+    this.userSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem(userTokenName))
     );
   }
@@ -24,7 +25,7 @@ export class AuthenticationService {
     return this.jwtSubject.value;
   }
 
-  public get userValue() {
+  public get userValue(): User {
     return this.userSubject.value;
   }
 

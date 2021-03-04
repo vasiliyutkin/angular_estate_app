@@ -13,6 +13,7 @@
                             <div *ngIf="ff.username.errors.required">
                                 Email is required
                             </div>
+
                             <div *ngIf="ff.username.errors.email">
                                 Invalid Email format
                             </div>
@@ -39,7 +40,8 @@
                                 Password Confirmation is required
                             </div>
                         </div>
-                        <div *ngIf="!passwordsMatch" class="confirmation-failed mt-2">
+
+                        <div *ngIf="forgotFormSubmited && !passwordsMatch" class="confirmation-failed mt-2">
                             Passwords doesn't match
                         </div>
                     </div>

@@ -17,7 +17,7 @@
             </a>
         </li>
 
-        <li class="navigation-item">
+        <li class="navigation-item" *ngIf="isAdmin">
             <a (click)="menu.click()" class="nav-link" routerLink="/about" routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{exact: true}">
                 About

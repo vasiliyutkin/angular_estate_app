@@ -8,10 +8,12 @@ import {
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}
 
   canActivate(_: ActivatedRouteSnapshot, __: RouterStateSnapshot) {
-    return !this.authenticationService.jwtValue;
+    return this.authenticationService.jwtValue
+      ? this.authenticationService.userValue.isAdmin
+      : false;
   }
 }
