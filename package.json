@@ -1,16 +1,18 @@
 {
-  "name": "annalex_estate",
+  "name": "root",
   "scripts": {
     "ng": "ng",
     "start": "concurrently --kill-others \"go run main.go\" \"cd client && ng serve --open\"",
     "build": "cd client && ng build --prod",
     "pull": "git fetch && git pull",
-    "push": "npm run build && git add . && git commit -am 'project sync commit' && git fetch && git pull && git push"
+    "push": "npm run build && git add . && git commit -am 'project sync commit' && git fetch && git pull && git push",
+    "transgen": "ngx-translate-extract --input ./client/src --output ./client/src/assets/i18n/*.json --clean --sort --format namespaced-json --marker _"
   },
   "private": true,
   "devDependencies": {
     "@angular/cli": "~11.2.2",
     "@angular/compiler-cli": "~11.2.2",
+    "@biesbjerg/ngx-translate-extract": "^7.0.3",
     "concurrently": "^5.2.0"
   }
 }

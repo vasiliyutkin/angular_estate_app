@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation',
@@ -10,8 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 export class NavigationComponent {
   constructor(
     private authService: AuthenticationService,
-    private toastrService: ToastrService
-  ) {}
+    private toastrService: ToastrService,
+    private translateService: TranslateService
+  ) {
+    setTimeout(() => this.translateService.use('ua'), 5000);
+    setTimeout(() => this.translateService.use('ru'), 10000);
+  }
 
   public get loggedIn(): boolean {
     return this.authService.loggedIn;

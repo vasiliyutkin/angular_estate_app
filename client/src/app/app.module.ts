@@ -2,7 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +29,8 @@ import { SpinnerComponent } from './component_library/spinner/spinner.component'
 
 import { SpinnerManagerService } from './services/spinner.manager.service';
 import { AuthenticationService } from './services/authentication.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -49,6 +55,13 @@ import { AuthenticationService } from './services/authentication.service';
       maxOpened: 1,
       preventDuplicates: true,
       positionClass: 'toast-bottom-center',
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
     MatIconModule,
     ReactiveFormsModule,
@@ -77,3 +90,8 @@ import { AuthenticationService } from './services/authentication.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
+
+// required for AOT compilation / translations
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
