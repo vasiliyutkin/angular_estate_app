@@ -1,10 +1,15 @@
 <header class="header">
-    <a routerLink="/" class="logo">
-        <img src="../../assets/images/logo.svg" alt="app_logo">
-    </a>
+    <div class="logo-section">
+        <a routerLink="/" class="logo">
+            <img src="../../assets/images/logo.svg" alt="app_logo">
+        </a>
+
+        <button mat-icon-button [matMenuTriggerFor]="langs" aria-label="language change mat-icon button">
+            <mat-icon>language</mat-icon>
+        </button>
+    </div>
 
     <input #menu class="menu-btn" type="checkbox" id="menu-btn" />
-
     <label class="menu-icon" for="menu-btn">
         <span class="navicon"></span>
     </label>
@@ -45,3 +50,12 @@
         </li>
     </ul>
 </header>
+
+<mat-menu #langs="matMenu">
+    <button [disabled]="shouldDisableLang(enTranslationCode)" (click)="changeLang(enTranslationCode)"
+        mat-menu-item>{{ 'navigation.language.english' | translate }}</button>
+    <button [disabled]="shouldDisableLang(ruTranslationCode)" (click)="changeLang(ruTranslationCode)"
+        mat-menu-item>{{ 'navigation.language.russian' | translate }}</button>
+    <button [disabled]="shouldDisableLang(uaTranslationCode)" (click)="changeLang(uaTranslationCode)"
+        mat-menu-item>{{ 'navigation.language.ukrainian' | translate }}</button>
+</mat-menu>

@@ -13,12 +13,17 @@ a {
   }
 }
 
+mat-icon {
+  color: $slate-gray;
+}
+
 .header {
+  position: relative;
   background-color: $white;
   box-shadow: 2px 2px 4px 0 rgba($slate-gray, 0.3);
   position: fixed;
   width: 100vw;
-  z-index: 9999;
+  z-index: 999999;
 }
 
 .header ul {
@@ -40,16 +45,22 @@ a {
   background-color: $light;
 }
 
-.header .logo {
-  display: block;
-  float: left;
-  padding: 0.5rem;
-  margin-left: 1.5rem;
-  text-decoration: none;
+.header {
+  .logo-section {
+    display: inline-flex;
+    align-items: center;
 
-  img {
-    height: 2.6rem;
-    margin-top: 0.4rem;
+    .logo {
+      display: block;
+      padding: 0.5rem;
+      margin-left: 1rem;
+      text-decoration: none;
+
+      img {
+        height: 2.55rem;
+        margin-top: 0.3rem;
+      }
+    }
   }
 }
 
@@ -60,7 +71,6 @@ a {
 
 .header .menu-icon {
   cursor: pointer;
-  display: inline-block;
   float: right;
   padding: 1.8rem 1.5rem;
   position: relative;
@@ -124,7 +134,7 @@ a {
 
 @media (min-width: 48em) {
   .header ul {
-    width: 91%;
+    min-width: 88vw;
 
     li {
       &.navigation-item {
@@ -164,5 +174,29 @@ a {
 
   .header li a {
     font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .header ul {
+    min-width: 89vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header ul {
+    min-width: 90vw;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .header ul {
+    min-width: 90.7vw;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .header ul {
+    min-width: 92.5vw;
   }
 }

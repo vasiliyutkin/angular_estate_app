@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslationService } from 'src/app/services/translation.service';
+
+import {
+  enTranslationCode,
+  ruTranslationCode,
+  uaTranslationCode,
+} from 'src/app/services/translation.constants';
 
 @Component({
   selector: 'app-navigation',
@@ -9,14 +15,15 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent {
+  enTranslationCode = enTranslationCode;
+  ruTranslationCode = ruTranslationCode;
+  uaTranslationCode = uaTranslationCode;
+
   constructor(
     private authService: AuthenticationService,
     private toastrService: ToastrService,
-    private translateService: TranslateService
-  ) {
-    setTimeout(() => this.translateService.use('ua'), 5000);
-    setTimeout(() => this.translateService.use('ru'), 10000);
-  }
+    private translationService: TranslationService
+  ) {}
 
   public get loggedIn(): boolean {
     return this.authService.loggedIn;
@@ -26,9 +33,21 @@ export class NavigationComponent {
     return this.loggedIn && this.authService.isAdmin;
   }
 
+  shouldDisableLang(lang: string): boolean {
+    return this.translationService.isLangSelected(lang);
+  }
+
+  changeLang(lang: string): void {
+    this.translationService.changeLang(lang);
+  }
+
   logout(): void {
     this.authService
       .logout()
       .then((_) => this.toastrService.show('Вы вышли из системы...'));
+    // this is how to dynamically handle translations in angular code
+    /*       this.translateService
+        .get('dashboard.heading')
+        .subscribe((message) => this.toastrService.show(message)); */
   }
 }

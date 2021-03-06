@@ -35,7 +35,7 @@ export class ExceptionsInterceptor implements HttpInterceptor {
           try {
             this.toasterService.warning(res.error.error, '', {});
           } catch (e) {
-            this.toasterService.error(res.toString(), '', {});
+            this.toasterService.error(res.error, '', {});
           }
         }
 

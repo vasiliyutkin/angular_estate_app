@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+
 import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
@@ -31,6 +35,12 @@ import { SpinnerManagerService } from './services/spinner.manager.service';
 import { AuthenticationService } from './services/authentication.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslationInterceptor } from './interceptors/translation.interceptor';
+import { TranslationService } from './services/translation.service';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -66,8 +76,15 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TranslationInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
@@ -85,13 +102,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     },
     SpinnerManagerService,
     AuthenticationService,
+    TranslationService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {}
-
-// required for AOT compilation / translations
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+export class AppModule {
+  constructor(private translationServise: TranslationService) {
+    this.translationServise.initializeLang();
+  }
 }
