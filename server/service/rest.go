@@ -1,6 +1,7 @@
 package service
 
 import (
+	"be/server/service/middleware"
 	"net/http"
 )
 
@@ -15,11 +16,15 @@ type REST struct {
 func newREST() *REST {
 	return &REST{
 		routes:      make(map[string]http.Handler),
-		middleware:  nil,
+		middleware:  []Middleware{middleware.Lang},
 		corsHandler: NewCORS(DefaultCORSOptions()),
 	}
 }
 
 func (s *REST) AddRoute(path string, h http.HandlerFunc) {
+	for _, m := range s.middleware {
+		h = m(h)
+	}
+
 	s.routes[path] = h
 }
