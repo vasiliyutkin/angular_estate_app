@@ -11,7 +11,9 @@ func (e Error) Error() string {
 
 var (
 	// auth errors
-	ErrUserNotExists = Error{Code: 100, Text: "User not exists"}
-	ErrUserExists    = Error{Code: 101, Text: "User already exists"}
-	ErrWrongPassword = Error{Code: 102, Text: "Wrong password"}
+	ErrUserNotExists   = Error{Code: 100, Text: "User not exists"}
+	ErrUserExists      = Error{Code: 101, Text: "User already exists"}
+	ErrWrongPassword   = Error{Code: 102, Text: "Wrong password"}
+	ErrUsernameIsEmpty = Error{Code: 103, Text: "Username is empty"}
+	ErrPasswordIsEmpty = Error{Code: 103, Text: "Password is empty"}
 )

@@ -6,23 +6,18 @@ import (
 	"net/http"
 )
 
-type authRequest struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
-
 type authResponse struct {
 	User *model.User `json:"user"`
 }
 
 func (s *Service) LoginHandler(w http.ResponseWriter, r *http.Request) {
-	req := &authRequest{}
-	if err := unmarshalRequest(r.Body, &req); err != nil {
+	ad := &model.AuthData{}
+	if err := unmarshalRequest(r.Body, &ad); err != nil {
 		s.errorHandler(w, r, err)
 		return
 	}
 
-	user, err := s.model.Login(req.Username, req.Password)
+	user, err := s.model.Login(ad)
 	if err != nil {
 		s.errorHandler(w, r, err)
 		return
@@ -46,13 +41,13 @@ func (s *Service) LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Service) SignUpHandler(w http.ResponseWriter, r *http.Request) {
-	req := &authRequest{}
-	if err := unmarshalRequest(r.Body, &req); err != nil {
+	ad := &model.AuthData{}
+	if err := unmarshalRequest(r.Body, &ad); err != nil {
 		s.errorHandler(w, r, err)
 		return
 	}
 
-	user, err := s.model.SignUp(req.Username, req.Password)
+	user, err := s.model.SignUp(ad)
 	if err != nil {
 		s.errorHandler(w, r, err)
 		return
@@ -62,13 +57,13 @@ func (s *Service) SignUpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
-	req := &authRequest{}
-	if err := unmarshalRequest(r.Body, &req); err != nil {
+	ad := &model.AuthData{}
+	if err := unmarshalRequest(r.Body, &ad); err != nil {
 		s.errorHandler(w, r, err)
 		return
 	}
 
-	user, err := s.model.ResetPassword(req.Username, req.Password)
+	user, err := s.model.ResetPassword(ad)
 	if err != nil {
 		s.errorHandler(w, r, err)
 		return

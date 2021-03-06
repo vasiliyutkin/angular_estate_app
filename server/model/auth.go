@@ -8,54 +8,82 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (m *Model) Login(username, password string) (*User, error) {
-	username = strings.ToLower(username)
-	u, err := m.store.GetUserByName(username)
+type AuthData struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+func (a *AuthData) validate() error {
+	a.Username = strings.ToLower(strings.TrimSpace(a.Username))
+	a.Password = strings.TrimSpace(a.Password)
+
+	if a.Username == "" {
+		return ErrUsernameIsEmpty
+	}
+
+	if a.Password == "" {
+		return ErrPasswordIsEmpty
+	}
+
+	return nil
+}
+
+func (m *Model) Login(a *AuthData) (*User, error) {
+	if err := a.validate(); err != nil {
+		return nil, err
+	}
+
+	u, err := m.store.GetUserByName(a.Username)
 	if err != nil {
-		log.Printf("get user %q: %v", username, err)
+		log.Printf("get user %q: %v", a.Username, err)
 		return nil, ErrUserNotExists
 	}
 
-	if err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password)); err != nil {
-		log.Printf("wrong password for user %q: %v", username, err)
+	if err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(a.Password)); err != nil {
+		log.Printf("wrong password for user %q: %v", a.Username, err)
 		return nil, ErrWrongPassword
 	}
 
 	return userFromStore(u), nil
 }
 
-func (m *Model) SignUp(username, password string) (*User, error) {
-	username = strings.ToLower(username)
+func (m *Model) SignUp(a *AuthData) (*User, error) {
+	if err := a.validate(); err != nil {
+		return nil, err
+	}
 
-	exists, err := m.store.UserExits(username)
+	exists, err := m.store.UserExits(a.Username)
 	if err != nil {
-		return nil, fmt.Errorf("check if username %s exists: %w", username, err)
+		return nil, fmt.Errorf("check if username %s exists: %w", a.Username, err)
 	}
 	if exists {
 		return nil, ErrUserExists
 	}
 
-	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	hashed, err := bcrypt.GenerateFromPassword([]byte(a.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, fmt.Errorf("hashing password: %w", err)
 	}
 
-	u, err := m.store.CreateUser(username, string(hashed))
+	u, err := m.store.CreateUser(a.Username, string(hashed))
 	if err != nil {
-		return nil, fmt.Errorf("create user %q: %w", username, err)
+		return nil, fmt.Errorf("create user %q: %w", a.Username, err)
 	}
 	return userFromStore(u), nil
 }
 
-func (m *Model) ResetPassword(username, password string) (*User, error) {
-	username = strings.ToLower(username)
-	u, err := m.store.GetUserByName(username)
+func (m *Model) ResetPassword(a *AuthData) (*User, error) {
+	if err := a.validate(); err != nil {
+		return nil, err
+	}
+
+	u, err := m.store.GetUserByName(a.Username)
 	if err != nil {
-		log.Printf("get user %q: %v", username, err)
+		log.Printf("get user %q: %v", a.Username, err)
 		return nil, ErrUserNotExists
 	}
 
-	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	hashed, err := bcrypt.GenerateFromPassword([]byte(a.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, fmt.Errorf("hashing password: %w", err)
 	}
