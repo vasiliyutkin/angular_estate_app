@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 
+	_ "be/server/translations"
 	_ "github.com/lib/pq"
 )
 
