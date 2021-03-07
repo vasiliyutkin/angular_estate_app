@@ -2,9 +2,6 @@
   "name": "real_estate_management",
   "private": true,
   "dependencies": {
-    "@amcharts/amcharts4": "^4.9.34",
-    "@amcharts/amcharts4-fonts": "^4.0.1",
-    "@amcharts/amcharts4-geodata": "^4.1.17",
     "@angular/animations": "~11.2.1",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~11.2.1",
@@ -32,10 +29,7 @@
     "@angular-devkit/build-angular": "~0.1102.1",
     "@angular/cli": "~11.2.1",
     "@angular/compiler-cli": "~11.2.1",
-    "@types/jquery": "^3.5.5",
-    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "concurrently": "^5.2.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.2"
