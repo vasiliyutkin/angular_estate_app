@@ -1,0 +1,15 @@
+package translations
+
+import (
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
+)
+
+func init() {
+	tag := language.MustParse("uk")
+	message.SetString(tag, "ErrUserNotExists", "Користувач не існує")
+	message.SetString(tag, "ErrUserExists", "Користувач вже існує")
+	message.SetString(tag, "ErrWrongPassword", "Невірний пароль")
+	message.SetString(tag, "ErrUsernameIsEmpty", "Ім'я користувача порожнє")
+	message.SetString(tag, "ErrPasswordIsEmpty", "Пароль порожній")
+}

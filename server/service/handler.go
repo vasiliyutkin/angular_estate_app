@@ -1,11 +1,14 @@
 package service
 
 import (
+	"be/server/helpers/lang"
 	"be/server/model"
 	"encoding/json"
 	"io"
 	"io/ioutil"
 	"net/http"
+
+	"golang.org/x/text/message"
 )
 
 type Response struct {
@@ -39,12 +42,15 @@ func (s *Service) responseHandler(w http.ResponseWriter, r *http.Request, resp *
 }
 
 func (s *Service) errorHandler(w http.ResponseWriter, r *http.Request, err error) {
+	l := lang.GetLanguage(r.Context())
+	pr := message.NewPrinter(l)
+
 	w.Header().Set("Content-type", "application/json; charset=utf-8")
 
 	es := struct {
 		Error string `json:"error"`
 	}{
-		Error: err.Error(),
+		Error: pr.Sprintf(err.Error()),
 	}
 	w.WriteHeader(http.StatusInternalServerError)
 	json.NewEncoder(w).Encode(es)
