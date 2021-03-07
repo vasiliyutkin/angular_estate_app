@@ -1,7 +1,12 @@
 <div class="overlay" *ngIf="showSpinner">
-    <div class="loader">
+    <div class="spinner-modern" *ngIf="modern">
         <div class="inner one"></div>
         <div class="inner two"></div>
         <div class="inner three"></div>
+    </div>
+
+    <div class="spinner-bounce" *ngIf="bounce">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
     </div>
 </div>
