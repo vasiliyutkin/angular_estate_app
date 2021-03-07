@@ -37,19 +37,15 @@ export class AuthenticationService {
     return localStorage.getItem(jwtTokenName) !== null;
   }
 
-  signUpUser(username: string, password: string) {
+  signUpUser(userData: User) {
     return this.http.post<any>(`${environment.apiUrl}/auth/signup`, {
-      username,
-      password,
+      ...userData,
     });
   }
 
-  login(username: string, password: string) {
+  login(userData: User) {
     return this.http
-      .post<any>(`${environment.apiUrl}/auth/login`, {
-        username,
-        password,
-      })
+      .post<any>(`${environment.apiUrl}/auth/login`, { ...userData })
       .pipe(
         map((res) => {
           const { accessToken, user } = res.data;
@@ -65,12 +61,9 @@ export class AuthenticationService {
       );
   }
 
-  resetPassword(username: string, password: string) {
+  resetPassword(userData: User) {
     return this.http
-      .post<any>(`${environment.apiUrl}/auth/reset-password`, {
-        username,
-        password,
-      })
+      .post<any>(`${environment.apiUrl}/auth/reset-password`, { ...userData })
       .pipe(map((res) => res));
   }
 

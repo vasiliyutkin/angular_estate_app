@@ -1,12 +1,9 @@
 {
-	"dashboard": {
-		"heading": "Вашi апартаменти чекають на вас у Турцii!"
-	},
 	"navigation": {
 		"language": {
-			"english": "Англiйська",
-			"russian": "Росiйська",
-			"ukrainian": "Украiнська"
+			"english": "Англійська",
+			"russian": "Російська",
+			"ukrainian": "Українська"
 		}
 	}
 }

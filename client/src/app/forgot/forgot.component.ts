@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { tap } from 'rxjs/operators';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-forgot',
@@ -42,15 +43,14 @@ export class ForgotComponent implements OnInit {
   }
 
   resetPassword() {
-    this.authenticationService
-      .resetPassword(
-        this.forgotForm.get('username').value,
-        this.forgotForm.get('password').value
-      )
-      .subscribe((_) => {
-        this.toasterService.show('Ваш пароль восстановлен...');
-        this.router.navigate(['/signin']);
-      });
+    const user: User = new User();
+    user.username = this.forgotForm.get('username').value;
+    user.password = this.forgotForm.get('password').value;
+
+    this.authenticationService.resetPassword(user).subscribe((_) => {
+      this.toasterService.show('Ваш пароль восстановлен...');
+      this.router.navigate(['/signin']);
+    });
   }
 }
 

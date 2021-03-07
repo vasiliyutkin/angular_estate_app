@@ -8,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
@@ -75,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    NgxMaskModule.forRoot(),
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,

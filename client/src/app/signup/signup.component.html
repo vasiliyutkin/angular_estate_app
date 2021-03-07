@@ -1,41 +1,64 @@
-<div class="container mx-auto">
-    <div class="col-md-6 offset-md-3 mt-4">
-        <div class="card">
-            <div class="card-body">
-                <h1 class="text-center mb-5">Sign Up</h1>
-                <p>Enter your username and password</p>
+<div class="container">
+    <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5">
+        <h1 class="display-4 mb-5">Sign Up</h1>
 
-                <form [formGroup]="registrationForm" class="mx-auto" (ngSubmit)="signUp()">
-                    <div class="form-group mt-5 mb-5">
-                        <input type="text" formControlName="username" class="form-control" placeholder="Email"
-                            [ngClass]="{ 'is-invalid': registrationFormSubmitted && sf.username.errors }" />
-                        <div *ngIf="registrationFormSubmitted && sf.username.errors" class="invalid-feedback">
-                            <div *ngIf="sf.username.errors.required">
-                                Email is required
-                            </div>
-                            <div *ngIf="sf.username.errors.email">
-                                Invalid Email format
-                            </div>
-                        </div>
-                    </div>
+        <mat-card-content>
+            <form [formGroup]="registrationForm" class="d-flex flex-column">
+                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                    <mat-label>Username</mat-label>
+                    <input type="email" matInput required formControlName="username" placeholder="email address" />
+                    <mat-error *ngIf="registrationForm.get('username').hasError('email')
+                          && !registrationForm.get('username').hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('username').hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
 
-                    <div class="form-group mt-5 mb-5">
-                        <input type="password" formControlName="password" class="form-control" placeholder="Password"
-                            [ngClass]="{ 'is-invalid': registrationFormSubmitted && sf.password.errors }" />
-                        <div *ngIf="registrationFormSubmitted && sf.password.errors" class="invalid-feedback">
-                            <div *ngIf="sf.password.errors.required">
-                                Password is required
-                            </div>
-                        </div>
-                    </div>
+                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput required formControlName="password" />
+                    <mat-error *ngIf="registrationForm.get('password').hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
 
-                    <div class="row justify-content-center align-self-center">
-                        <button class="btn btn-lg btn-outline-dark" type="submit">
-                            Sign Up
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                    <mat-label>First name</mat-label>
+                    <input type="text" matInput required formControlName="firstname" />
+                    <mat-error *ngIf="registrationForm.get('firstname').hasError('required')">
+                        First name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                    <mat-label>Last name</mat-label>
+                    <input type="text" matInput required formControlName="lastname" />
+                    <mat-error *ngIf="registrationForm.get('lastname').hasError('required')">
+                        Last name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                    <mat-label>Tel #</mat-label>
+                    <input type="tel" matInput mask="(000) 000 00 00" placeholder="(xxx) xxx xx xx" required
+                        formControlName="mobile" />
+                    <mat-error *ngIf="registrationForm.get('mobile').hasError('required')">
+                        Tel # is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('mobile').hasError('pattern')">
+                        Tel # should be provided in proper format
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button (click)="signUp()" [disabled]="!registrationForm.valid" mat-button
+                class="mt-4 mb-3 align-self-center">
+                Sign Up
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>

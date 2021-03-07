@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupComponent implements OnInit {
   registrationForm: FormGroup;
-  registrationFormSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,34 +22,40 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.registrationForm = this.formBuilder.group({
-      password: ['', Validators.required],
-      username: [
-        '',
-        Validators.compose([Validators.required, Validators.email]),
-      ],
+    this.registrationForm = this.formBuilder.group(
+      {
+        username: [
+          '',
+          Validators.compose([Validators.required, Validators.email]),
+        ],
+        password: ['', Validators.required],
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        mobile: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(/^\d{3}\d{3}\d{2}\d{2}$/),
+          ]),
+        ],
+      },
+      { updateOn: 'blur' }
+    );
+  }
+
+  signUp(): void {
+    const user: User = new User();
+    user.username = this.registrationForm.get('username').value;
+    user.password = this.registrationForm.get('password').value;
+    user.firstname = this.registrationForm.get('firstname').value;
+    user.lastname = this.registrationForm.get('lastname').value;
+    user.mobile = this.registrationForm.get('mobile').value;
+
+    this.authenticationService.signUpUser(user).subscribe((response) => {
+      if (!response.error) {
+        this.toasterService.show('Регистрация прошла успешно...');
+        this.router.navigate(['/signin']);
+      }
     });
-  }
-
-  get sf() {
-    return this.registrationForm.controls;
-  }
-
-  signUp() {
-    this.registrationFormSubmitted = true;
-
-    if (this.registrationForm.invalid) {
-      return;
-    }
-
-    this.authenticationService
-      .signUpUser(this.sf.username.value, this.sf.password.value)
-      .pipe(first())
-      .subscribe((res: any) => {
-        if (res) {
-          this.toasterService.show('Регистрация прошла успешно...');
-          this.router.navigate(['/signin']);
-        }
-      });
   }
 }

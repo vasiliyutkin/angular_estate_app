@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-signin',
@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SigninComponent implements OnInit {
   loginForm: FormGroup;
-  loginFormSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,36 +22,30 @@ export class SigninComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: [
-        '',
-        Validators.compose([Validators.required, Validators.email]),
-      ],
-      password: ['', Validators.required],
-    });
-  }
-
-  get lf() {
-    return this.loginForm.controls;
+    this.loginForm = this.formBuilder.group(
+      {
+        username: [
+          '',
+          Validators.compose([Validators.required, Validators.email]),
+        ],
+        password: ['', Validators.required],
+      },
+      { updateOn: 'blur' }
+    );
   }
 
   login() {
-    this.loginFormSubmitted = true;
+    const user: User = new User();
+    user.username = this.loginForm.get('username').value;
+    user.password = this.loginForm.get('password').value;
 
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.authenticationService
-      .login(this.lf.username.value, this.lf.password.value)
-      .pipe(first())
-      .subscribe((res) => {
-        if (!res.error) {
-          this.toasterService.show(
-            `Вы вошли в систему как ${res.data.user.username}`
-          );
-          this.router.navigate(['/']);
-        }
-      });
+    this.authenticationService.login(user).subscribe((res) => {
+      if (!res.error) {
+        this.toasterService.show(
+          `Вы вошли в систему как ${res.data.user.username}`
+        );
+        this.router.navigate(['/']);
+      }
+    });
   }
 }

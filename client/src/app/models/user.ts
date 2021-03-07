@@ -1,10 +1,9 @@
 export class User {
   id: string;
-  createdAt: string;
+  isAdmin: boolean;
   username: string;
   password: string;
-  salt: string;
-  isAdmin: boolean;
-  token: string;
-  email: string;
+  firstname: string;
+  lastname: string;
+  mobile: string;
 }
