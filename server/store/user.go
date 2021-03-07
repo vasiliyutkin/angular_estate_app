@@ -13,6 +13,7 @@ type User struct {
 	Mobile    string    `db:"mobile"`
 	IsAdmin   bool      `db:"is_admin"`
 	CreatedAt time.Time `db:"created_at"`
+	Enabled   bool      `db:"enabled"`
 }
 
 func (s *Store) UserExits(username string) (bool, error) {

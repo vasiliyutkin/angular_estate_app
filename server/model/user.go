@@ -11,6 +11,7 @@ type User struct {
 	Lastname  string `json:"lastname"`
 	Mobile    string `json:"mobile"`
 	IsAdmin   bool   `json:"isAdmin"`
+	Enabled   bool   `json:"enabled"`
 }
 
 func userFromStore(u *store.User) *User {
@@ -21,6 +22,7 @@ func userFromStore(u *store.User) *User {
 		Lastname:  u.Lastname,
 		Mobile:    u.Mobile,
 		IsAdmin:   u.IsAdmin,
+		Enabled:   u.Enabled,
 	}
 }
 

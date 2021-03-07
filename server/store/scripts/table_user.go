@@ -21,6 +21,7 @@ func CreateTableUser() Script {
 				lastname character varying(250) NOT NULL,
 				mobile character varying(250) NOT NULL,
 				is_admin bool NOT NULL DEFAULT FALSE,
+				enabled bool NOT NULL DEFAULT FALSE,
 				created_at timestamp with time zone NOT NULL DEFAULT NOW(),
 				CONSTRAINT pk_user_id PRIMARY KEY (id)
 			);
@@ -33,13 +34,14 @@ func AddAdminUser() Script {
 		Title: "add admin user",
 		Query: `
 			INSERT INTO users
-				(username, password, firstname, lastname, mobile, is_admin)
+				(username, password, firstname, lastname, mobile, is_admin, enabled)
 			VALUES(
 				'annalexestate@gmail.com', 
 				'$2a$10$L/bfyvz1n94g1EyuwDXQNO2CFSmCBqz8IqklcK/bQbdqHD395KSEu', 
 				'Ann', 
 				'Nikishina', 
 				'', 
+				true, 
 				true);
 		`,
 	}
