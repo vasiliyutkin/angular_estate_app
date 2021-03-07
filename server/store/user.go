@@ -68,3 +68,11 @@ func (s *Store) UpdatePassword(id uint32, password string) error {
 	_, err := s.db.Exec(s.db.Rebind(q), password, id)
 	return err
 }
+
+func (s *Store) GetUsers() ([]*User, error) {
+	var u []*User
+	if err := s.db.Select(&u, s.db.Rebind("SELECT * FROM users")); err != nil {
+		return nil, err
+	}
+	return u, nil
+}

@@ -1,6 +1,8 @@
 package model
 
-import "be/server/store"
+import (
+	"be/server/store"
+)
 
 type User struct {
 	ID        uint32 `json:"id"`
@@ -20,4 +22,18 @@ func userFromStore(u *store.User) *User {
 		Mobile:    u.Mobile,
 		IsAdmin:   u.IsAdmin,
 	}
+}
+
+func (m *Model) GetUsers() ([]*User, error) {
+	us, err := m.store.GetUsers()
+	if err != nil {
+		return nil, err
+	}
+
+	var users []*User
+	for _, u := range us {
+		users = append(users, userFromStore(u))
+	}
+
+	return users, nil
 }
