@@ -25,7 +25,7 @@ func (s *Store) UserExits(username string) (bool, error) {
 	return exists, nil
 }
 
-func (s *Store) CreateUser(username, password string) (*User, error) {
+func (s *Store) CreateUser(u *User) (*User, error) {
 	q := `
 		INSERT INTO users
 			(username, password, firstname, lastname, mobile, is_admin)
@@ -35,7 +35,7 @@ func (s *Store) CreateUser(username, password string) (*User, error) {
 	`
 
 	var id uint32
-	if err := s.db.QueryRowx(s.db.Rebind(q), username, password, "", "", "").Scan(&id); err != nil {
+	if err := s.db.QueryRowx(s.db.Rebind(q), u.Username, u.Password, u.Firstname, u.Lastname, u.Mobile).Scan(&id); err != nil {
 		return nil, err
 	}
 

@@ -1,6 +1,7 @@
 package model
 
 import (
+	"be/server/store"
 	"fmt"
 	"log"
 	"strings"
@@ -9,8 +10,11 @@ import (
 )
 
 type AuthData struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+	Firstname string `json:"firstname"`
+	Lastname  string `json:"lastname"`
+	Mobile    string `json:"mobile"`
 }
 
 func (a *AuthData) validate() error {
@@ -26,6 +30,16 @@ func (a *AuthData) validate() error {
 	}
 
 	return nil
+}
+
+func (a *AuthData) toStoreUser(s string) *store.User {
+	return &store.User{
+		Username:  a.Username,
+		Password:  s,
+		Firstname: a.Firstname,
+		Lastname:  a.Lastname,
+		Mobile:    a.Mobile,
+	}
 }
 
 func (m *Model) Login(a *AuthData) (*User, error) {
@@ -65,7 +79,7 @@ func (m *Model) SignUp(a *AuthData) (*User, error) {
 		return nil, fmt.Errorf("hashing password: %w", err)
 	}
 
-	u, err := m.store.CreateUser(a.Username, string(hashed))
+	u, err := m.store.CreateUser(a.toStoreUser(string(hashed)))
 	if err != nil {
 		return nil, fmt.Errorf("create user %q: %w", a.Username, err)
 	}
