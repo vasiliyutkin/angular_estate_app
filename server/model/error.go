@@ -5,15 +5,15 @@ type Error struct {
 	Text string `json:"text"`
 }
 
-func (e Error) Error() string {
+func (e *Error) Error() string {
 	return e.Text
 }
 
 var (
 	// auth errors
-	ErrUserNotExists   = Error{Code: 100, Text: "User not exists"}
-	ErrUserExists      = Error{Code: 101, Text: "User already exists"}
-	ErrWrongPassword   = Error{Code: 102, Text: "Wrong password"}
-	ErrUsernameIsEmpty = Error{Code: 103, Text: "Username is empty"}
-	ErrPasswordIsEmpty = Error{Code: 103, Text: "Password is empty"}
+	ErrUserNotExists   = &Error{Code: 100, Text: "User not exists"}
+	ErrUserExists      = &Error{Code: 101, Text: "User already exists"}
+	ErrWrongPassword   = &Error{Code: 102, Text: "Wrong password"}
+	ErrUsernameIsEmpty = &Error{Code: 103, Text: "Username is empty"}
+	ErrPasswordIsEmpty = &Error{Code: 103, Text: "Password is empty"}
 )

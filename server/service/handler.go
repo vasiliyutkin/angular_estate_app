@@ -38,18 +38,29 @@ func (s *Service) responseHandler(w http.ResponseWriter, r *http.Request, resp *
 	w.Write(b)
 }
 
-func (s *Service) errorHandler(w http.ResponseWriter, r *http.Request, e error) {
-	b, err := json.Marshal(struct {
+func (s *Service) errorHandler(w http.ResponseWriter, r *http.Request, err error) {
+	w.Header().Set("Content-type", "application/json; charset=utf-8")
+
+	es := struct {
 		Error string `json:"error"`
 	}{
-		Error: e.Error(),
-	})
-	if err != nil {
-		http.Error(w, e.Error(), http.StatusInternalServerError)
-		return
+		Error: err.Error(),
 	}
-
-	w.Header().Set("Content-type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusInternalServerError)
-	w.Write(b)
+	json.NewEncoder(w).Encode(es)
+
+	/*
+		var e *model.Error
+		log.Println(err, errors.As(err, &e))
+
+		if errors.As(err, &e) {
+			log.Println("eeee")
+
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(&Response{Error: e})
+			return
+		}
+
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	*/
 }
