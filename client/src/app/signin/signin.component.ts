@@ -22,16 +22,13 @@ export class SigninComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group(
-      {
-        username: [
-          '',
-          Validators.compose([Validators.required, Validators.email]),
-        ],
-        password: ['', Validators.required],
-      },
-      { updateOn: 'blur' }
-    );
+    this.loginForm = this.formBuilder.group({
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
+      password: ['', Validators.required],
+    });
   }
 
   login() {
@@ -41,9 +38,7 @@ export class SigninComponent implements OnInit {
 
     this.authenticationService.login(user).subscribe((res) => {
       if (!res.error) {
-        this.toasterService.show(
-          `Вы вошли в систему как ${res.data.user.username}`
-        );
+        this.toasterService.show(`Вы вошли в систему`);
         this.router.navigate(['/']);
       }
     });

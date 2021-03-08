@@ -1,0 +1,25 @@
+{
+	"forgot": {
+		"forgot-password-label": "Забули Пароль?",
+		"reset-password-label": "Відновити пароль"
+	},
+	"navigation": {
+		"about-label": "Про компанію",
+		"dashboard-label": "Нерухомість",
+		"language": {
+			"english": "Англійська",
+			"russian": "Російська",
+			"ukrainian": "Українська"
+		},
+		"logout-label": "Вийти",
+		"signin-label": "Увійти"
+	},
+	"signin": {
+		"login-label": "Увійти",
+		"signin-label": "Увійти",
+		"signup-label": "Зареєструйтесь"
+	},
+	"signup": {
+		"signup-label": "Зареєструйтесь"
+	}
+}

@@ -22,25 +22,22 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.registrationForm = this.formBuilder.group(
-      {
-        username: [
-          '',
-          Validators.compose([Validators.required, Validators.email]),
-        ],
-        password: ['', Validators.required],
-        firstname: ['', Validators.required],
-        lastname: ['', Validators.required],
-        mobile: [
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.pattern(/^\d{3}\d{3}\d{2}\d{2}$/),
-          ]),
-        ],
-      },
-      { updateOn: 'blur' }
-    );
+    this.registrationForm = this.formBuilder.group({
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
+      password: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      mobile: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(/^\d{3}\d{3}\d{2}\d{2}$/),
+        ]),
+      ],
+    });
   }
 
   signUp(): void {

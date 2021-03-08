@@ -1,10 +1,10 @@
 <div class="container">
-    <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5">
-        <h1 class="display-4 mb-5">Sign Up</h1>
+    <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
+        <h1 class="display-3 mb-5">{{ 'signup.signup-label' | translate }}</h1>
 
-        <mat-card-content>
-            <form [formGroup]="registrationForm" class="d-flex flex-column">
-                <mat-form-field class="col-md-6 mt-3 mx-auto">
+        <form [formGroup]="registrationForm" class="d-flex flex-column" (submit)="signUp()">
+            <mat-card-content>
+                <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Username</mat-label>
                     <input type="email" matInput required formControlName="username" placeholder="email address" />
                     <mat-error *ngIf="registrationForm.get('username').hasError('email')
@@ -16,15 +16,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="col-md-6 mt-3 mx-auto">
-                    <mat-label>Password</mat-label>
-                    <input type="password" matInput required formControlName="password" />
-                    <mat-error *ngIf="registrationForm.get('password').hasError('required')">
-                        Password is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>First name</mat-label>
                     <input type="text" matInput required formControlName="firstname" />
                     <mat-error *ngIf="registrationForm.get('firstname').hasError('required')">
@@ -32,7 +24,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Last name</mat-label>
                     <input type="text" matInput required formControlName="lastname" />
                     <mat-error *ngIf="registrationForm.get('lastname').hasError('required')">
@@ -40,7 +32,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="col-md-6 mt-3 mx-auto">
+                <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Tel #</mat-label>
                     <input type="tel" matInput mask="(000) 000 00 00" placeholder="(xxx) xxx xx xx" required
                         formControlName="mobile" />
@@ -51,14 +43,22 @@
                         Tel # should be provided in proper format
                     </mat-error>
                 </mat-form-field>
-            </form>
-        </mat-card-content>
 
-        <mat-card-actions>
-            <button (click)="signUp()" [disabled]="!registrationForm.valid" mat-button
-                class="mt-4 mb-3 align-self-center">
-                Sign Up
-            </button>
-        </mat-card-actions>
+                <mat-form-field class="col-md-7 mt-3 mx-auto">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput required formControlName="password" />
+                    <mat-error *ngIf="registrationForm.get('password').hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button [disabled]="!registrationForm.valid" color="accent" mat-raised-button class="align-self-center">
+                    {{ 'signup.signup-label' | translate }}
+                </button>
+            </mat-card-actions>
+        </form>
+
     </mat-card>
 </div>

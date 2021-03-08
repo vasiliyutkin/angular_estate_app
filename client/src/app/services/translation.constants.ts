@@ -1,4 +1,4 @@
 export const enTranslationCode = 'en';
 export const ruTranslationCode = 'ru';
-export const ukTranslationCode = 'uk';
+export const uaTranslationCode = 'ua';
 export const translationTokenName = 'lang';

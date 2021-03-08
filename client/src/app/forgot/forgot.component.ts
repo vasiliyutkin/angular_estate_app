@@ -10,7 +10,6 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { tap } from 'rxjs/operators';
 import { User } from '../models/user';
 
 @Component({
@@ -29,17 +28,14 @@ export class ForgotComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.forgotForm = this.formBuilder.group(
-      {
-        username: [
-          '',
-          Validators.compose([Validators.required, Validators.email]),
-        ],
-        password: ['', Validators.required, passwordValidator],
-        confirmPassword: ['', Validators.required, confirmPasswordValidator],
-      },
-      { updateOn: 'blur' }
-    );
+    this.forgotForm = this.formBuilder.group({
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.email]),
+      ],
+      password: ['', Validators.required, passwordValidator],
+      confirmPassword: ['', Validators.required, confirmPasswordValidator],
+    });
   }
 
   resetPassword() {

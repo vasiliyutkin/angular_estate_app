@@ -1,9 +1,25 @@
 {
+	"forgot": {
+		"forgot-password-label": "Forgot Password?",
+		"reset-password-label": "Reset password"
+	},
 	"navigation": {
+		"about-label": "About Us",
+		"dashboard-label": "Real Estate",
 		"language": {
 			"english": "English",
 			"russian": "Russian",
 			"ukrainian": "Ukrainian"
-		}
+		},
+		"logout-label": "Log Out",
+		"signin-label": "Sign In"
+	},
+	"signin": {
+		"login-label": "Log In",
+		"signin-label": "Sign In",
+		"signup-label": "Sign Up"
+	},
+	"signup": {
+		"signup-label": "Sign Up"
 	}
 }

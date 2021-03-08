@@ -68,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastrModule.forRoot({
       maxOpened: 1,
       preventDuplicates: true,
-      positionClass: 'toast-bottom-center',
+      positionClass: 'toast-top-center',
+      closeButton: false,
     }),
     TranslateModule.forRoot({
       loader: {
