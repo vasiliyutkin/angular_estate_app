@@ -14,5 +14,8 @@
     "@angular/compiler-cli": "~11.2.2",
     "@biesbjerg/ngx-translate-extract": "^7.0.3",
     "concurrently": "^5.2.0"
+  },
+  "dependencies": {
+    "angularx-social-login": "^3.5.4"
   }
 }

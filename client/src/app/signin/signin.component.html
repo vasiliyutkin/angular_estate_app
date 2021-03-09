@@ -1,21 +1,25 @@
 <div class="container">
     <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
-        <div class="social text-right mb-5 mt-2">
-            <button mat-mini-fab color="accent">
+        <div class="social text-right mb-5">
+<!--             <button (click)="signInWithVK()" mat-mini-fab color="primary">
+                <i class="fab fa-vk"></i>
+            </button> -->
+
+            <button (click)="signInWithGoogle()" mat-mini-fab color="warn">
                 <i class="fab fa-google"></i>
             </button>
 
-            <button mat-mini-fab color="primary">
+            <button (click)="signInWithFB()" mat-mini-fab color="accent">
                 <i class="fab fa-facebook-f"></i>
             </button>
 
-            <button type="button" mat-button routerLink="/signup">
+            <button type="button" class="signup-button" mat-raised-button routerLink="/signup">
                 <mat-icon inline>how_to_reg</mat-icon>
                 {{ 'signin.signup-label' | translate }}
             </button>
         </div>
 
-        <h1 class="display-3 mb-5">{{ 'signin.signin-label' | translate }}</h1>
+        <h1 class="display-3 mb-5 word-break">{{ 'signin.signin-label' | translate }}</h1>
 
         <form [formGroup]="loginForm" class="d-flex flex-column" (submit)="login()">
             <mat-card-content>

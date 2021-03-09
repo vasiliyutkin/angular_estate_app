@@ -42,12 +42,14 @@ export class NavigationComponent {
   }
 
   logout(): void {
-    this.authService
-      .logout()
-      .then((_) => this.toastrService.show('Вы вышли из системы...'));
-    // this is how to dynamically handle translations in angular code
-    /*       this.translateService
-        .get('dashboard.heading')
-        .subscribe((message) => this.toastrService.show(message)); */
+    Promise.all([
+      this.authService.logout(),
+      this.authService.signOut(),
+    ]).then((_) => this.toastrService.show('Вы вышли из системы...'));
   }
 }
+
+// this is how to dynamically handle translations in angular code
+/*       this.translateService
+        .get('dashboard.heading')
+        .subscribe((message) => this.toastrService.show(message)); */

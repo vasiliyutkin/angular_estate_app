@@ -1,11 +1,13 @@
+@import '../theme/abstracts/mixins';
+
 :host {
   display: flex;
   align-items: center;
   min-height: 100vh;
 }
 
-.card {
-  padding: 5rem;
+.word-break {
+  @include wordBreak();
 }
 
 @media (min-height: 200px) and (max-height: 450px) {

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { SpinnerType } from './component_library/spinner/spinner.type.enum';
 
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-estate',
   templateUrl: './app.component.html',
@@ -8,4 +11,12 @@ import { SpinnerType } from './component_library/spinner/spinner.type.enum';
 })
 export class AppComponent {
   spinnerType: SpinnerType = SpinnerType.Bounce;
+
+  constructor(private authService: SocialAuthService, private router: Router) {
+    this.authService.authState.subscribe((socialUser: SocialUser) =>
+      socialUser
+        ? this.router.navigate(['/'])
+        : this.router.navigate(['/signin'])
+    );
+  }
 }

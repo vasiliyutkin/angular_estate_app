@@ -1,3 +1,6 @@
+@import '../theme/variables';
+@import '../theme/abstracts/mixins';
+
 :host {
   display: flex;
   align-items: center;
@@ -10,14 +13,20 @@
   }
 }
 
+.word-break {
+  @include wordBreak();
+}
+
 .social {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  align-content: center;
-  margin: auto;
 
   & > *:not(:last-child) {
-    margin-right: 0.5rem;
+    margin-right: 0.6rem;
+  }
+
+  .signup-button {
+    background-color: $green;
+    color: $white;
   }
 }

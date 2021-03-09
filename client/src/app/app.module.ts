@@ -11,6 +11,16 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxMaskModule } from 'ngx-mask';
 
 import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  VKLoginProvider,
+} from 'angularx-social-login';
+
+import {
   HttpClientModule,
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -86,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    SocialLoginModule,
   ],
   providers: [
     {
@@ -111,6 +122,28 @@ export function HttpLoaderFactory(http: HttpClient) {
     SpinnerManagerService,
     AuthenticationService,
     TranslationService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '676672408690-ivu0fh2q74e139bfh90u6qrtp8i50u28.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('926383761525270'),
+          },
+/*           {
+            id: VKLoginProvider.PROVIDER_ID,
+            provider: new VKLoginProvider('5245452'),
+          }, */
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

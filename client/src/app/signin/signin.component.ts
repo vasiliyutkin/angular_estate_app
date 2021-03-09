@@ -43,4 +43,17 @@ export class SigninComponent implements OnInit {
       }
     });
   }
+
+  signInWithGoogle(): void {
+    console.log('sign');
+    this.authenticationService.signInWithGoogle();
+  }
+
+  signInWithFB(): void {
+    this.authenticationService.signInWithFB();
+  }
+
+  signInWithVK(): void {
+    this.authenticationService.signInWithVK();
+  }
 }
