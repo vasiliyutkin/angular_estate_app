@@ -45,7 +45,6 @@ export class SigninComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    console.log('sign');
     this.authenticationService.signInWithGoogle();
   }
 

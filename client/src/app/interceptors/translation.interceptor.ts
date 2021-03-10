@@ -24,6 +24,7 @@ export class TranslationInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           'Accept-Language': lang,
+          'Content-Security-Policy': 'upgrade-insecure-requests',
         },
       });
     }

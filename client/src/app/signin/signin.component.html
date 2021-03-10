@@ -1,19 +1,21 @@
 <div class="container">
     <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
-        <div class="social text-right mb-5">
-             <button (click)="signInWithVK()" mat-mini-fab color="primary">
-                <i class="fab fa-vk"></i>
-            </button>
+        <div class="auth-actions mb-5">
+            <div class="socials">
+                <button (click)="signInWithVK()" mat-mini-fab color="accent">
+                    <i class="fab fa-vk"></i>
+                </button>
 
-            <button (click)="signInWithGoogle()" mat-mini-fab color="warn">
-                <i class="fab fa-google"></i>
-            </button>
+                <button (click)="signInWithGoogle()" mat-mini-fab color="warn">
+                    <i class="fab fa-google"></i>
+                </button>
 
-            <button (click)="signInWithFB()" mat-mini-fab color="accent">
-                <i class="fab fa-facebook-f"></i>
-            </button>
+                <button (click)="signInWithFB()" mat-mini-fab color="primary">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+            </div>
 
-            <button type="button" class="signup-button" mat-raised-button routerLink="/signup">
+            <button type="button" class="signup-button" mat-button routerLink="/signup">
                 <mat-icon inline>how_to_reg</mat-icon>
                 {{ 'signin.signup-label' | translate }}
             </button>
@@ -21,7 +23,7 @@
 
         <h1 class="display-3 mb-5 word-break">{{ 'signin.signin-label' | translate }}</h1>
 
-        <form [formGroup]="loginForm" class="d-flex flex-column" (submit)="login()">
+        <form #formRef="ngForm" [formGroup]="loginForm" class="d-flex flex-column" (submit)="login()">
             <mat-card-content>
                 <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Username</mat-label>
@@ -42,17 +44,16 @@
                         Password is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
-
-                <div class="text-right">
-                    <button type="button" mat-button routerLink="/forgot">Forgot Password?</button>
-                </div>
             </mat-card-content>
 
-            <mat-card-actions>
+            <mat-card-actions class="d-flex flex-column">
                 <button type="submit" [disabled]="!loginForm.valid" color="accent" mat-raised-button
                     class="align-self-center">
                     {{ 'signin.login-label' | translate }}
                 </button>
+
+                <button class="align-self-center mt-4" *ngIf="formRef.submitted" type="button" mat-button
+                    routerLink="/forgot">Forgot Password?</button>
             </mat-card-actions>
         </form>
     </mat-card>
