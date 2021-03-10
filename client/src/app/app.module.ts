@@ -139,7 +139,7 @@ export function HttpLoaderFactory(http: HttpClient) {
           },
            {
             id: VKLoginProvider.PROVIDER_ID,
-            provider: new VKLoginProvider('ae363cf8e5051fb2e7770d8096ffa1e12ed56cf1c68ef1c19986b04eedb3a81250b3aaa1c3bcd5f566623'),
+            provider: new VKLoginProvider('7786140'),
           },
         ],
       } as SocialAuthServiceConfig,
