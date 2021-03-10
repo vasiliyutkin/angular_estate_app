@@ -55,4 +55,8 @@ export class SigninComponent implements OnInit {
   signInWithVK(): void {
     this.authenticationService.signInWithVK();
   }
+
+  public get isVkAvailable(): boolean {
+    return this.authenticationService.isVkAvailable;
+  }
 }

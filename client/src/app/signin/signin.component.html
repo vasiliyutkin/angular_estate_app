@@ -2,7 +2,7 @@
     <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
         <div class="auth-actions mb-5">
             <div class="socials">
-                <button (click)="signInWithVK()" mat-mini-fab color="accent">
+                <button *ngIf="isVkAvailable" (click)="signInWithVK()" mat-mini-fab color="accent">
                     <i class="fab fa-vk"></i>
                 </button>
 
