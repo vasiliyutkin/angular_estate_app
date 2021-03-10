@@ -13,15 +13,7 @@ func Executed() []Script {
 
 // ToExecute contains of scripts that should be executed by next deployment.
 func ToExecute() []Script {
-	return []Script{
-		{
-			Title: "add column enabled",
-			Query: `
-				ALTER TABLE users ADD COLUMN IF NOT EXISTS enabled bool NOT NULL DEFAULT FALSE;
-				UPDATE users SET enabled = true WHERE username = 'annalexestate@gmail.com';
-			`,
-		},
-	}
+	return []Script{}
 }
 
 // Init is list of scripts needed to be run for restart database.

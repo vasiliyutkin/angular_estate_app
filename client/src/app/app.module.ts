@@ -137,10 +137,10 @@ export function HttpLoaderFactory(http: HttpClient) {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('926383761525270'),
           },
-/*           {
+           {
             id: VKLoginProvider.PROVIDER_ID,
-            provider: new VKLoginProvider('5245452'),
-          }, */
+            provider: new VKLoginProvider('986c68f2bd481cd88e'),
+          },
         ],
       } as SocialAuthServiceConfig,
     },
