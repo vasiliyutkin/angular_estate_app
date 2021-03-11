@@ -4,7 +4,7 @@
 .navbar-wrap {
   position: fixed;
   background-color: $white;
-  box-shadow: 2px 2px 4px 0 rgba($material-accent, 0.4);
+  box-shadow: 2px 2px 4px 0 rgba($dark, 0.4);
   min-width: 100vw;
   z-index: 99999999999;
 
@@ -19,11 +19,11 @@
       justify-self: start;
       i {
         font-size: 2rem;
-        color: $material-accent;
+        color: $dark;
         transition: color 0.25s ease;
 
         &:hover {
-          color: $material-primary;
+          color: $material-accent;
         }
       }
     }
@@ -41,7 +41,7 @@
         a {
           display: flex;
           justify-content: center;
-          color: $material-accent;
+          color: $dark;
           font-size: 1rem;
           font-weight: 500;
           text-decoration: none;
@@ -54,7 +54,7 @@
 
           &.active-link,
           &:hover {
-            color: $material-primary;
+            color: $material-accent;
           }
         }
       }
@@ -65,7 +65,7 @@
 .menu-toggle .bar {
   width: 25px;
   height: 3px;
-  background-color: $material-accent;
+  background-color: $dark;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
 }
@@ -137,11 +137,11 @@
 
   mat-icon {
     font-size: 1.3rem;
-    color: $material-accent;
+    color: $dark;
   }
 
   span {
     margin-left: -0.85rem;
-    color: $material-accent;
+    color: $dark;
   }
 }
