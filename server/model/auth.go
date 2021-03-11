@@ -84,8 +84,6 @@ func (m *Model) SignUp(a *AuthData) (*User, error) {
 		return nil, fmt.Errorf("create user %q: %w", a.Username, err)
 	}
 
-	m.sosopa()
-
 	return userFromStore(u), nil
 }
 
