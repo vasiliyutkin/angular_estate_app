@@ -15,7 +15,7 @@ import (
 func main() {
 	c := config.New()
 
-	m, err := model.New(c.DBConn)
+	m, err := model.New(c)
 	if err != nil {
 		log.Fatal(err)
 	}

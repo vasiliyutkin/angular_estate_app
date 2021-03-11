@@ -1,9 +1,12 @@
 package model
 
 import (
+	"be/server/helpers/mailer"
 	"be/server/store"
 	"fmt"
 	"log"
+	"net/url"
+	"path"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
@@ -84,7 +87,57 @@ func (m *Model) SignUp(a *AuthData) (*User, error) {
 		return nil, fmt.Errorf("create user %q: %w", a.Username, err)
 	}
 
+	userLink, err := m.store.GenerateUserLink(u)
+	if err != nil {
+		return nil, fmt.Errorf("generate user link for %q for confirmation registration: %w", a.Username, err)
+	}
+
+	if err := m.sendRegistrationLink(userLink, u.Firstname, u.Lastname); err != nil {
+		return nil, fmt.Errorf("send link for %q for confirmation registration: %w", a.Username, err)
+	}
+
 	return userFromStore(u), nil
+}
+
+func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error {
+	u, err := url.Parse(m.baseURL)
+	if err != nil {
+		return err
+	}
+	u.Path = path.Join(u.Path, "api", "confirm", userLink)
+
+	to := []string{
+		"soloviov28@gmail.com",
+		"vasiliyutkin13121991@gmail.com",
+	}
+
+	subject := "Confirm registration"
+
+	message := fmt.Sprintf(`
+		<!DOCTYPE HTML PULBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+		<html>
+		<head>
+			<meta http-equiv="content-type" content="text/html"; charset=ISO-8859-1">
+		</head>
+		<body>
+			&#127881; &#127881; &#127881; CONGRATS AMIGO &#127881; &#127881; &#127881;<br>
+			<br>
+			<br>
+			For suck seed dear %s %s click please <a href="%s">here</a>
+			<br>
+			
+			
+			<div class="moz-signature">
+				<i><br><br>
+					Regards<br>
+					Dron & Dron<br>
+				<i>
+			</div>
+		</body>
+		</html>
+	`, firstName, lastName, u.String())
+
+	return mailer.Send(to, subject, message)
 }
 
 func (m *Model) ResetPassword(a *AuthData) (*User, error) {
