@@ -17,16 +17,18 @@
   @include wordBreak();
 }
 
-.social {
+.auth-actions {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: flex-start;
 
-  & > *:not(:last-child) {
-    margin-right: 0.6rem;
-  }
+  .socials {
+    & > * {
+      margin-right: 0.6rem;
+    }
 
-  .signup-button {
-    background-color: $green;
-    color: $white;
+    margin-bottom: 1.5rem;
   }
 }

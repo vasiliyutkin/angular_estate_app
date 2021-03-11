@@ -76,6 +76,10 @@ export class AuthenticationService {
     return localStorage.getItem(jwtTokenName) !== null;
   }
 
+  public get isVkAvailable() {
+    return window[VKLoginProvider.PROVIDER_ID];
+  }
+
   signUpUser(userData: User) {
     return this.http.post<any>(`${environment.apiUrl}/auth/signup`, {
       ...userData,

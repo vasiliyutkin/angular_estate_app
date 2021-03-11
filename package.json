@@ -1,7 +1,6 @@
 {
-  "name": "root",
+  "name": "build_tool",
   "scripts": {
-    "ng": "ng",
     "start": "concurrently --kill-others \"go run main.go\" \"cd client && ng serve --open\"",
     "build": "cd client && ng build --prod",
     "pull": "git fetch && git pull",
@@ -10,12 +9,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@angular/cli": "~11.2.2",
-    "@angular/compiler-cli": "~11.2.2",
     "@biesbjerg/ngx-translate-extract": "^7.0.3",
     "concurrently": "^5.2.0"
-  },
-  "dependencies": {
-    "angularx-social-login": "^3.5.4"
   }
 }

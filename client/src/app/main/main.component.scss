@@ -6,14 +6,16 @@
 
 .main-content {
   padding: 8rem 2rem 10rem 2rem;
-  min-height: 105.6vh;
+  min-height: 100vh;
   background-color: $white;
 }
 
 footer {
-  margin-top: -7rem;
-  min-height: 400px;
+  padding: 5rem 3rem;
+  margin-top: -4rem;
+  min-height: 300px;
   display: block;
-  clip-path: polygon(0% 12%, 100% 0, 100% 100%, 0 100%);
-  background-color: $dark-charkoal;
+  clip-path: polygon(0% 5%, 100% 0, 100% 100%, 0 100%);
+  background-color: $material-accent;
+  color: $white;
 }
