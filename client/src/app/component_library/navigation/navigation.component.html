@@ -1,46 +1,49 @@
-<header class="header">
-    <button mat-icon-button [matMenuTriggerFor]="langs" aria-label="language">
-        <i class="fas fa-globe-americas"></i>
-    </button>
+<div class="navbar-wrap">
+    <nav class="navbar">
+        <button mat-icon-button [matMenuTriggerFor]="langs" aria-label="language">
+            <i class="fas fa-globe-americas"></i>
+        </button>
 
-    <input #menu class="menu-btn" type="checkbox" id="menu-btn" />
-    <label class="menu-icon" for="menu-btn">
-        <span class="navicon"></span>
-    </label>
+        <div (click)="mobileNavActive = !mobileNavActive" [class.is-active]="mobileNavActive" class="menu-toggle"
+            id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul [class.mobile-nav]="mobileNavActive" class="nav">
+            <li class="nav-item">
+                <a (click)="mobileNavActive = false" routerLink="/" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <mat-icon inline>house</mat-icon>
+                    {{ 'navigation.dashboard-label' | translate }}
+                </a>
+            </li>
 
-    <ul class="menu">
-        <li class="navigation-item">
-            <a (click)="menu.click()" class="nav-link" routerLink="/" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: true}">
-                <mat-icon inline>house</mat-icon>
-                {{ 'navigation.dashboard-label' | translate }}
-            </a>
-        </li>
+            <li class="nav-item" *ngIf="isAdmin">
+                <a (click)="mobileNavActive = false" routerLink="/about" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <mat-icon inline>info</mat-icon>
+                    {{ 'navigation.about-label' | translate }}
+                </a>
+            </li>
 
-        <li class="navigation-item" *ngIf="isAdmin">
-            <a (click)="menu.click()" class="nav-link" routerLink="/about" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: true}">
-                <mat-icon inline>info</mat-icon>
-                {{ 'navigation.about-label' | translate }}
-            </a>
-        </li>
+            <li *ngIf="!loggedIn" class="nav-item">
+                <a (click)="mobileNavActive = false" routerLink="/signin" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <mat-icon inline>login</mat-icon>
+                    {{ 'navigation.signin-label' | translate }}
+                </a>
+            </li>
 
-        <li *ngIf="!loggedIn" class="auth-item">
-            <a (click)="menu.click()" class="nav-link" routerLink="/signin" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: true}">
-                <mat-icon inline>login</mat-icon>
-                {{ 'navigation.signin-label' | translate }}
-            </a>
-        </li>
-
-        <li *ngIf="loggedIn" class="auth-item">
-            <a (click)="logout(); menu.click()" class="nav-link" routerLink="/signin">
-                <mat-icon inline>logout</mat-icon>
-                {{ 'navigation.logout-label' | translate }}
-            </a>
-        </li>
-    </ul>
-</header>
+            <li *ngIf="loggedIn" class="nav-item">
+                <a (click)="logout()" routerLink="/signin">
+                    <mat-icon inline>logout</mat-icon>
+                    {{ 'navigation.logout-label' | translate }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
 <mat-menu #langs="matMenu">
     <button [disabled]="shouldDisableLang(enTranslationCode)" (click)="changeLang(enTranslationCode)" mat-menu-item>

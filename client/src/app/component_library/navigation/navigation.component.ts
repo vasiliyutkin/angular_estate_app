@@ -19,6 +19,8 @@ export class NavigationComponent {
   ruTranslationCode = ruTranslationCode;
   uaTranslationCode = uaTranslationCode;
 
+  mobileNavActive = false;
+
   constructor(
     private authService: AuthenticationService,
     private toastrService: ToastrService,
@@ -42,10 +44,12 @@ export class NavigationComponent {
   }
 
   logout(): void {
-    Promise.all([
-      this.authService.logout(),
-      this.authService.signOut(),
-    ]).then((_) => this.toastrService.show('Вы вышли из системы...'));
+    Promise.all([this.authService.logout(), this.authService.signOut()]).then(
+      (_) => {
+        this.mobileNavActive = false;
+        this.toastrService.show('Вы вышли из системы...');
+      }
+    );
   }
 }
 
