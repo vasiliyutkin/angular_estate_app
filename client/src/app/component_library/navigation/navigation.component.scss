@@ -4,16 +4,25 @@
 .header {
   position: fixed;
   background-color: $white;
-  box-shadow: 2px 2px 4px 0 rgba($dark-charkoal, 0.3);
+  box-shadow: 2px 2px 4px 0 rgba($material-accent, 0.3);
   min-width: 100vw;
   z-index: 999999;
 
+  [mat-icon-button] {
+    margin: 4px 0 0 15px;
+    i {
+      font-size: 2rem;
+      color: $material-accent;
+    }
+  }
+
   ul {
     margin: 0;
-    padding: 0 0.9rem 0 0;
+    padding: 0 1rem;
     list-style: none;
     overflow: hidden;
-    min-width: 91vw;
+    min-width: 96vw;
+    box-sizing: border-box;
 
     li {
       float: left;
@@ -28,9 +37,13 @@
 
       a {
         display: block;
-        padding: 0.5rem;
-        border-right: 0.1rem solid $light;
+        padding: 0.1rem 0.5rem;
         text-decoration: none;
+        border-radius: 2px;
+
+        mat-icon {
+          font-size: 1.5rem;
+        }
 
         &.nav-link {
           display: inline-flex !important;
@@ -38,9 +51,9 @@
           align-content: center;
           align-items: center;
           flex: 0 0 auto;
-          color: $slate-gray;
+          color: $material-accent;
           text-transform: capitalize;
-          margin: 0.2rem;
+          margin: 0.3rem 0.2rem;
           font-size: 14px;
 
           mat-icon {
@@ -52,31 +65,6 @@
             color: $white;
           }
         }
-      }
-    }
-  }
-
-  .logo-section {
-    display: inline-flex;
-    align-items: center;
-    min-width: 6vw;
-
-    .logo {
-      display: inline-block;
-      margin-left: 1rem;
-      text-decoration: none;
-
-      svg {
-        height: 2rem;
-        fill: $slate-gray;
-      }
-    }
-
-    button[mat-icon-button] {
-      margin-left: 0.65rem;
-      i {
-        font-size: 1.6rem;
-        color: $material-primary;
       }
     }
   }
@@ -94,7 +82,7 @@
 
 .header li a:hover,
 .header .menu-btn:hover {
-  background-color: $flash-white;
+  background-color: $platinum;
 }
 
 .header .menu-icon {
@@ -108,22 +96,22 @@
 }
 
 .header .menu-icon .navicon {
-  background: $dark;
+  background: $material-accent;
   display: block;
   height: 2px;
   position: relative;
-  transition: background 0.2s ease-out;
+  transition: background 0.3s ease-out;
   width: 1.8rem;
 }
 
 .header .menu-icon .navicon:before,
 .header .menu-icon .navicon:after {
-  background: $dark;
+  background: $material-accent;
   content: '';
   display: block;
   height: 100%;
   position: absolute;
-  transition: all 0.2s ease-out;
+  transition: all 0.3s ease-out;
   width: 100%;
 }
 
@@ -158,18 +146,17 @@
 
 .lang-wrap {
   display: inline-flex !important;
-  justify-content: space-around;
   align-items: center;
   align-content: center;
 
   mat-icon {
-    font-size: 1.7rem;
-    color: $slate-gray;
+    font-size: 1.3rem;
+    color: $material-accent;
   }
 
   span {
-    margin-left: -0.5rem;
-    color: $slate-gray;
+    margin-left: -0.85rem;
+    color: $material-accent;
   }
 }
 
@@ -210,21 +197,5 @@
 
   .header .menu-icon {
     display: block;
-  }
-}
-
-@media (min-width: 1200px) {
-  .header {
-    ul {
-      min-width: 92vw;
-    }
-  }
-}
-
-@media (min-width: 1400px) {
-  .header {
-    ul {
-      min-width: 94vw;
-    }
   }
 }

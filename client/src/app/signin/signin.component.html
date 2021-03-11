@@ -2,11 +2,11 @@
     <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
         <div class="auth-actions mb-5">
             <div class="socials">
-                <button *ngIf="isVkAvailable" (click)="signInWithVK()" mat-mini-fab color="accent">
+                <button *ngIf="isVkAvailable" (click)="signInWithVK()" color="warn" mat-mini-fab color="accent">
                     <i class="fab fa-vk"></i>
                 </button>
 
-                <button (click)="signInWithGoogle()" mat-mini-fab color="warn">
+                <button (click)="signInWithGoogle()" mat-mini-fab>
                     <i class="fab fa-google"></i>
                 </button>
 
@@ -15,7 +15,7 @@
                 </button>
             </div>
 
-            <button type="button" class="signup-button" mat-button routerLink="/signup">
+            <button type="button" class="signup-button" mat-flat-button routerLink="/signup">
                 <mat-icon inline>how_to_reg</mat-icon>
                 {{ 'signin.signup-label' | translate }}
             </button>

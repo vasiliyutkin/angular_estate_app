@@ -19,8 +19,10 @@
 
 .auth-actions {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: flex-start;
 
   .socials {
     & > * {
@@ -28,11 +30,5 @@
     }
 
     margin-bottom: 1.5rem;
-  }
-
-  .signup-button {
-    background-color: $green;
-    color: $white;
-    height: 4rem;
   }
 }
