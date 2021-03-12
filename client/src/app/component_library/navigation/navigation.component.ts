@@ -6,7 +6,7 @@ import { TranslationService } from 'src/app/services/translation.service';
 import {
   enTranslationCode,
   ruTranslationCode,
-  uaTranslationCode,
+  ukTranslationCode,
 } from 'src/app/services/translation.constants';
 
 @Component({
@@ -17,7 +17,7 @@ import {
 export class NavigationComponent {
   enTranslationCode = enTranslationCode;
   ruTranslationCode = ruTranslationCode;
-  uaTranslationCode = uaTranslationCode;
+  ukTranslationCode = ukTranslationCode;
 
   mobileNavActive = false;
 

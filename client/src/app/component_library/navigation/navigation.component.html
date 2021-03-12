@@ -6,7 +6,7 @@
             </button>
 
             <button *ngIf="isAdmin" class="admin-panel-button" [matMenuTriggerFor]="admin_actions"
-                aria-label="admin_actions" mat-stroked-button color="accent">
+                aria-label="admin_actions" mat-button>
                 <i class="fas fa-users"></i> Backoffice
             </button>
         </div>
@@ -68,8 +68,8 @@
         </mat-icon>
         <span>{{ 'navigation.language.russian' | translate }}</span>
     </button>
-    <button [disabled]="shouldDisableLang(uaTranslationCode)" (click)="changeLang(uaTranslationCode)" mat-menu-item>
-        <mat-icon>{{shouldDisableLang(uaTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
+    <button [disabled]="shouldDisableLang(ukTranslationCode)" (click)="changeLang(ukTranslationCode)" mat-menu-item>
+        <mat-icon>{{shouldDisableLang(ukTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
         </mat-icon>
         <span>{{ 'navigation.language.ukrainian' | translate }}</span>
     </button>
