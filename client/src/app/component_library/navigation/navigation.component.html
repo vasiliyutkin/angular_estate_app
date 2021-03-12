@@ -7,11 +7,9 @@
 
             <button *ngIf="isAdmin" class="admin-panel-button" [matMenuTriggerFor]="admin_actions"
                 aria-label="admin_actions" mat-stroked-button color="accent">
-                <i class="fas fa-users"></i>
-                Admin
+                <i class="fas fa-users"></i> Backoffice
             </button>
         </div>
-
 
         <div (click)="mobileNavActive = !mobileNavActive" [class.is-active]="mobileNavActive" class="menu-toggle"
             id="mobile-menu">
@@ -78,9 +76,9 @@
 </mat-menu>
 
 <mat-menu #admin_actions="matMenu">
-    <button mat-menu-item routerLink="/admin/edit-properties" routerLinkActive="active"
+    <button mat-menu-item routerLink="/backoffice/apartments" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}">
         <mat-icon>bungalow</mat-icon>
-        <span>Edit Properties</span>
+        <span>Apartments</span>
     </button>
 </mat-menu>

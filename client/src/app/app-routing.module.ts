@@ -10,6 +10,9 @@ import { AboutComponent } from './about/about.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { BackofficeComponent } from './backoffice/backoffice.component';
+import { ApartmentsComponent } from './apartments/apartments.component';
+import { ConfirmRegistrationComponent } from './confirm_registration/confirm.registration.component';
 
 const routes: Routes = [
   {
@@ -28,6 +31,11 @@ const routes: Routes = [
     component: SigninComponent,
   },
   {
+    path: 'registration-successful',
+    canActivate: [AuthGuard],
+    component: ConfirmRegistrationComponent,
+  },
+  {
     path: '',
     component: MainComponent,
     children: [
@@ -38,7 +46,17 @@ const routes: Routes = [
       {
         path: 'about',
         component: AboutComponent,
-        // canActivate: [AdminGuard],
+      },
+    ],
+  },
+  {
+    path: 'backoffice',
+    component: BackofficeComponent,
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: 'apartments',
+        component: ApartmentsComponent,
       },
     ],
   },

@@ -1,0 +1,11 @@
+@import '../theme/variables';
+
+:host {
+  min-height: 100vh;
+}
+
+.main-content {
+  padding: 8rem 2rem 10rem 2rem;
+  min-height: 100vh;
+  background-color: $white;
+}

@@ -7,6 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { NgxMaskModule } from 'ngx-mask';
 
@@ -44,6 +49,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslationInterceptor } from './interceptors/translation.interceptor';
 import { TranslationService } from './services/translation.service';
+import { BackofficeComponent } from './backoffice/backoffice.component';
+import { ApartmentsComponent } from './apartments/apartments.component';
+import { ConfirmRegistrationComponent } from './confirm_registration/confirm.registration.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -60,6 +69,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotComponent,
     AboutComponent,
     NavigationComponent,
+    BackofficeComponent,
+    ApartmentsComponent,
+    ConfirmRegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,15 +95,21 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     NgxMaskModule.forRoot(),
     MatIconModule,
+    MatBadgeModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatMenuModule,
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     SocialLoginModule,
   ],
   providers: [
+    MatDatepickerModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TranslationInterceptor,
