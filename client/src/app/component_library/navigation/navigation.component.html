@@ -1,8 +1,15 @@
 <div class="navbar-wrap">
     <nav class="navbar">
-        <button mat-icon-button [matMenuTriggerFor]="langs" aria-label="language">
-            <i class="fas fa-globe-americas"></i>
-        </button>
+        <div class="functional-area">
+            <button mat-icon-button [matMenuTriggerFor]="langs" aria-label="language">
+                <i class="fas fa-globe-americas"></i>
+            </button>
+
+            <button mat-icon-button>
+                <mat-icon inline>admin_panel_settings</mat-icon>
+            </button>
+        </div>
+
 
         <div (click)="mobileNavActive = !mobileNavActive" [class.is-active]="mobileNavActive" class="menu-toggle"
             id="mobile-menu">
@@ -10,37 +17,42 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
+
         <ul [class.mobile-nav]="mobileNavActive" class="nav">
-            <li class="nav-item">
-                <a (click)="mobileNavActive = false" routerLink="/" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    <mat-icon inline>house</mat-icon>
-                    {{ 'navigation.dashboard-label' | translate }}
-                </a>
-            </li>
+            <div class="left-nav">
+                <li class="nav-item">
+                    <a (click)="mobileNavActive = false" routerLink="/" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <mat-icon inline>house</mat-icon>
+                        {{ 'navigation.dashboard-label' | translate }}
+                    </a>
+                </li>
 
-            <li class="nav-item" *ngIf="isAdmin">
-                <a (click)="mobileNavActive = false" routerLink="/about" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    <mat-icon inline>info</mat-icon>
-                    {{ 'navigation.about-label' | translate }}
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a (click)="mobileNavActive = false" routerLink="/about" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <mat-icon inline>info</mat-icon>
+                        {{ 'navigation.about-label' | translate }}
+                    </a>
+                </li>
+            </div>
 
-            <li *ngIf="!loggedIn" class="nav-item">
-                <a (click)="mobileNavActive = false" routerLink="/signin" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    <mat-icon inline>login</mat-icon>
-                    {{ 'navigation.signin-label' | translate }}
-                </a>
-            </li>
+            <div class="right-nav">
+                <li *ngIf="!loggedIn" class="nav-item">
+                    <a (click)="mobileNavActive = false" routerLink="/signin" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <mat-icon inline>login</mat-icon>
+                        {{ 'navigation.signin-label' | translate }}
+                    </a>
+                </li>
 
-            <li *ngIf="loggedIn" class="nav-item">
-                <a (click)="logout()" routerLink="/signin">
-                    <mat-icon inline>logout</mat-icon>
-                    {{ 'navigation.logout-label' | translate }}
-                </a>
-            </li>
+                <li *ngIf="loggedIn" class="nav-item">
+                    <a (click)="logout()" routerLink="/signin">
+                        <mat-icon inline>logout</mat-icon>
+                        {{ 'navigation.logout-label' | translate }}
+                    </a>
+                </li>
+            </div>
         </ul>
     </nav>
 </div>
