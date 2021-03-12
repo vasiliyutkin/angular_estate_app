@@ -2,7 +2,6 @@ package mailer
 
 import (
 	"fmt"
-	"log"
 	"net/smtp"
 )
 
@@ -24,7 +23,6 @@ func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
 }
 
 func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
-	log.Println(string(fromServer))
 	if more {
 		switch string(fromServer) {
 		case "Username:":
