@@ -7,7 +7,7 @@
 
             <button *ngIf="isAdmin" class="admin-panel-button" [matMenuTriggerFor]="admin_actions"
                 aria-label="admin_actions" mat-button>
-                <i class="fas fa-users"></i> Backoffice
+                <i class="fas fa-users"></i> {{ 'navigation.backoffice.btn_label' | translate }}
             </button>
         </div>
 
@@ -78,7 +78,7 @@
 <mat-menu #admin_actions="matMenu">
     <button mat-menu-item routerLink="/backoffice/apartments" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon>bungalow</mat-icon>
-        <span>Apartments</span>
+        <mat-icon>house_siding</mat-icon>
+        <span>{{ 'navigation.backoffice.apartments' | translate }}</span>
     </button>
 </mat-menu>

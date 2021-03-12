@@ -5,6 +5,10 @@
 	},
 	"navigation": {
 		"about-label": "О Компании",
+		"backoffice": {
+			"apartments": "Недвижимость",
+			"btn_label": "Бэк-офис"
+		},
 		"dashboard-label": "Недвижимость",
 		"language": {
 			"english": "Английский",

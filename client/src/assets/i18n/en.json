@@ -5,6 +5,10 @@
 	},
 	"navigation": {
 		"about-label": "About Us",
+		"backoffice": {
+			"apartments": "Apartments",
+			"btn_label": "Backoffice"
+		},
 		"dashboard-label": "Real Estate",
 		"language": {
 			"english": "English",
