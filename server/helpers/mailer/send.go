@@ -9,18 +9,21 @@ import (
 	"strings"
 )
 
-func Send(to []string, subject, message string) error {
+func Send(to []string, subject, message string, debugMode bool) error {
 	bodyMessage := WriteHTMLEmail(to, subject, message)
-
-	auth := LoginAuth()
 
 	msg := "From: " + "annalexestate@gmail.com" + "\n" +
 		"To: " + strings.Join(to, ",") + "\n" +
 		"Subject: " + subject + "\n" + bodyMessage
 
+	if debugMode {
+		log.Println(msg)
+		return nil
+	}
+
 	err := smtp.SendMail(
 		"smtp.gmail.com:587",
-		auth,
+		LoginAuth(),
 		"annalexestate@gmail.com",
 		to,
 		[]byte(msg))
@@ -28,23 +31,23 @@ func Send(to []string, subject, message string) error {
 		log.Println(err)
 		return nil
 	}
-
 	return nil
 }
 
 func WriteEmail(dest []string, contentType, subject, bodyMessage string) string {
 
 	header := make(map[string]string)
-	header["From"] = "annalexestate@gmail.com"
+	/*
+		header["From"] = "annalexestate@gmail.com"
 
-	receipient := ""
+		receipient := ""
+		for _, user := range dest {
+			receipient = receipient + user
+		}
 
-	for _, user := range dest {
-		receipient = receipient + user
-	}
-
-	header["To"] = receipient
-	header["Subject"] = subject
+		header["To"] = receipient
+		header["Subject"] = subject
+	*/
 	header["MIME-Version"] = "1.0"
 	header["Content-Type"] = fmt.Sprintf("%s; charset=\"utf-8\"", contentType)
 	header["Content-Transfer-Encoding"] = "quoted-printable"

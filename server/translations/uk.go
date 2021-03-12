@@ -12,4 +12,5 @@ func init() {
 	message.SetString(tag, "ErrWrongPassword", "Невірний пароль")
 	message.SetString(tag, "ErrUsernameIsEmpty", "Ім'я користувача порожнє")
 	message.SetString(tag, "ErrPasswordIsEmpty", "Пароль порожній")
+	message.SetString(tag, "ErrUserLinkExpired", "Термін дії ссилки закінчився")
 }

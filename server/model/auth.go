@@ -104,14 +104,15 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 	if err != nil {
 		return err
 	}
-	u.Path = path.Join(u.Path, "api", "confirm", userLink)
+	u.Path = path.Join(u.Path, "api", "auth", "confirm")
+	u.RawQuery = fmt.Sprintf("s=%s", userLink)
 
 	to := []string{
 		"soloviov28@gmail.com",
 		"vasiliyutkin13121991@gmail.com",
 	}
 
-	subject := "Confirm registration"
+	subject := "Confirm your registration"
 
 	message := fmt.Sprintf(`
 		<!DOCTYPE HTML PULBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -120,15 +121,16 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 			<meta http-equiv="content-type" content="text/html"; charset=ISO-8859-1">
 		</head>
 		<body>
-			&#127881; &#127881; &#127881; CONGRATS AMIGO &#127881; &#127881; &#127881;<br>
+			Dear %s %s,<br>
+			<br>
+
+			thanks for your interest!<br>
+			To confirm your registration please click <a href="%s">here</a><br>
 			<br>
 			<br>
-			For suck seed dear %s %s click please <a href="%s">here</a>
-			<br>
-			
-			
+
 			<div class="moz-signature">
-				<i><br><br>
+				<i>
 					Regards<br>
 					Dron & Dron<br>
 				<i>
@@ -137,7 +139,24 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 		</html>
 	`, firstName, lastName, u.String())
 
-	return mailer.Send(to, subject, message)
+	if m.debugMode {
+		log.Println(u.String())
+	}
+
+	return mailer.Send(to, subject, message, m.debugMode)
+}
+
+func (m *Model) ConfirmRegistration(link string) error {
+	userID, err := m.store.EvaluateUserLink(link)
+	if err != nil {
+		return err
+	}
+	if userID == 0 {
+		return ErrUserLinkExpired
+	}
+
+	err = m.store.EnableUser(userID)
+	return err
 }
 
 func (m *Model) ResetPassword(a *AuthData) (*User, error) {

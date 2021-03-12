@@ -16,5 +16,6 @@ var (
 	ErrUserExists      = &Error{Code: 101, Label: "ErrUserExists", Text: "User already exists"}
 	ErrWrongPassword   = &Error{Code: 102, Label: "ErrWrongPassword", Text: "Wrong password"}
 	ErrUsernameIsEmpty = &Error{Code: 103, Label: "ErrUsernameIsEmpty", Text: "Username is empty"}
-	ErrPasswordIsEmpty = &Error{Code: 103, Label: "ErrPasswordIsEmpty", Text: "Password is empty"}
+	ErrPasswordIsEmpty = &Error{Code: 104, Label: "ErrPasswordIsEmpty", Text: "Password is empty"}
+	ErrUserLinkExpired = &Error{Code: 105, Label: "ErrUserLinkExpired", Text: "Link is expired"}
 )

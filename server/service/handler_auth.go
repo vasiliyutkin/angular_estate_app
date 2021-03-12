@@ -71,3 +71,13 @@ func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 
 	s.responseHandler(w, r, &Response{Data: &authResponse{User: user}})
 }
+
+func (s *Service) ConfirmRegistrationHandler(w http.ResponseWriter, r *http.Request) {
+	err := s.model.ConfirmRegistration(r.URL.Query().Get("s"))
+	if err != nil {
+		s.errorHandler(w, r, err)
+		return
+	}
+
+	s.responseHandler(w, r, &Response{})
+}

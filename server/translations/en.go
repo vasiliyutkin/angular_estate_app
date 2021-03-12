@@ -12,4 +12,5 @@ func init() {
 	message.SetString(tag, "ErrWrongPassword", "Wrong password")
 	message.SetString(tag, "ErrUsernameIsEmpty", "Username is empty")
 	message.SetString(tag, "ErrPasswordIsEmpty", "Password is empty")
+	message.SetString(tag, "ErrUserLinkExpired", "Link is expired")
 }

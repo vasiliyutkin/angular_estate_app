@@ -7,8 +7,9 @@ import (
 )
 
 type Model struct {
-	store   *store.Store
-	baseURL string
+	store     *store.Store
+	baseURL   string
+	debugMode bool
 }
 
 func New(c *config.Config) (*Model, error) {
@@ -21,5 +22,9 @@ func New(c *config.Config) (*Model, error) {
 		return nil, fmt.Errorf("init database: %w", err)
 	}
 
-	return &Model{store: s, baseURL: c.BaseURL}, nil
+	return &Model{
+		store:     s,
+		baseURL:   c.BaseURL,
+		debugMode: c.DebugMode,
+	}, nil
 }
