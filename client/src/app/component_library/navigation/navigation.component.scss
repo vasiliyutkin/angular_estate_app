@@ -19,13 +19,26 @@
       display: flex;
       margin-right: 1rem;
 
+      .admin-panel-button {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
+        justify-self: center;
+
+        i {
+          font-size: medium;
+          margin-right: 0.2rem;
+        }
+      }
+
       [mat-icon-button] {
         justify-self: start;
         i {
-          font-size: 2rem;
+          font-size: medium;
         }
         mat-icon {
-          font-size: 2.4rem;
+          font-size: medium;
         }
         i,
         mat-icon {
@@ -154,18 +167,33 @@
   }
 }
 
-.lang-wrap {
-  display: inline-flex !important;
+[mat-menu-item] {
+  display: flex;
   align-items: center;
   align-content: center;
 
-  mat-icon {
-    font-size: 1.3rem;
+  span {
+    margin-left: -0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  mat-icon,
+  span {
     color: $dark;
   }
 
-  span {
-    margin-left: -0.85rem;
-    color: $dark;
+  &:first-child {
+    margin-top: 0.6rem;
+  }
+
+  &[disabled] {
+    background-color: lighten($color: $secondary, $amount: 45);
+  }
+
+  &.active {
+    mat-icon,
+    span {
+      color: $material-accent !important;
+    }
   }
 }

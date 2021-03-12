@@ -5,8 +5,10 @@
                 <i class="fas fa-globe-americas"></i>
             </button>
 
-            <button mat-icon-button>
-                <mat-icon inline>admin_panel_settings</mat-icon>
+            <button *ngIf="isAdmin" class="admin-panel-button" [matMenuTriggerFor]="admin_actions"
+                aria-label="admin_actions" mat-stroked-button color="accent">
+                <i class="fas fa-users"></i>
+                Admin
             </button>
         </div>
 
@@ -59,21 +61,26 @@
 
 <mat-menu #langs="matMenu">
     <button [disabled]="shouldDisableLang(enTranslationCode)" (click)="changeLang(enTranslationCode)" mat-menu-item>
-        <span class="lang-wrap">
-            <mat-icon inline>{{shouldDisableLang(enTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
-            </mat-icon> <span class="lang-name">{{ 'navigation.language.english' | translate }}</span>
-        </span>
+        <mat-icon>{{shouldDisableLang(enTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
+        </mat-icon>
+        <span>{{ 'navigation.language.english' | translate }}</span>
     </button>
     <button [disabled]="shouldDisableLang(ruTranslationCode)" (click)="changeLang(ruTranslationCode)" mat-menu-item>
-        <span class="lang-wrap">
-            <mat-icon inline>{{shouldDisableLang(ruTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
-            </mat-icon> <span class="lang-name">{{ 'navigation.language.russian' | translate }}</span>
-        </span>
+        <mat-icon>{{shouldDisableLang(ruTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
+        </mat-icon>
+        <span>{{ 'navigation.language.russian' | translate }}</span>
     </button>
     <button [disabled]="shouldDisableLang(uaTranslationCode)" (click)="changeLang(uaTranslationCode)" mat-menu-item>
-        <span class="lang-wrap">
-            <mat-icon inline>{{shouldDisableLang(uaTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
-            </mat-icon> <span class="lang-name">{{ 'navigation.language.ukrainian' | translate }}</span>
-        </span>
+        <mat-icon>{{shouldDisableLang(uaTranslationCode) ? 'check_circle' : 'check_circle_outline'}}
+        </mat-icon>
+        <span>{{ 'navigation.language.ukrainian' | translate }}</span>
+    </button>
+</mat-menu>
+
+<mat-menu #admin_actions="matMenu">
+    <button mat-menu-item routerLink="/admin/edit-properties" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>bungalow</mat-icon>
+        <span>Edit Properties</span>
     </button>
 </mat-menu>
