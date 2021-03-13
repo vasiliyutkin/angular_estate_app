@@ -67,6 +67,7 @@
           }
 
           a {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -75,7 +76,7 @@
             font-size: 1rem;
             font-weight: 500;
             text-decoration: none;
-            transition: alls 0.3s ease-out;
+            transition: all 0.2s ease-in-out;
             padding: 0.2rem 0;
 
             mat-icon {
@@ -86,6 +87,17 @@
             &.active-link,
             &:hover {
               color: $material-accent;
+            }
+
+            &.active-link::before {
+              content: '';
+              position: absolute;
+              top: 3px;
+              left: -2px;
+              width: 4px;
+              height: 4px;
+              background-color: $material-accent;
+              border-radius: 100%;
             }
           }
         }

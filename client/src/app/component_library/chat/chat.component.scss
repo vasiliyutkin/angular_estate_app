@@ -1,0 +1,14 @@
+@import '../../theme/variables';
+
+[mat-fab],
+[mat-mini-fab] {
+  background-color: $cool-yellow;
+  color: $dark;
+}
+
+.chat {
+  position: fixed;
+  bottom: 0.8rem;
+  left: 0.8rem;
+  z-index: 999999;
+}

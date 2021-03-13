@@ -53,6 +53,7 @@ import { BackofficeComponent } from './backoffice/backoffice.component';
 import { ApartmentsComponent } from './apartments/apartments.component';
 import { ConfirmRegistrationComponent } from './confirm_registration/confirm.registration.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ChatComponent } from './component_library/chat/chat.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BackofficeComponent,
     ApartmentsComponent,
     ConfirmRegistrationComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,8 +5,9 @@
                 <i class="fas fa-globe-americas"></i>
             </button>
 
-            <button *ngIf="isAdmin" class="admin-panel-button" [matMenuTriggerFor]="admin_actions"
-                aria-label="admin_actions" mat-button>
+            <button matBadgeColor="warn" matBadgeSize="small" matBadgeOverlap="true" matBadge="2" *ngIf="isAdmin"
+                class="admin-panel-button" [matMenuTriggerFor]="admin_actions" aria-label="admin_actions"
+                mat-stroked-button>
                 <i class="fas fa-users"></i> {{ 'navigation.backoffice.btn_label' | translate }}
             </button>
         </div>
