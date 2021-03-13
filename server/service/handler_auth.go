@@ -56,6 +56,38 @@ func (s *Service) SignUpHandler(w http.ResponseWriter, r *http.Request) {
 	s.responseHandler(w, r, &Response{Data: &authResponse{User: user}})
 }
 
+func (s *Service) ConfirmRegistrationHandler(w http.ResponseWriter, r *http.Request) {
+	err := s.model.ConfirmRegistration(r.URL.Query().Get("s"))
+	if err != nil {
+		s.errorHandler(w, r, err)
+		return
+	}
+
+	//s.responseHandler(w, r, &Response{})
+	http.Redirect(w, r, "/registration-successful", http.StatusOK)
+}
+
+func (s *Service) ForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodGet {
+		http.Redirect(w, r, "/forgot", http.StatusOK)
+		return
+	}
+
+	ad := &model.AuthData{}
+	if err := unmarshalRequest(r.Body, &ad); err != nil {
+		s.errorHandler(w, r, err)
+		return
+	}
+
+	err := s.model.ForgotPassword(ad)
+	if err != nil {
+		s.errorHandler(w, r, err)
+		return
+	}
+
+	s.responseHandler(w, r, &Response{})
+}
+
 func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	ad := &model.AuthData{}
 	if err := unmarshalRequest(r.Body, &ad); err != nil {
@@ -70,14 +102,4 @@ func (s *Service) ResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	s.responseHandler(w, r, &Response{Data: &authResponse{User: user}})
-}
-
-func (s *Service) ConfirmRegistrationHandler(w http.ResponseWriter, r *http.Request) {
-	err := s.model.ConfirmRegistration(r.URL.Query().Get("s"))
-	if err != nil {
-		s.errorHandler(w, r, err)
-		return
-	}
-
-	s.responseHandler(w, r, &Response{})
 }

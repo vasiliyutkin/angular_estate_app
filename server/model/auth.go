@@ -1,12 +1,9 @@
 package model
 
 import (
-	"be/server/helpers/mailer"
 	"be/server/store"
 	"fmt"
 	"log"
-	"net/url"
-	"path"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
@@ -87,7 +84,7 @@ func (m *Model) SignUp(a *AuthData) (*User, error) {
 		return nil, fmt.Errorf("create user %q: %w", a.Username, err)
 	}
 
-	userLink, err := m.store.GenerateUserLink(u)
+	userLink, err := m.store.GenerateUserLink(u.ID)
 	if err != nil {
 		return nil, fmt.Errorf("generate user link for %q for confirmation registration: %w", a.Username, err)
 	}
@@ -99,53 +96,6 @@ func (m *Model) SignUp(a *AuthData) (*User, error) {
 	return userFromStore(u), nil
 }
 
-func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error {
-	u, err := url.Parse(m.baseURL)
-	if err != nil {
-		return err
-	}
-	u.Path = path.Join(u.Path, "api", "auth", "confirm")
-	u.RawQuery = fmt.Sprintf("s=%s", userLink)
-
-	to := []string{
-		"soloviov28@gmail.com",
-		"vasiliyutkin13121991@gmail.com",
-	}
-
-	subject := "Confirm your registration"
-
-	message := fmt.Sprintf(`
-		<!DOCTYPE HTML PULBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-		<html>
-		<head>
-			<meta http-equiv="content-type" content="text/html"; charset=ISO-8859-1">
-		</head>
-		<body>
-			Dear %s %s,<br>
-			<br>
-
-			thanks for your interest!<br>
-			To confirm your registration please click <a href="%s">here</a><br>
-			<br>
-			<br>
-
-			<div class="moz-signature">
-				<i>
-					Regards<br>
-					Dron & Dron<br>
-				<i>
-			</div>
-		</body>
-		</html>
-	`, firstName, lastName, u.String())
-
-	if m.debugMode {
-		log.Println(u.String())
-	}
-
-	return mailer.Send(to, subject, message, m.debugMode)
-}
-
 func (m *Model) ConfirmRegistration(link string) error {
 	userID, err := m.store.EvaluateUserLink(link)
 	if err != nil {
@@ -155,6 +105,25 @@ func (m *Model) ConfirmRegistration(link string) error {
 
 	err = m.store.EnableUser(userID)
 	return err
+}
+
+func (m *Model) ForgotPassword(a *AuthData) error {
+	u, err := m.store.GetUserByName(a.Username)
+	if err != nil {
+		log.Printf("get user %q: %v", a.Username, err)
+		return ErrUserNotExists
+	}
+
+	userLink, err := m.store.GenerateUserLink(u.ID)
+	if err != nil {
+		return fmt.Errorf("generate user link for %q for reset password: %w", a.Username, err)
+	}
+
+	if err := m.sendForgotPasswordLink(userLink, u.Firstname, u.Lastname); err != nil {
+		return fmt.Errorf("send link for %q for reset password: %w", a.Username, err)
+	}
+
+	return nil
 }
 
 func (m *Model) ResetPassword(a *AuthData) (*User, error) {

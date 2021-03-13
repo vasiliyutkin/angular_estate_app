@@ -10,7 +10,7 @@ type UserLink struct {
 	Link   string `db:"link"`
 }
 
-func (s *Store) GenerateUserLink(u *User) (string, error) {
+func (s *Store) GenerateUserLink(userID uint32) (string, error) {
 	q := `
 		INSERT INTO user_link
 			(user_id, link)
@@ -23,7 +23,7 @@ func (s *Store) GenerateUserLink(u *User) (string, error) {
 		return "", err
 	}
 
-	if _, err := s.db.Exec(s.db.Rebind(q), u.ID, link.String()); err != nil {
+	if _, err := s.db.Exec(s.db.Rebind(q), userID, link.String()); err != nil {
 		return "", err
 	}
 
