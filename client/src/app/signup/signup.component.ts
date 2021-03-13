@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
 
     this.authenticationService.signUpUser(user).subscribe((response) => {
       if (!response.error) {
-        this.toasterService.show('Регистрация прошла успешно...');
+        this.toasterService.show('Confirmation link was sent to your mail address, please check it out.');
         this.router.navigate(['/signin']);
       }
     });
