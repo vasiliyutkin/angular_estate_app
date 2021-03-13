@@ -26,7 +26,7 @@ func (s *Store) Close() error {
 
 // DatabaseUpdate executes scripts to update database.
 func (s *Store) DatabaseUpdate() error {
-	for _, script := range scripts.Init() {
+	for _, script := range scripts.ToExecute() {
 		if _, err := s.db.Exec(s.db.Rebind(script.Query)); err != nil {
 			return fmt.Errorf("execute %q: %w", script.Title, err)
 		}
