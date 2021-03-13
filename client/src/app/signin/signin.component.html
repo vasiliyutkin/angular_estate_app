@@ -52,8 +52,9 @@
                     {{ 'signin.login-label' | translate }}
                 </button>
 
-                <button class="align-self-center mt-4" *ngIf="formRef.submitted" type="button" mat-button
-                    routerLink="/forgot">Forgot Password?</button>
+                <button class="align-self-center mt-4" *ngIf="formRef.submitted" [disabled]="loginForm.get('username').hasError('email')
+                          || loginForm.get('username').hasError('required')" type="button" mat-button
+                    (click)="forgotPassword()">Forgot Password?</button>
             </mat-card-actions>
         </form>
     </mat-card>

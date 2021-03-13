@@ -47,7 +47,6 @@ export class NavigationComponent {
     Promise.all([this.authService.logout(), this.authService.signOut()]).then(
       (_) => {
         this.mobileNavActive = false;
-        this.toastrService.show('Вы вышли из системы...');
       }
     );
   }

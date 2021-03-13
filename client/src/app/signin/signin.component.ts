@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
-    public toasterService: ToastrService
+    private toasterService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -38,8 +38,20 @@ export class SigninComponent implements OnInit {
 
     this.authenticationService.login(user).subscribe((res) => {
       if (!res.error) {
-        this.toasterService.show(`Вы вошли в систему`);
         this.router.navigate(['/']);
+      }
+    });
+  }
+
+  forgotPassword(): void {
+    const user: User = new User();
+    user.username = this.loginForm.get('username').value;
+
+    this.authenticationService.forgotPassword(user).subscribe((res) => {
+      if (!res.error) {
+        this.toasterService.show(
+          'Link to reset your password was sent to your email.'
+        );
       }
     });
   }

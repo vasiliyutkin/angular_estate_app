@@ -86,6 +86,12 @@ export class AuthenticationService {
     });
   }
 
+  forgotPassword(userData: User) {
+    return this.http.post<any>(`${environment.apiUrl}/auth/forgot-password`, {
+      ...userData,
+    });
+  }
+
   login(userData: User) {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/login`, { ...userData })

@@ -44,7 +44,9 @@ export class ForgotComponent implements OnInit {
     user.password = this.forgotForm.get('password').value;
 
     this.authenticationService.resetPassword(user).subscribe((_) => {
-      this.toasterService.show('Ваш пароль восстановлен...');
+      this.toasterService.show(
+        'Your password has been resetted. Please try to log in.'
+      );
       this.router.navigate(['/signin']);
     });
   }
