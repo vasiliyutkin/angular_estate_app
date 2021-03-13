@@ -64,12 +64,12 @@ func (s *Service) ConfirmRegistrationHandler(w http.ResponseWriter, r *http.Requ
 	}
 
 	//s.responseHandler(w, r, &Response{})
-	http.Redirect(w, r, "/registration-successful", http.StatusOK)
+	http.Redirect(w, r, "/registration-successful", http.StatusSeeOther)
 }
 
 func (s *Service) ForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		http.Redirect(w, r, "/forgot", http.StatusOK)
+		http.Redirect(w, r, "/forgot", http.StatusSeeOther)
 		return
 	}
 
