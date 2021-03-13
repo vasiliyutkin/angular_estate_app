@@ -149,9 +149,7 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 func (m *Model) ConfirmRegistration(link string) error {
 	userID, err := m.store.EvaluateUserLink(link)
 	if err != nil {
-		return err
-	}
-	if userID == 0 {
+		log.Printf("get user link %q: %v", link, err)
 		return ErrUserLinkExpired
 	}
 

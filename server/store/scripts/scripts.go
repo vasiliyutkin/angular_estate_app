@@ -19,7 +19,6 @@ func ToExecute() []Script {
 // Init is list of scripts needed to be run for restart database.
 func Init() []Script {
 	return []Script{
-		DropTableUser(),
 		CreateTableUser(),
 		AddAdminUser(),
 		CreateTableUserLink(),

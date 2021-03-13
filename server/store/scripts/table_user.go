@@ -1,18 +1,11 @@
 package scripts
 
-func DropTableUser() Script {
-	return Script{
-		Title: "drop table user",
-		Query: `
-			DROP TABLE IF EXISTS users;
-		`,
-	}
-}
-
 func CreateTableUser() Script {
 	return Script{
 		Title: "create table user",
 		Query: `
+			DROP TABLE IF EXISTS users;
+
 			CREATE TABLE IF NOT EXISTS users (
 				id serial NOT NULL,
 				username character varying(250) NOT NULL,
