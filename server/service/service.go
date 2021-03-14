@@ -27,6 +27,7 @@ func New(m *model.Model) *Service {
 	s.rest.AddRoute("/api/auth/reset-password", s.ResetPasswordHandler)
 
 	s.rest.AddRoute("/api/users", s.UsersHandler)
+	s.rest.AddRoute("/api/user", s.UserHandler)
 
 	return s
 }

@@ -2,6 +2,7 @@ package model
 
 import (
 	"be/server/store"
+	"log"
 )
 
 type User struct {
@@ -38,4 +39,14 @@ func (m *Model) GetUsers() ([]*User, error) {
 	}
 
 	return users, nil
+}
+
+func (m *Model) GetUser(id uint32) (*User, error) {
+	u, err := m.store.GetUser(id)
+	if err != nil {
+		log.Printf("get user %d: %v", id, err)
+		return nil, ErrUserNotExists
+	}
+
+	return userFromStore(u), nil
 }
