@@ -10,16 +10,16 @@
   height: 100%;
   overflow: hidden;
   z-index: 99999999;
-  background: rgba($color: $white, $alpha: 0.9);
+  background: rgba($color: $flash-white, $alpha: 0.7);
 }
 
 // moder spinner
 .spinner-modern {
   position: absolute;
-  top: calc(45% - 50px);
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 100px;
+  top: calc(30% - 75px);
+  left: calc(50% - 75px);
+  width: 150px;
+  height: 150px;
   border-radius: 100%;
   perspective: 800px;
 }
@@ -35,22 +35,22 @@
 .inner.one {
   left: 0%;
   top: 0%;
-  animation: rotate-one 1s linear infinite;
-  border-bottom: .8rem solid $cool-yellow;
+  animation: rotate-one 0.8s linear infinite;
+  border-bottom: 0.6rem solid $cool-yellow;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
-  animation: rotate-two 1s linear infinite;
-  border-right: .8rem solid $cool-yellow;
+  animation: rotate-two 0.8s linear infinite;
+  border-right: 0.6rem solid $cool-yellow;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
-  animation: rotate-three 1s linear infinite;
-  border-top: .8rem solid $cool-yellow;
+  animation: rotate-three 0.8s linear infinite;
+  border-top: 0.6rem solid $cool-yellow;
 }
 
 @keyframes rotate-one {
@@ -83,14 +83,14 @@
 //bounce spinner
 .bounce-wrap {
   position: absolute;
-  top: calc(45% - 50px);
-  left: calc(50% - 50px);
+  top: calc(30% - 75px);
+  left: calc(50% - 75px);
 }
 
 .spinner-bounce {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 
   .double-bounce1,
   .double-bounce2 {
