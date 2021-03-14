@@ -12,8 +12,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   spinnerType: SpinnerType = SpinnerType.Bounce;
 
-  constructor(private authService: SocialAuthService, private router: Router) {
-    this.authService.authState.subscribe((socialUser: SocialUser) =>
+  constructor(
+    private socialAuthService: SocialAuthService,
+    private router: Router
+  ) {
+    this.socialAuthService.authState.subscribe((socialUser: SocialUser) =>
       socialUser
         ? this.router.navigate(['/'])
         : this.router.navigate(['/signin'])
