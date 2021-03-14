@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none;
+  user-select: text;
 }
 
 html {
@@ -35,4 +35,9 @@ body {
   html {
     scroll-behavior: smooth;
   }
+}
+
+::selection {
+  background: $material-accent;
+  color: $white;
 }
