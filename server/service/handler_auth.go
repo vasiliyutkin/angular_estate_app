@@ -76,7 +76,7 @@ func (s *Service) ForgotPasswordHandler(w http.ResponseWriter, r *http.Request) 
 			return
 		}
 
-		http.Redirect(w, r, fmt.Sprintf("/forgot?userId=%d", userID), http.StatusSeeOther)
+		http.Redirect(w, r, fmt.Sprintf("/forgot/%d", userID), http.StatusSeeOther)
 		return
 	}
 
