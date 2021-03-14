@@ -53,6 +53,10 @@ func (m *Model) Login(a *AuthData) (*User, error) {
 		return nil, ErrUserNotExists
 	}
 
+	if !u.Enabled {
+		return nil, ErrRegistrationNotFinished
+	}
+
 	if err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(a.Password)); err != nil {
 		log.Printf("wrong password for user %q: %v", a.Username, err)
 		return nil, ErrWrongPassword
@@ -82,6 +86,14 @@ func (m *Model) SignUp(a *AuthData) (*User, error) {
 	u, err := m.store.CreateUser(a.toStoreUser(string(hashed)))
 	if err != nil {
 		return nil, fmt.Errorf("create user %q: %w", a.Username, err)
+	}
+
+	exists, err = m.store.LinkExists(u.ID)
+	if err != nil {
+		return nil, fmt.Errorf("check if link for user %s exists: %w", a.Username, err)
+	}
+	if exists {
+		return nil, ErrRegistrationLinkExists
 	}
 
 	userLink, err := m.store.GenerateUserLink(u.ID)
@@ -128,6 +140,18 @@ func (m *Model) ForgotPassword(a *AuthData) error {
 		return ErrUserNotExists
 	}
 
+	if !u.Enabled {
+		return ErrRegistrationNotFinished
+	}
+
+	exists, err := m.store.LinkExists(u.ID)
+	if err != nil {
+		return fmt.Errorf("check if link for user %s exists: %w", a.Username, err)
+	}
+	if exists {
+		return ErrPasswordChangeLinkExists
+	}
+
 	userLink, err := m.store.GenerateUserLink(u.ID)
 	if err != nil {
 		return fmt.Errorf("generate user link for %q for reset password: %w", a.Username, err)
@@ -149,6 +173,10 @@ func (m *Model) ResetPassword(a *AuthData) (*User, error) {
 	if err != nil {
 		log.Printf("get user %q: %v", a.Username, err)
 		return nil, ErrUserNotExists
+	}
+
+	if !u.Enabled {
+		return nil, ErrRegistrationNotFinished
 	}
 
 	hashed, err := bcrypt.GenerateFromPassword([]byte(a.Password), bcrypt.DefaultCost)

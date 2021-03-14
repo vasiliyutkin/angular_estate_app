@@ -13,4 +13,7 @@ func init() {
 	message.SetString(tag, "ErrUsernameIsEmpty", "Имя пользователя пусто")
 	message.SetString(tag, "ErrPasswordIsEmpty", "Пароль пуст")
 	message.SetString(tag, "ErrUserLinkExpired", "Срок действия ссылки истек")
+	message.SetString(tag, "ErrRegistrationNotFinished", "Пользователь не завершил регистрацию")
+	message.SetString(tag, "ErrRegistrationLinkExists", "Ссылка для регистрации уже запрошена")
+	message.SetString(tag, "ErrPasswordChangeLinkExists", "Ссылка для смены пароля уже запрошена")
 }

@@ -10,6 +10,16 @@ type UserLink struct {
 	Link   string `db:"link"`
 }
 
+func (s *Store) LinkExists(userID uint32) (bool, error) {
+	q := "SELECT EXISTS(SELECT * FROM user_link WHERE user_id = ?) AS exists"
+
+	var exists bool
+	if err := s.db.QueryRowx(s.db.Rebind(q), userID).Scan(&exists); err != nil {
+		return false, err
+	}
+	return exists, nil
+}
+
 func (s *Store) GenerateUserLink(userID uint32) (string, error) {
 	q := `
 		INSERT INTO user_link
