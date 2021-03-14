@@ -13,6 +13,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { BackofficeComponent } from './backoffice/backoffice.component';
 import { ApartmentsComponent } from './apartments/apartments.component';
 import { ConfirmRegistrationComponent } from './confirm_registration/confirm.registration.component';
+import { UserResolver } from './resolvers/user.resolver';
 
 const routes: Routes = [
   {
@@ -21,9 +22,12 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: 'forgot',
+    path: 'forgot/:userId',
     canActivate: [AuthGuard],
     component: ForgotComponent,
+    resolve: {
+      user: UserResolver,
+    },
   },
   {
     path: 'signin',

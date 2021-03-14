@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  spinnerType: SpinnerType = SpinnerType.Bounce;
+  spinnerType: SpinnerType = SpinnerType.Modern;
 
   constructor(
     private socialAuthService: SocialAuthService,

@@ -5,18 +5,6 @@
          <form [formGroup]="forgotForm" class="d-flex flex-column" (submit)="resetPassword()">
              <mat-card-content>
                  <mat-form-field class="col-md-7 mt-3 mx-auto">
-                     <mat-label>Username</mat-label>
-                     <input type="email" matInput required formControlName="username" placeholder="email address" />
-                     <mat-error *ngIf="forgotForm.get('username').hasError('email')
-                           && !forgotForm.get('username').hasError('required')">
-                         Please enter a valid email address
-                     </mat-error>
-                     <mat-error *ngIf="forgotForm.get('username').hasError('required')">
-                         Email is <strong>required</strong>
-                     </mat-error>
-                 </mat-form-field>
-
-                 <mat-form-field class="col-md-7 mt-3 mx-auto">
                      <mat-label>New Password</mat-label>
                      <input type="password" matInput required formControlName="password" />
                      <mat-error *ngIf="forgotForm.get('password').hasError('required')">

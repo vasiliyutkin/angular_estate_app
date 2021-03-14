@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 
 import { AuthenticationService } from '../services/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { User } from '../models/user';
@@ -19,18 +19,22 @@ import { User } from '../models/user';
 })
 export class ForgotComponent implements OnInit {
   forgotForm: FormGroup;
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router,
-    public toasterService: ToastrService
+    private toasterService: ToastrService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe((data) => (this.user = data.user));
+
     this.forgotForm = this.formBuilder.group({
       username: [
-        '',
+        this.user.username,
         Validators.compose([Validators.required, Validators.email]),
       ],
       password: ['', Validators.required, passwordValidator],

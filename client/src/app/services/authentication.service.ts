@@ -116,6 +116,12 @@ export class AuthenticationService {
       .pipe(map((res) => res));
   }
 
+  getUser(userId: string): any {
+    return this.http
+      .get<any>(`${environment.apiUrl}/user?userId=${userId}`)
+      .pipe(map((res) => res));
+  }
+
   logout(): Promise<null> {
     localStorage.removeItem(jwtTokenName);
     localStorage.removeItem(userTokenName);
