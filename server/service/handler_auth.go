@@ -3,6 +3,7 @@ package service
 import (
 	"be/server/helpers/jwt"
 	"be/server/model"
+	"fmt"
 	"net/http"
 )
 
@@ -69,7 +70,13 @@ func (s *Service) ConfirmRegistrationHandler(w http.ResponseWriter, r *http.Requ
 
 func (s *Service) ForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		http.Redirect(w, r, "/forgot", http.StatusSeeOther)
+		userID, err := s.model.ConfirmForgotPassword(r.URL.Query().Get("s"))
+		if err != nil {
+			s.errorHandler(w, r, err)
+			return
+		}
+
+		http.Redirect(w, r, fmt.Sprintf("/forgot?userId=%d", userID), http.StatusSeeOther)
 		return
 	}
 

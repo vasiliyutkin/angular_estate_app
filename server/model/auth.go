@@ -17,7 +17,7 @@ type AuthData struct {
 	Mobile    string `json:"mobile"`
 }
 
-func (a *AuthData) validate() error {
+func (a *AuthData) validate(checkPassword bool) error {
 	a.Username = strings.ToLower(strings.TrimSpace(a.Username))
 	a.Password = strings.TrimSpace(a.Password)
 
@@ -25,7 +25,7 @@ func (a *AuthData) validate() error {
 		return ErrUsernameIsEmpty
 	}
 
-	if a.Password == "" {
+	if checkPassword && a.Password == "" {
 		return ErrPasswordIsEmpty
 	}
 
@@ -43,7 +43,7 @@ func (a *AuthData) toStoreUser(s string) *store.User {
 }
 
 func (m *Model) Login(a *AuthData) (*User, error) {
-	if err := a.validate(); err != nil {
+	if err := a.validate(true); err != nil {
 		return nil, err
 	}
 
@@ -62,7 +62,7 @@ func (m *Model) Login(a *AuthData) (*User, error) {
 }
 
 func (m *Model) SignUp(a *AuthData) (*User, error) {
-	if err := a.validate(); err != nil {
+	if err := a.validate(true); err != nil {
 		return nil, err
 	}
 
@@ -107,7 +107,21 @@ func (m *Model) ConfirmRegistration(link string) error {
 	return err
 }
 
+func (m *Model) ConfirmForgotPassword(link string) (uint32, error) {
+	userID, err := m.store.EvaluateUserLink(link)
+	if err != nil {
+		log.Printf("get user link %q: %v", link, err)
+		return 0, ErrUserLinkExpired
+	}
+
+	return userID, nil
+}
+
 func (m *Model) ForgotPassword(a *AuthData) error {
+	if err := a.validate(false); err != nil {
+		return err
+	}
+
 	u, err := m.store.GetUserByName(a.Username)
 	if err != nil {
 		log.Printf("get user %q: %v", a.Username, err)
@@ -127,7 +141,7 @@ func (m *Model) ForgotPassword(a *AuthData) error {
 }
 
 func (m *Model) ResetPassword(a *AuthData) (*User, error) {
-	if err := a.validate(); err != nil {
+	if err := a.validate(true); err != nil {
 		return nil, err
 	}
 
