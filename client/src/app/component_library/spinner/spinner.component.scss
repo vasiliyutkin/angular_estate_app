@@ -10,21 +10,17 @@
   height: 100%;
   overflow: hidden;
   z-index: 99999999;
-  background: linear-gradient(
-    to right bottom,
-    rgba(242, 242, 242, 0.4),
-    rgba(229, 229, 229, 0.4)
-  );
+  background: rgba($color: $white, $alpha: 0.9);
 }
 
 // moder spinner
 .spinner-modern {
   position: absolute;
-  top: calc(10% - 25px);
-  left: calc(50% - 25px);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  top: calc(45% - 50px);
+  left: calc(50% - 50px);
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
   perspective: 800px;
 }
 
@@ -40,21 +36,21 @@
   left: 0%;
   top: 0%;
   animation: rotate-one 1s linear infinite;
-  border-bottom: 0.4rem solid $slate-gray;
+  border-bottom: .8rem solid $cool-yellow;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
   animation: rotate-two 1s linear infinite;
-  border-right: 0.4rem solid $slate-gray;
+  border-right: .8rem solid $cool-yellow;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
   animation: rotate-three 1s linear infinite;
-  border-top: 0.4rem solid $slate-gray;
+  border-top: .8rem solid $cool-yellow;
 }
 
 @keyframes rotate-one {
@@ -85,11 +81,16 @@
 }
 
 //bounce spinner
+.bounce-wrap {
+  position: absolute;
+  top: calc(45% - 50px);
+  left: calc(50% - 50px);
+}
+
 .spinner-bounce {
   position: relative;
-  width: 50px;
-  height: 50px;
-  margin: 5rem auto;
+  width: 100px;
+  height: 100px;
 
   .double-bounce1,
   .double-bounce2 {
@@ -98,15 +99,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background-color: darken($color: $slate-gray, $amount: 5%);
+    border-radius: 100%;
+    background-color: $cool-yellow;
     opacity: 0.6;
-    -webkit-animation: sk-bounce 1.9s infinite ease-in-out;
     animation: sk-bounce 1.9s infinite ease-in-out;
   }
 
   .double-bounce2 {
-    -webkit-animation-delay: -1s;
     animation-delay: -1s;
   }
 }
