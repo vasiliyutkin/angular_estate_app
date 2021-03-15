@@ -1,12 +1,9 @@
 <ng-template #chatBubble [ngIf]="!isAdmin">
-    <button *ngIf="!smallScreen" class="chat" mat-fab>
+    <button (click)="openDialog()" *ngIf="!smallScreen" class="chat" mat-fab>
         <mat-icon>chat_bubble</mat-icon>
     </button>
 
-    <button *ngIf="smallScreen" class="chat" mat-mini-fab>
+    <button (click)="openDialog()" *ngIf="smallScreen" class="chat" mat-mini-fab>
         <mat-icon>chat_bubble</mat-icon>
     </button>
 </ng-template>
-
-
-<!-- matBadge="1" matBadgeColor="primary" -->

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SocialUser } from 'angularx-social-login';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ChatDialogComponent } from './chat-dialog';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +13,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class ChatComponent {
   innerWidth: number = window.innerWidth;
 
-  constructor(private authService: AuthenticationService) {
+  constructor(
+    private authService: AuthenticationService,
+    public dialog: MatDialog
+  ) {
     window.addEventListener('resize', (_) => {
       this.innerWidth = window.innerWidth;
     });
@@ -27,5 +32,13 @@ export class ChatComponent {
 
   public get isAdmin(): boolean {
     return this.authService.isAdmin;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ChatDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
