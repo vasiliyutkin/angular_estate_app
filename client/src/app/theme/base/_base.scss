@@ -7,6 +7,8 @@
   padding: 0;
   box-sizing: border-box;
   user-select: text;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
 html {
@@ -30,10 +32,9 @@ body {
   background: linear-gradient(to right bottom, $flash-white, $platinum);
   min-height: 100vh;
 
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+  &.no-overflow {
+    overflow: hidden !important;
+  }
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {

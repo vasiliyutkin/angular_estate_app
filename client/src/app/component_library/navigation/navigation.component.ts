@@ -3,6 +3,8 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslationService } from 'src/app/services/translation.service';
 
+import * as $ from 'jquery';
+
 import {
   enTranslationCode,
   ruTranslationCode,
@@ -28,6 +30,9 @@ export class NavigationComponent {
   ) {}
 
   public get loggedIn(): boolean {
+    this.mobileNavActive
+      ? $('body').addClass('no-overflow')
+      : $('body').removeClass('no-overflow');
     return this.authService.loggedIn;
   }
 

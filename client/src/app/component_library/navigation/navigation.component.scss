@@ -63,21 +63,18 @@
 
         .nav-item {
           &:not(:last-child) {
-            margin-right: 1rem;
+            margin-right: 0.5rem;
           }
 
           a {
             position: relative;
             display: flex;
-            justify-content: center;
             align-items: center;
-            align-content: center;
-            color: $dark;
-            font-size: 1rem;
-            font-weight: 500;
+            color: #2b2c28;
+            font-size: 0.9rem;
             text-decoration: none;
-            transition: all 0.2s ease-in-out;
-            padding: 0.2rem 0;
+            transition: all 0.15s ease-in-out;
+            padding: 0.15rem 0.5rem;
 
             mat-icon {
               margin-right: 0.2rem;
@@ -87,17 +84,7 @@
             &.active-link,
             &:hover {
               color: $material-accent;
-            }
-
-            &.active-link::before {
-              content: '';
-              position: absolute;
-              top: 3px;
-              left: -2px;
-              width: 4px;
-              height: 4px;
-              background-color: $material-accent;
-              border-radius: 100%;
+              background-color: #eeeff0;
             }
           }
         }
@@ -161,7 +148,11 @@
           padding: 0.4rem 0;
 
           a {
-            font-size: 1.5rem !important;
+            font-size: 1.4rem !important;
+            display: flex;
+            text-transform: uppercase;
+            justify-content: center;
+            padding: 0.5rem 2rem;
           }
         }
       }
