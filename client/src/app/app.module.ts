@@ -54,6 +54,7 @@ import { ApartmentsComponent } from './apartments/apartments.component';
 import { ConfirmRegistrationComponent } from './confirm_registration/confirm.registration.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChatComponent } from './component_library/chat/chat.component';
+import { ScrollTopComponent } from './component_library/scroll-top/scroll-top.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ApartmentsComponent,
     ConfirmRegistrationComponent,
     ChatComponent,
+    ScrollTopComponent,
   ],
   imports: [
     BrowserModule,

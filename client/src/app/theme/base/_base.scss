@@ -29,6 +29,11 @@ html,
 body {
   background: linear-gradient(to right bottom, $flash-white, $platinum);
   min-height: 100vh;
+
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {
