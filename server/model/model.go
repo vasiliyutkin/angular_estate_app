@@ -18,10 +18,6 @@ func New(c *config.Config) (*Model, error) {
 		return nil, fmt.Errorf("connecting to database: %w", err)
 	}
 
-	if err := s.DatabaseUpdate(); err != nil {
-		return nil, fmt.Errorf("init database: %w", err)
-	}
-
 	return &Model{
 		store:     s,
 		baseURL:   c.BaseURL,
