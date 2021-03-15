@@ -4,6 +4,7 @@ import (
 	"be/server/config"
 	"be/server/model"
 	"be/server/service"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -13,7 +14,14 @@ import (
 )
 
 func main() {
+	soloMode := flag.Bool("solo", false, "debug mode using local connections")
+	flag.Parse()
+
 	c := config.New()
+	if *soloMode {
+		c = config.SoloConfig()
+		log.Println("Running in solo mode ;)")
+	}
 
 	m, err := model.New(c)
 	if err != nil {
