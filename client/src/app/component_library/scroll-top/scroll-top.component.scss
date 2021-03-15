@@ -26,11 +26,11 @@
 
 .progress-wrap::after {
   position: absolute;
-  content: '☝';
+  content: '⇧';
   text-align: center;
   line-height: 46px;
   font-size: 24px;
-  color: $dark;
+  color: $cool-yellow;
   left: 0;
   top: 0;
   height: 46px;
@@ -48,12 +48,12 @@
 
 .progress-wrap::before {
   position: absolute;
-  content: '☝';
+  content: '⇧';
   text-align: center;
   line-height: 46px;
   font-size: 24px;
   opacity: 0;
-  background-image: linear-gradient(298deg, $dark, $dark);
+  background-image: linear-gradient(298deg, $cool-yellow, $cool-yellow);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   left: 0;
@@ -84,7 +84,7 @@
 }
 
 .progress-wrap {
-  box-shadow: inset 0 0 0 2px $cool-yellow;
+  box-shadow: inset 0 0 0 1.8px $cool-yellow;
 }
 
 .progress-wrap::after {
