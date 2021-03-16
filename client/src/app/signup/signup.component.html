@@ -32,17 +32,25 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="col-md-7 mt-3 mx-auto">
-                    <mat-label>Tel #</mat-label>
-                    <input type="tel" matInput mask="(000) 000 00 00" placeholder="(xxx) xxx xx xx" required
-                        formControlName="mobile" />
-                    <mat-error *ngIf="registrationForm.get('mobile').hasError('required')">
+                <div class="form-field col-md-7 mt-3 mx-auto">
+                    <ngx-intl-tel-input [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="true" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                        [selectFirstCountry]="true" [selectedCountryISO]="CountryISO.Ukraine" [maxLength]="15"
+                        [phoneValidation]="true" [separateDialCode]="true" [numberFormat]="PhoneNumberFormat.National"
+                        name="mobile" formControlName="mobile">
+                    </ngx-intl-tel-input>
+
+                    <span class="validation-error"
+                        *ngIf="registrationForm.get('mobile').touched && registrationForm.get('mobile').hasError('required')">
                         Tel # is <strong>required</strong>
-                    </mat-error>
-                    <mat-error *ngIf="registrationForm.get('mobile').hasError('pattern')">
+                    </span>
+
+                    <span class="validation-error"
+                        *ngIf="registrationForm.get('mobile').touched && registrationForm.get('mobile').hasError('validatePhoneNumber')">
                         Tel # should be provided in proper format
-                    </mat-error>
-                </mat-form-field>
+                    </span>
+                </div>
 
                 <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Password</mat-label>

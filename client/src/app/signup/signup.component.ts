@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  SearchCountryField,
+  CountryISO,
+  PhoneNumberFormat,
+} from 'ngx-intl-tel-input';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
@@ -13,6 +18,15 @@ import { User } from '../models/user';
 })
 export class SignupComponent implements OnInit {
   registrationForm: FormGroup;
+
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [
+    CountryISO.Ukraine,
+    CountryISO.Russia,
+    CountryISO.Turkey,
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,13 +44,7 @@ export class SignupComponent implements OnInit {
       password: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      mobile: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(/^\d{3}\d{3}\d{2}\d{2}$/),
-        ]),
-      ],
+      mobile: ['', Validators.required],
     });
   }
 

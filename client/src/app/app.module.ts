@@ -56,6 +56,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ChatComponent } from './component_library/chat/chat.component';
 import { ChatDialogComponent } from './component_library/chat/chat-dialog';
 import { ScrollTopComponent } from './component_library/scroll-top/scroll-top.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -100,6 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     NgxMaskModule.forRoot(),
+    NgxIntlTelInputModule,
     MatIconModule,
     MatBadgeModule,
     ReactiveFormsModule,
