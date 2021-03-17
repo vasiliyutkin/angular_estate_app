@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
     user.password = this.registrationForm.get('password').value;
     user.firstname = this.registrationForm.get('firstname').value;
     user.lastname = this.registrationForm.get('lastname').value;
-    user.mobile = this.registrationForm.get('mobile').value;
+    user.mobile = this.registrationForm.get('mobile').value.e164Number;
 
     this.authenticationService.signUpUser(user).subscribe((response) => {
       if (!response.error) {
