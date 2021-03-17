@@ -50,7 +50,7 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 		</head>
 		<body>
 			<div class="wrapper">
-				<img src="image.png" width="100%%"/>
+%s
 				<div>Dear %s %s,</div>
 				<div>thanks for your interest!</div>
 				<div>To confirm your registration please click <a href="%s">>>here<<</a></div>
@@ -64,11 +64,19 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 			</div>
 		</body>
 		</html>
-	`, firstName, lastName, u.String())
+	`, img, firstName, lastName, u.String())
 
 	if m.debugMode {
 		log.Println(u.String())
 	}
+
+	/*
+		image, err := ioutil.ReadFile("image.png")
+		if err != nil {
+			return err
+		}
+
+	*/
 
 	return mailer.Send(to, subject, message, m.debugMode)
 }
