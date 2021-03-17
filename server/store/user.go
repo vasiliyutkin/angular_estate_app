@@ -70,7 +70,7 @@ func (s *Store) UpdatePassword(id uint32, password string) error {
 	return err
 }
 
-func (s *Store) EnableUser(id uint32) error {
+func (s *Store) EnableUser(id uint32) (*User, error) {
 	q := `
 		UPDATE users
 		SET enabled = true
@@ -78,7 +78,10 @@ func (s *Store) EnableUser(id uint32) error {
 	`
 
 	_, err := s.db.Exec(s.db.Rebind(q), id)
-	return err
+	if err != nil {
+		return nil, err
+	}
+	return s.GetUser(id)
 }
 
 func (s *Store) GetUsers() ([]*User, error) {

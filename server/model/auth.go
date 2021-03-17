@@ -115,7 +115,12 @@ func (m *Model) ConfirmRegistration(link string) error {
 		return ErrUserLinkExpired
 	}
 
-	err = m.store.EnableUser(userID)
+	user, err := m.store.EnableUser(userID)
+	if err != nil {
+		return err
+	}
+
+	m.SendSMS(userFromStore(user))
 	return err
 }
 
