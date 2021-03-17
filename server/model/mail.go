@@ -28,21 +28,39 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 		<html>
 		<head>
 			<meta http-equiv="content-type" content="text/html"; charset=ISO-8859-1">
+			<style>
+				body {
+					display: flex;
+					flex-direction: column;
+					color: #101;
+					align-items: center;
+				}
+				.wrapper>* {
+					margin-bottom: 8px;
+				}
+				.wrapper {
+					display: flex;
+					flex-direction: column;
+					width: 600px;
+				}
+				.signature {
+					margin-top: 16px;
+				}
+			</style>
 		</head>
 		<body>
-			Dear %s %s,<br>
-			<br>
-
-			thanks for your interest!<br>
-			To confirm your registration please click <a href="%s">here</a><br>
-			<br>
-			<br>
-
-			<div class="moz-signature">
-				<i>
-					Regards<br>
-					Dron & Dron<br>
-				<i>
+			<div class="wrapper">
+				<img src="image.png" width="100%%"/>
+				<div>Dear %s %s,</div>
+				<div>thanks for your interest!</div>
+				<div>To confirm your registration please click <a href="%s">>>here<<</a></div>
+				
+				<div class="signature">
+					<i>
+						Regards<br>
+						Estate Management Team
+					<i>
+				</div>
 			</div>
 		</body>
 		</html>
