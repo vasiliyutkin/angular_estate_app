@@ -50,7 +50,7 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 		</head>
 		<body>
 			<div class="wrapper">
-%s
+				<img src="image.png" width="100%%"/>
 				<div>Dear %s %s,</div>
 				<div>thanks for your interest!</div>
 				<div>To confirm your registration please click <a href="%s">>>here<<</a></div>
@@ -64,21 +64,22 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 			</div>
 		</body>
 		</html>
-	`, img, firstName, lastName, u.String())
+	`, firstName, lastName, u.String())
+
+	msg := mailer.NewMessage(subject, message)
+	msg.To = to
+
+	if err := msg.AttachFile("server/model/image.png"); err != nil {
+		return err
+	}
 
 	if m.debugMode {
 		log.Println(u.String())
+		//mailer.New().Debug(msg)
+		return nil
 	}
 
-	/*
-		image, err := ioutil.ReadFile("image.png")
-		if err != nil {
-			return err
-		}
-
-	*/
-
-	return mailer.Send(to, subject, message, m.debugMode)
+	return mailer.New().Send(msg)
 }
 
 func (m *Model) sendForgotPasswordLink(userLink, firstName, lastName string) error {
@@ -139,9 +140,18 @@ func (m *Model) sendForgotPasswordLink(userLink, firstName, lastName string) err
 		</html>
 	`, firstName, lastName, u.String())
 
-	if m.debugMode {
-		log.Println(u.String())
+	msg := mailer.NewMessage(subject, message)
+	msg.To = to
+
+	if err := msg.AttachFile("server/model/image.png"); err != nil {
+		return err
 	}
 
-	return mailer.Send(to, subject, message, m.debugMode)
+	if m.debugMode {
+		log.Println(u.String())
+		//mailer.New().Debug(msg)
+		return nil
+	}
+
+	return mailer.New().Send(msg)
 }
