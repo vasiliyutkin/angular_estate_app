@@ -3,6 +3,7 @@ package model
 import (
 	"be/server/helpers/mailer"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/url"
 	"path"
@@ -50,7 +51,7 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 		</head>
 		<body>
 			<div class="wrapper">
-				<img src="image.png" width="100%%"/>
+				<img src="cid:image.png" width="100%%"/>
 				<div>Dear %s %s,</div>
 				<div>thanks for your interest!</div>
 				<div>To confirm your registration please click <a href="%s">>>here<<</a></div>
@@ -66,16 +67,21 @@ func (m *Model) sendRegistrationLink(userLink, firstName, lastName string) error
 		</html>
 	`, firstName, lastName, u.String())
 
-	msg := mailer.NewMessage(subject, message)
-	msg.To = to
+	msg := &mailer.Message{
+		To:      to,
+		Subject: subject,
+		Body:    []byte(message),
+	}
 
-	if err := msg.AttachFile("server/model/image.png"); err != nil {
+	b, err := ioutil.ReadFile("server/model/image.png")
+	if err != nil {
 		return err
 	}
+	msg.AddAsset("image.png", b)
 
 	if m.debugMode {
 		log.Println(u.String())
-		//mailer.New().Debug(msg)
+		mailer.New().Debug(msg)
 		return nil
 	}
 
@@ -140,16 +146,21 @@ func (m *Model) sendForgotPasswordLink(userLink, firstName, lastName string) err
 		</html>
 	`, firstName, lastName, u.String())
 
-	msg := mailer.NewMessage(subject, message)
-	msg.To = to
+	msg := &mailer.Message{
+		To:      to,
+		Subject: subject,
+		Body:    []byte(message),
+	}
 
-	if err := msg.AttachFile("server/model/image.png"); err != nil {
+	b, err := ioutil.ReadFile("server/model/image.png")
+	if err != nil {
 		return err
 	}
+	msg.AddAsset("image.png", b)
 
 	if m.debugMode {
 		log.Println(u.String())
-		//mailer.New().Debug(msg)
+		mailer.New().Debug(msg)
 		return nil
 	}
 
