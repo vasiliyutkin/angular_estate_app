@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 12fr;
     align-items: center;
-    height: 55px;
+    min-height: 55px;
     overflow: hidden;
 
     .functional-area {
