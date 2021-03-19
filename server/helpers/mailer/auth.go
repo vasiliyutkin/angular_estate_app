@@ -5,17 +5,12 @@ import (
 	"net/smtp"
 )
 
-const (
-	authUsername = "annalexestate@gmail.com"
-	authPassword = "AnnaAlex2021"
-)
-
 type loginAuth struct {
 	username, password string
 }
 
-func LoginAuth() smtp.Auth {
-	return &loginAuth{authUsername, authPassword}
+func auth() smtp.Auth {
+	return &loginAuth{username, password}
 }
 
 func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {

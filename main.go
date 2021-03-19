@@ -4,12 +4,12 @@ import (
 	"be/server/config"
 	"be/server/model"
 	"be/server/service"
+	_ "be/server/translations"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
 
-	_ "be/server/translations"
 	_ "github.com/lib/pq"
 )
 

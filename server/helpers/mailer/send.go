@@ -4,76 +4,58 @@ import (
 	"bytes"
 	"fmt"
 	"log"
-	"mime/quotedprintable"
 	"net/smtp"
-	"strings"
 )
 
-func Send(to []string, subject, message string, debugMode bool) error {
-	bodyMessage := WriteHTMLEmail(to, subject, message)
+var (
+	host     = "smtp.gmail.com"
+	port     = "587"
+	username = "annalexestate@gmail.com"
+	password = "AnnaAlex2021"
+	sender   = "Estate Management Team <annalexestate@gmail.com>"
+)
 
-	msg := "From: " + "annalexestate@gmail.com" + "\n" +
-		"To: " + strings.Join(to, ",") + "\n" +
-		"Subject: " + subject + "\n" + bodyMessage
+type Sender struct {
+	auth smtp.Auth
+}
 
-	if debugMode {
-		log.Println(msg)
-		return nil
-	}
+func New() *Sender {
+	return &Sender{auth: auth()}
+}
 
-	err := smtp.SendMail(
-		"smtp.gmail.com:587",
-		LoginAuth(),
-		"annalexestate@gmail.com",
-		to,
-		[]byte(msg))
+func (s *Sender) Send(m *Message) error {
+	m.From = sender
+
+	buf := new(bytes.Buffer)
+	content, err := Wrap(m)
 	if err != nil {
-		log.Println(err)
-		return nil
+		return err
 	}
-	return nil
-}
-
-func WriteEmail(dest []string, contentType, subject, bodyMessage string) string {
-
-	header := make(map[string]string)
-	/*
-		header["From"] = "annalexestate@gmail.com"
-
-		receipient := ""
-		for _, user := range dest {
-			receipient = receipient + user
-		}
-
-		header["To"] = receipient
-		header["Subject"] = subject
-	*/
-	header["MIME-Version"] = "1.0"
-	header["Content-Type"] = fmt.Sprintf("%s; charset=\"utf-8\"", contentType)
-	header["Content-Transfer-Encoding"] = "quoted-printable"
-	header["Content-Disposition"] = "inline"
-
-	message := ""
-
-	for key, value := range header {
-		message += fmt.Sprintf("%s: %s\r\n", key, value)
+	if err := WriteHeader(buf, m, content.Header()); err != nil {
+		return err
+	}
+	if err := content.WriteTo(buf); err != nil {
+		return err
 	}
 
-	var encodedMessage bytes.Buffer
-
-	finalMessage := quotedprintable.NewWriter(&encodedMessage)
-	finalMessage.Write([]byte(bodyMessage))
-	finalMessage.Close()
-
-	message += "\r\n" + encodedMessage.String()
-
-	return message
+	return smtp.SendMail(fmt.Sprintf("%s:%s", host, port), s.auth, username, m.To, buf.Bytes())
 }
 
-func WriteHTMLEmail(dest []string, subject, bodyMessage string) string {
-	return WriteEmail(dest, "text/html", subject, bodyMessage)
-}
-
-func WritePlainEmail(dest []string, subject, bodyMessage string) string {
-	return WriteEmail(dest, "text/plain", subject, bodyMessage)
+func (s *Sender) Debug(m *Message) {
+	log.Println("sending disabled, would send:")
+	log.Printf("From: %v", sender)
+	log.Printf("To: %v", m.To)
+	if len(m.CC) > 0 {
+		log.Printf("Cc: %v", m.CC)
+	}
+	if len(m.BCC) > 0 {
+		log.Printf("Bcc: %v", m.BCC)
+	}
+	for i, a := range m.Attachments {
+		log.Printf("Attachment %d: %s Size: %d", i+1, a.Name, len(a.Bytes))
+	}
+	for i, a := range m.Assets {
+		log.Printf("Assets %d: %s Size: %d", i+1, a.Name, len(a.Bytes))
+	}
+	log.Printf("Body: %s", string(m.Body))
 }
