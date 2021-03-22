@@ -20,14 +20,15 @@ func New(m *model.Model) *Service {
 		model: m,
 	}
 
-	s.rest.AddRoute("/api/auth/login", s.LoginHandler)
-	s.rest.AddRoute("/api/auth/signup", s.SignUpHandler)
-	s.rest.AddRoute("/api/auth/confirm", s.ConfirmRegistrationHandler)
-	s.rest.AddRoute("/api/auth/forgot-password", s.ForgotPasswordHandler)
-	s.rest.AddRoute("/api/auth/reset-password", s.ResetPasswordHandler)
+	s.rest.AddRoute(http.MethodPost, "/api/auth/login", s.LoginHandler, false)
+	s.rest.AddRoute(http.MethodPost, "/api/auth/signup", s.SignUpHandler, false)
+	s.rest.AddRoute(http.MethodGet, "/api/auth/confirm", s.ConfirmRegistrationHandler, false)
+	s.rest.AddRoute(http.MethodGet, "/api/auth/forgot-password", s.ForgotPasswordHandler, false)
+	s.rest.AddRoute(http.MethodPost, "/api/auth/forgot-password", s.ForgotPasswordHandler, false)
+	s.rest.AddRoute(http.MethodPost, "/api/auth/reset-password", s.ResetPasswordHandler, false)
 
-	s.rest.AddRoute("/api/users", s.UsersHandler)
-	s.rest.AddRoute("/api/user", s.UserHandler)
+	s.rest.AddRoute(http.MethodGet, "/api/users", s.UsersHandler, false)
+	s.rest.AddRoute(http.MethodGet, "/api/user", s.UserHandler, false)
 
 	return s
 }
@@ -63,9 +64,9 @@ func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	h, ok := s.rest.routes[r.URL.Path]
-	if !ok {
-		log.Printf("not implemented handler for %q", r.URL.Path)
+	h := s.rest.GetHandler(r.Method, r.URL.Path)
+	if h == nil {
+		log.Printf("not implemented handler for %s %q", r.Method, r.URL.Path)
 		return
 	}
 
