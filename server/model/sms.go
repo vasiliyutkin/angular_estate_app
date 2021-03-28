@@ -11,6 +11,10 @@ import (
 )
 
 func (m *Model) SendSMS(user *User) {
+	if m.debugMode {
+		return
+	}
+
 	accountSid := "ACcbf2bb1d78cc7e4bd01455eb1721ad4f"
 	authToken := "23256a990f25c56adf834b7cf25787a1"
 	urlStr := fmt.Sprintf("https://api.twilio.com/2010-04-01/Accounts/%s/Messages.json", accountSid)

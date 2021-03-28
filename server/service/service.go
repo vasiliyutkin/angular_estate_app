@@ -10,14 +10,16 @@ import (
 )
 
 type Service struct {
-	rest  *REST
-	model *model.Model
+	rest        *REST
+	model       *model.Model
+	chatSockets []*Socket
 }
 
 func New(m *model.Model) *Service {
 	s := &Service{
-		rest:  newREST(),
-		model: m,
+		rest:        newREST(),
+		model:       m,
+		chatSockets: []*Socket{},
 	}
 
 	s.rest.AddRoute(http.MethodPost, "/api/auth/login", s.LoginHandler, false)
@@ -29,6 +31,8 @@ func New(m *model.Model) *Service {
 
 	s.rest.AddRoute(http.MethodGet, "/api/users", s.UsersHandler, false)
 	s.rest.AddRoute(http.MethodGet, "/api/user", s.UserHandler, false)
+
+	s.rest.AddRoute(http.MethodGet, "/api/chat", s.ChatHandler, false)
 
 	return s
 }
