@@ -29,7 +29,7 @@ html {
 
 html,
 body {
-  background: linear-gradient(to right bottom, $flash-white, $platinum);
+  background: linear-gradient(to right bottom, $grey, $platinum);
   min-height: 100vh;
 
   &.no-overflow {
@@ -46,4 +46,18 @@ body {
 ::selection {
   background: $material-accent;
   color: $white;
+}
+
+body::-webkit-scrollbar {
+  width: 3px;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: $slate-gray;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $slate-gray;
+  border-radius: 20px;
 }
