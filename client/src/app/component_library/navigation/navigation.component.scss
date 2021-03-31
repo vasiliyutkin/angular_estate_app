@@ -43,7 +43,7 @@
         i,
         mat-icon {
           color: $dark;
-          transition: color 0.25s ease;
+          transition: all 0.15s ease;
 
           &:hover {
             color: $material-accent;

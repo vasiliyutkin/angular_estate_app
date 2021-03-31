@@ -10,16 +10,15 @@
   height: 100%;
   overflow: hidden;
   z-index: 99999999;
-  background: linear-gradient(to right bottom, $flash-white, $white);
+  background: rgba($doozer-grey, 0.9);
 }
 
-// moder spinner
 .spinner-modern {
   position: absolute;
-  top: calc(50% - 60px);
-  left: calc(50% - 60px);
-  width: 120px;
-  height: 120px;
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
+  width: 70px;
+  height: 70px;
   border-radius: 100%;
   perspective: 800px;
 }
@@ -35,22 +34,22 @@
 .inner.one {
   left: 0%;
   top: 0%;
-  animation: rotate-one 0.7s linear infinite;
-  border-bottom: 1rem solid #CDCDCD;
+  animation: rotate-one 0.6s linear infinite;
+  border-bottom: 0.6rem solid $smoke-rose;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
-  animation: rotate-two 0.8s linear infinite;
-  border-right: 1rem solid #CDCDCD;
+  animation: rotate-two 0.7s linear infinite;
+  border-right: 0.6rem solid $smoke-rose;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
-  animation: rotate-three 0.9s linear infinite;
-  border-top: 1rem solid #CDCDCD;
+  animation: rotate-three 0.8s linear infinite;
+  border-top: 0.6rem solid $smoke-rose;
 }
 
 @keyframes rotate-one {
@@ -80,17 +79,16 @@
   }
 }
 
-//bounce spinner
 .bounce-wrap {
   position: absolute;
-  top: calc(50% - 60px);
-  left: calc(50% - 60px);
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
 }
 
 .spinner-bounce {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 70px;
+  height: 70px;
 
   .double-bounce1,
   .double-bounce2 {
@@ -100,13 +98,13 @@
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    background-color: #CDCDCD;
-    opacity: 0.6;
-    animation: sk-bounce 1.6s infinite ease-in-out;
+    background-color: $smoke-rose;
+    opacity: 0.7;
+    animation: sk-bounce 1.4s infinite ease-in-out;
   }
 
   .double-bounce2 {
-    animation-delay: -0.8s;
+    animation-delay: -0.7s;
   }
 }
 

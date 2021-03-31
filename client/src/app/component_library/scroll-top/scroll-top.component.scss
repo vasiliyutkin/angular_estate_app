@@ -75,7 +75,7 @@
 }
 
 .progress-wrap svg.progress-circle path {
-  stroke: lighten($dark, 10%);
+  stroke: lighten($dark, 15%);
   stroke-width: 4;
   box-sizing: border-box;
   transition: all 250ms linear;
@@ -86,9 +86,9 @@
 }
 
 .progress-wrap::after {
-  color: lighten($dark, 10%);
+  color: lighten($dark, 15%);
 }
 
 .progress-wrap svg.progress-circle path {
-  stroke: lighten($dark, 10%);
+  stroke: lighten($dark, 15%);
 }

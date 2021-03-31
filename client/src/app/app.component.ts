@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { SpinnerType } from './component_library/spinner/spinner.type.enum';
 
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  spinnerType: SpinnerType = SpinnerType.Bounce;
+  spinnerType: SpinnerType = SpinnerType.Modern;
 
   constructor(
     private socialAuthService: SocialAuthService,
