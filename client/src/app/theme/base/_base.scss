@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink';
+@import '~@angular/material/prebuilt-themes/pink-bluegrey';
 
 *,
 *::after,
@@ -29,7 +29,7 @@ html {
 
 html,
 body {
-  background: linear-gradient(to right bottom, $gray, $platinum);
+  background: linear-gradient(to top, $main-background, $secondary-background);
   min-height: 100vh;
 
   &.no-overflow {

@@ -3,8 +3,8 @@
 
 .navbar-wrap {
   position: fixed;
-  background-color: $white;
-  box-shadow: 2px 2px 4px 0 rgba($gray, 0.4);
+  background-color: $dark;
+  box-shadow: 0 2px 3px 0 rgba($dark, 0.4);
   min-width: 100vw;
   z-index: 999999;
 
@@ -25,6 +25,7 @@
         align-content: center;
         align-items: center;
         justify-self: center;
+        color: $white;
 
         i {
           font-size: medium;
@@ -42,11 +43,11 @@
         }
         i,
         mat-icon {
-          color: $dark;
+          color: $white;
           transition: all 0.15s ease;
 
           &:hover {
-            color: $material-accent;
+            color: $smoke-rose;
           }
         }
       }
@@ -70,7 +71,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            color: $dark;
+            color: $white;
             font-size: 1rem;
             text-decoration: none;
             transition: all 0.15s ease-in-out;
@@ -83,7 +84,8 @@
 
             &.active-link,
             &:hover {
-              background-color: $light;
+              background-color: $smoke-rose;
+              color: $dark;
             }
           }
         }
@@ -95,7 +97,7 @@
 .menu-toggle .bar {
   width: 25px;
   height: 3px;
-  background-color: $dark;
+  background-color: $smoke-rose;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
 }
@@ -131,7 +133,7 @@
       justify-content: space-around !important;
       align-items: center;
       top: 55px;
-      background-color: $white;
+      background-color: $dark;
       width: 100%;
       height: calc(100vh - 55px);
       transform: translate(-103%);
@@ -181,7 +183,7 @@
 
   mat-icon,
   span {
-    color: $dark;
+    color: $white;
   }
 
   &:first-child {
@@ -189,13 +191,18 @@
   }
 
   &[disabled] {
-    background-color: lighten($color: $secondary, $amount: 45);
+    background-color: $smoke-rose;
+
+    mat-icon,
+    span {
+      color: $dark;
+    }
   }
 
   &.active {
     mat-icon,
     span {
-      color: $material-accent !important;
+      color: $smoke-rose !important;
     }
   }
 }

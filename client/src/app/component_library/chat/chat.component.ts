@@ -26,10 +26,6 @@ export class ChatComponent {
     return this.authService.userValue || this.authService.socialUserValue;
   }
 
-  public get smallScreen(): boolean {
-    return this.innerWidth < 768;
-  }
-
   public get isAdmin(): boolean {
     return this.authService.isAdmin;
   }
