@@ -4,13 +4,13 @@
 .navbar-wrap {
   position: fixed;
   background-color: $white;
-  box-shadow: 2px 2px 4px 0 rgba($dark, 0.4);
+  box-shadow: 2px 2px 4px 0 rgba($gray, 0.4);
   min-width: 100vw;
   z-index: 999999;
 
   .navbar {
     display: grid;
-    grid-template-columns: 1fr 12fr;
+    grid-template-columns: 1fr 21fr;
     align-items: center;
     min-height: 55px;
     overflow: hidden;
@@ -70,7 +70,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            color: #2b2c28;
+            color: $dark;
             font-size: 1rem;
             text-decoration: none;
             transition: all 0.15s ease-in-out;
@@ -83,7 +83,7 @@
 
             &.active-link,
             &:hover {
-              background-color: #eeeff0;
+              background-color: $light;
             }
           }
         }

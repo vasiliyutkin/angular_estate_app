@@ -10,7 +10,7 @@
   height: 100%;
   overflow: hidden;
   z-index: 99999999;
-  background: rgba($dark-charkoal, 0.8);
+  background: rgba($gray, 0.7);
 }
 
 .spinner-modern {
@@ -34,21 +34,21 @@
 .inner.one {
   left: 0%;
   top: 0%;
-  animation: rotate-one 0.7s linear infinite;
+  animation: rotate-one 0.6s linear infinite;
   border-bottom: 0.6rem solid $cool-yellow;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
-  animation: rotate-two 0.8s linear infinite;
-  border-right: 0.6rem solid $smoke-rose;
+  animation: rotate-two 0.7s linear infinite;
+  border-right: 0.6rem solid $cool-yellow;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
-  animation: rotate-three 0.9s linear infinite;
+  animation: rotate-three 0.8s linear infinite;
   border-top: 0.6rem solid $cool-yellow;
 }
 
@@ -133,8 +133,8 @@
   top: 50%;
   width: 25px;
   height: 7px;
-  background: $smoke-rose;
-  box-shadow: 2px 2px 3px 0px $material-accent;
+  background: $cool-yellow;
+  box-shadow: 2px 2px 3px 0px $dark-charkoal;
 }
 
 .domino .square1 {

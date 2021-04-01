@@ -9,7 +9,7 @@ import * as $ from 'jquery';
   styleUrls: ['spinner.component.scss'],
 })
 export class SpinnerComponent {
-  spinnerType: SpinnerType = SpinnerType.Modern;
+  spinnerType: SpinnerType = SpinnerType.Domino;
   spinners: SpinnerType[] = [
     SpinnerType.Modern,
     SpinnerType.Bounce,
@@ -18,9 +18,9 @@ export class SpinnerComponent {
   ];
 
   constructor(private spinnerManager: SpinnerManagerService) {
-    setInterval(() => {
+    /*     setInterval(() => {
       this.spinnerType = this.spinners[getRandInterval(0, 3)];
-    }, 5000);
+    }, 5000); */
   }
 
   public get showSpinner(): boolean {
@@ -47,6 +47,6 @@ export class SpinnerComponent {
   }
 }
 
-function getRandInterval(min: number, max: number): number {
+/* function getRandInterval(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+} */
