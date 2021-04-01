@@ -10,15 +10,15 @@
   height: 100%;
   overflow: hidden;
   z-index: 99999999;
-  background: rgba($doozer-grey, 0.9);
+  background: rgba($dark-charkoal, 0.8);
 }
 
 .spinner-modern {
   position: absolute;
-  top: calc(50% - 35px);
-  left: calc(50% - 35px);
-  width: 70px;
-  height: 70px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
   border-radius: 100%;
   perspective: 800px;
 }
@@ -34,24 +34,150 @@
 .inner.one {
   left: 0%;
   top: 0%;
-  animation: rotate-one 0.6s linear infinite;
-  border-bottom: 0.6rem solid $smoke-rose;
+  animation: rotate-one 0.7s linear infinite;
+  border-bottom: 0.6rem solid $cool-yellow;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
-  animation: rotate-two 0.7s linear infinite;
+  animation: rotate-two 0.8s linear infinite;
   border-right: 0.6rem solid $smoke-rose;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
-  animation: rotate-three 0.8s linear infinite;
-  border-top: 0.6rem solid $smoke-rose;
+  animation: rotate-three 0.9s linear infinite;
+  border-top: 0.6rem solid $cool-yellow;
 }
 
+.bounce-wrap {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+}
+
+.spinner-bounce {
+  position: relative;
+  width: 60px;
+  height: 60px;
+
+  .double-bounce1,
+  .double-bounce2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: $cool-yellow;
+    opacity: 0.7;
+    animation: sk-bounce 1.4s infinite ease-in-out;
+  }
+
+  .double-bounce2 {
+    animation-delay: -0.7s;
+  }
+}
+
+.pacman-wrap,
+.domino-wrap {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pacman {
+  border: 8px dotted $cool-yellow;
+  transition: all 1s ease;
+  animation: dotted-spin 1.05s linear infinite;
+  border-bottom-width: 1px;
+  border-bottom-color: $cool-yellow;
+  border-left-width: 2px;
+  border-left-color: $cool-yellow;
+  border-top-width: 3px;
+  border-right-width: 4px;
+  border-top-color: $cool-yellow;
+}
+
+.pacman .loader-pacman,
+.loader-pacman {
+  position: absolute;
+  top: 40px;
+  left: 25px;
+  width: 0px;
+  height: 0px;
+  border-right: 12px solid transparent;
+  border-top: 12px solid $cool-yellow;
+  border-left: 12px solid $cool-yellow;
+  border-bottom: 12px solid $cool-yellow;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.domino .css-square {
+  position: absolute;
+  top: 50%;
+  width: 25px;
+  height: 7px;
+  background: $smoke-rose;
+  box-shadow: 2px 2px 3px 0px $material-accent;
+}
+
+.domino .square1 {
+  left: 70px;
+  animation: dominos 1s 0.125s ease infinite;
+}
+
+.domino .square2 {
+  left: 60px;
+  animation: dominos 1s 0.3s ease infinite;
+}
+
+.domino .square3 {
+  left: 50px;
+  animation: dominos 1s 0.425s ease infinite;
+}
+
+.domino .square4 {
+  left: 40px;
+  animation: dominos 1s 0.54s ease infinite;
+}
+
+.domino .square5 {
+  left: 30px;
+  animation: dominos 1s 0.665s ease infinite;
+}
+
+.domino .square6 {
+  left: 20px;
+  animation: dominos 1s 0.79s ease infinite;
+}
+
+.domino .square7 {
+  left: 10px;
+  animation: dominos 1s 0.9s ease infinite;
+}
+
+.domino .square8 {
+  left: 0px;
+  animation: dominos 1s 1s ease infinite;
+}
+
+// KEYFRAMES / ANIMATION FUNCTIONS
 @keyframes rotate-one {
   0% {
     transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
@@ -79,35 +205,6 @@
   }
 }
 
-.bounce-wrap {
-  position: absolute;
-  top: calc(50% - 35px);
-  left: calc(50% - 35px);
-}
-
-.spinner-bounce {
-  position: relative;
-  width: 70px;
-  height: 70px;
-
-  .double-bounce1,
-  .double-bounce2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-color: $smoke-rose;
-    opacity: 0.7;
-    animation: sk-bounce 1.4s infinite ease-in-out;
-  }
-
-  .double-bounce2 {
-    animation-delay: -0.7s;
-  }
-}
-
 @keyframes sk-bounce {
   0%,
   100% {
@@ -115,5 +212,29 @@
   }
   50% {
     transform: scale(1);
+  }
+}
+
+@keyframes dotted-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes dominos {
+  50% {
+    opacity: 0.7;
+  }
+  75% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  80% {
+    opacity: 1;
   }
 }

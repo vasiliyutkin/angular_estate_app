@@ -1,14 +1,33 @@
-<div class="overlay" *ngIf="showSpinner">
+<div class="overlay" *ngIf="showSpinner || true">
     <div class="spinner-modern" *ngIf="modern">
         <div class="inner one"></div>
         <div class="inner two"></div>
         <div class="inner three"></div>
     </div>
 
-    <div class="bounce-wrap">
-        <div class="spinner-bounce" *ngIf="bounce">
+    <div class="bounce-wrap" *ngIf="bounce">
+        <div class="spinner-bounce">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
+        </div>
+    </div>
+
+    <div class="pacman-wrap">
+        <div class="loader pacman" *ngIf="pacman">
+            <div class="loader-pacman"></div>
+        </div>
+    </div>
+
+    <div class="domino-wrap">
+        <div class="loader domino" *ngIf="domino">
+            <div class="css-square square1"></div>
+            <div class="css-square square2"></div>
+            <div class="css-square square3"></div>
+            <div class="css-square square4"></div>
+            <div class="css-square square5"></div>
+            <div class="css-square square6"></div>
+            <div class="css-square square7"></div>
+            <div class="css-square square8"></div>
         </div>
     </div>
 </div>
