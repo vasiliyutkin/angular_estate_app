@@ -9,7 +9,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 99999999;
+  z-index: 9999999999;
   background: rgba($dark, 0.7);
 }
 
@@ -35,21 +35,21 @@
   left: 0%;
   top: 0%;
   animation: rotate-one 0.6s linear infinite;
-  border-bottom: 0.6rem solid $smoke-rose;
+  border-bottom: 0.6rem solid $main-background;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
   animation: rotate-two 0.7s linear infinite;
-  border-right: 0.6rem solid $smoke-rose;
+  border-right: 0.6rem solid $main-background;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
   animation: rotate-three 0.8s linear infinite;
-  border-top: 0.6rem solid $smoke-rose;
+  border-top: 0.6rem solid $main-background;
 }
 
 .bounce-wrap {
@@ -71,7 +71,7 @@
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    background-color: $smoke-rose;
+    background-color: $main-background;
     opacity: 0.7;
     animation: sk-bounce 1.4s infinite ease-in-out;
   }
@@ -99,16 +99,16 @@
 }
 
 .pacman {
-  border: 8px dotted $smoke-rose;
+  border: 8px dotted $main-background;
   transition: all 1s ease;
   animation: dotted-spin 1.05s linear infinite;
   border-bottom-width: 1px;
-  border-bottom-color: $smoke-rose;
+  border-bottom-color: $main-background;
   border-left-width: 2px;
-  border-left-color: $smoke-rose;
+  border-left-color: $main-background;
   border-top-width: 3px;
   border-right-width: 4px;
-  border-top-color: $smoke-rose;
+  border-top-color: $main-background;
 }
 
 .pacman .loader-pacman,
@@ -119,9 +119,9 @@
   width: 0px;
   height: 0px;
   border-right: 12px solid transparent;
-  border-top: 12px solid $smoke-rose;
-  border-left: 12px solid $smoke-rose;
-  border-bottom: 12px solid $smoke-rose;
+  border-top: 12px solid $main-background;
+  border-left: 12px solid $main-background;
+  border-bottom: 12px solid $main-background;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   border-bottom-left-radius: 12px;
@@ -133,7 +133,7 @@
   top: 50%;
   width: 25px;
   height: 7px;
-  background: $smoke-rose;
+  background: $main-background;
   box-shadow: 2px 2px 3px 0px $dark;
 }
 

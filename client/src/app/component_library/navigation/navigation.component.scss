@@ -4,15 +4,14 @@
 .navbar-wrap {
   position: fixed;
   background-color: $dark;
-  box-shadow: 0 2px 3px 0 rgba($dark, 0.4);
   min-width: 100vw;
   z-index: 999999;
 
   .navbar {
     display: grid;
-    grid-template-columns: 1fr 21fr;
+    grid-template-columns: 1fr 25fr;
     align-items: center;
-    min-height: 55px;
+    min-height: 65px;
     overflow: hidden;
 
     .functional-area {
@@ -25,7 +24,8 @@
         align-content: center;
         align-items: center;
         justify-self: center;
-        color: $white;
+        color: $main-background;
+        margin-left: 1rem;
 
         i {
           font-size: medium;
@@ -35,19 +35,16 @@
 
       [mat-icon-button] {
         justify-self: start;
-        i {
-          font-size: medium;
-        }
-        mat-icon {
-          font-size: medium;
-        }
         i,
         mat-icon {
-          color: $smoke-rose;
-          transition: all 0.15s ease;
+          font-size: medium;
+          color: $main-background;
+          transition: all 0.2s ease-out;
+          transform: scale(1.5);
+          margin-top: -2px;
 
           &:hover {
-            color: $main-background;
+            color: $smoke-rose;
           }
         }
       }
@@ -64,28 +61,38 @@
 
         .nav-item {
           &:not(:last-child) {
-            margin-right: 0.3rem;
+            margin-right: 0.5rem;
           }
 
           a {
             position: relative;
             display: flex;
             align-items: center;
-            color: $white;
+            justify-content: center;
+            align-content: center;
+            color: $flash-white;
             font-size: 1rem;
             text-decoration: none;
-            transition: all 0.15s ease-in-out;
-            padding: 0.2rem 1rem;
+            transition: all 0.2s ease-out;
+            padding: 0.6rem 0.8rem;
+            text-transform: capitalize;
+            user-select: none;
+            border-radius: 4px;
+            background-color: lighten($dark, 5%);
 
             mat-icon {
-              margin-right: 0.2rem;
-              font-size: 1.2rem;
+              margin-right: 0.1rem;
+              font-size: 1rem;
+              color: $main-background;
             }
 
             &.active-link,
             &:hover {
-              background-color: $material-marsala;
-              color: $white;
+              background-color: $main-background;
+
+              mat-icon {
+                color: $flash-white;
+              }
             }
           }
         }
@@ -97,9 +104,9 @@
 .menu-toggle .bar {
   width: 25px;
   height: 3px;
-  background-color: $smoke-rose;
+  background-color: $main-background;
   margin: 5px auto;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-out;
 }
 
 .menu-toggle {
@@ -130,22 +137,18 @@
       display: flex;
       flex-direction: column;
       position: fixed;
-      justify-content: space-between !important;
+      justify-content: flex-start !important;
       align-items: center;
-      top: 55px;
+      top: 65px;
       background-color: $dark;
       width: 100%;
-      height: calc(100vh - 55px);
+      height: calc(100vh - 65px);
       transform: translate(-103%);
       text-align: center;
       overflow: hidden;
 
-      .left-nav {
-        margin-top: $space-small;
-      }
-
       .right-nav {
-        margin-bottom: $space-small;
+        margin-top: $space-big;
       }
 
       .left-nav,
@@ -154,7 +157,7 @@
 
         li {
           margin-right: 0 !important;
-          padding: 0.4rem 0;
+          margin: 0.5rem 0;
 
           a {
             font-size: 1.4rem !important;
@@ -162,7 +165,7 @@
             display: flex;
             text-transform: uppercase;
             justify-content: center;
-            padding: 0.8rem 10rem !important;
+            padding: 0.8rem 8rem !important;
           }
         }
       }
@@ -192,7 +195,7 @@
 
   mat-icon,
   span {
-    color: $white;
+    color: $flash-white;
   }
 
   &:first-child {
@@ -200,7 +203,7 @@
   }
 
   &[disabled] {
-    background-color: $material-marsala;
+    background-color: $main-background;
 
     mat-icon {
       color: $dark;
@@ -212,7 +215,7 @@
   }
 
   &.active {
-    background-color: $material-marsala !important;
+    background-color: $main-background !important;
 
     mat-icon,
     span {

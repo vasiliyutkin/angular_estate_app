@@ -44,8 +44,8 @@ body {
 }
 
 ::selection {
-  background: $smoke-rose;
-  color: $white;
+  background: $main-background;
+  color: $dark;
 }
 
 *::-webkit-scrollbar {
@@ -54,9 +54,13 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: $material-marsala;
+  scrollbar-color: $main-background;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: $material-marsala;
+  background-color: $main-background;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: $dark;
 }

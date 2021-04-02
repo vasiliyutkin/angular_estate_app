@@ -10,7 +10,7 @@ export class ScrollTopComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    const offset = 200;
+    const offset = 300;
     const duration = 350;
 
     const progressPath: any = document.querySelector('.progress-wrap path');

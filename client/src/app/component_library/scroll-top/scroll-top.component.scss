@@ -10,7 +10,6 @@
   display: block;
   border-radius: 100%;
   box-shadow: inset 0 0 0 1.8px $flash-white;
-  z-index: 9999999;
   opacity: 0;
   visibility: hidden;
   transform: translateY(15px);
@@ -52,7 +51,7 @@
   line-height: 46px;
   font-size: 24px;
   opacity: 0;
-  background-image: linear-gradient(298deg, $cool-orange, $cool-yellow);
+  background-image: linear-gradient(298deg, $cool-orange, $main-background);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   left: 0;
@@ -75,7 +74,7 @@
 }
 
 .progress-wrap svg.progress-circle path {
-  stroke: $cool-yellow;
+  stroke: $main-background;
   stroke-width: 4;
   box-sizing: border-box;
   transition: all 250ms linear;
@@ -86,9 +85,9 @@
 }
 
 .progress-wrap::after {
-  color: $cool-yellow;
+  color: $main-background;
 }
 
 .progress-wrap svg.progress-circle path {
-  stroke: $cool-yellow;
+  stroke: $main-background;
 }
