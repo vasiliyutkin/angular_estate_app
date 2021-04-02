@@ -43,11 +43,11 @@
         }
         i,
         mat-icon {
-          color: $white;
+          color: $smoke-rose;
           transition: all 0.15s ease;
 
           &:hover {
-            color: $material-marsala;
+            color: $main-background;
           }
         }
       }
@@ -97,7 +97,7 @@
 .menu-toggle .bar {
   width: 25px;
   height: 3px;
-  background-color: $flash-white;
+  background-color: $smoke-rose;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
 }
@@ -131,7 +131,6 @@
       flex-direction: column;
       position: fixed;
       justify-content: space-between !important;
-      padding: $space-medium 0;
       align-items: center;
       top: 55px;
       background-color: $dark;
@@ -140,6 +139,14 @@
       transform: translate(-103%);
       text-align: center;
       overflow: hidden;
+
+      .left-nav {
+        margin-top: $space-small;
+      }
+
+      .right-nav {
+        margin-bottom: $space-small;
+      }
 
       .left-nav,
       .right-nav {

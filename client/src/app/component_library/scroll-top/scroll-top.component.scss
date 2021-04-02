@@ -2,8 +2,8 @@
 
 .progress-wrap {
   position: fixed;
-  right: 1.5rem;
-  bottom: 0.6rem;
+  right: 1.8rem;
+  bottom: 0.8rem;
   height: 46px;
   width: 46px;
   cursor: pointer;
@@ -52,7 +52,7 @@
   line-height: 46px;
   font-size: 24px;
   opacity: 0;
-  background-image: linear-gradient(298deg, $pink-yarrow, $material-marsala);
+  background-image: linear-gradient(298deg, $cool-orange, $cool-yellow);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   left: 0;
@@ -75,7 +75,7 @@
 }
 
 .progress-wrap svg.progress-circle path {
-  stroke: $material-marsala;
+  stroke: $cool-yellow;
   stroke-width: 4;
   box-sizing: border-box;
   transition: all 250ms linear;
@@ -86,9 +86,9 @@
 }
 
 .progress-wrap::after {
-  color: $material-marsala;
+  color: $cool-yellow;
 }
 
 .progress-wrap svg.progress-circle path {
-  stroke: $material-marsala;
+  stroke: $cool-yellow;
 }
