@@ -47,7 +47,7 @@
           transition: all 0.15s ease;
 
           &:hover {
-            color: $smoke-rose;
+            color: $material-marsala;
           }
         }
       }
@@ -84,8 +84,8 @@
 
             &.active-link,
             &:hover {
-              background-color: $smoke-rose;
-              color: $dark;
+              background-color: $material-marsala;
+              color: $white;
             }
           }
         }
@@ -97,7 +97,7 @@
 .menu-toggle .bar {
   width: 25px;
   height: 3px;
-  background-color: $smoke-rose;
+  background-color: $flash-white;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
 }
@@ -130,7 +130,8 @@
       display: flex;
       flex-direction: column;
       position: fixed;
-      justify-content: space-around !important;
+      justify-content: space-between !important;
+      padding: $space-medium 0;
       align-items: center;
       top: 55px;
       background-color: $dark;
@@ -150,10 +151,11 @@
 
           a {
             font-size: 1.4rem !important;
+            font-style: inherit;
             display: flex;
             text-transform: uppercase;
             justify-content: center;
-            padding: 0.5rem 2rem;
+            padding: 0.8rem 10rem !important;
           }
         }
       }
@@ -191,18 +193,23 @@
   }
 
   &[disabled] {
-    background-color: $smoke-rose;
+    background-color: $material-marsala;
 
-    mat-icon,
-    span {
+    mat-icon {
       color: $dark;
+    }
+
+    span {
+      color: $flash-white;
     }
   }
 
   &.active {
+    background-color: $material-marsala !important;
+
     mat-icon,
     span {
-      color: $smoke-rose !important;
+      color: $flash-white !important;
     }
   }
 }

@@ -49,15 +49,14 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: $smoke-rose;
+  scrollbar-color: $material-marsala;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: $smoke-rose;
-  border-radius: 15px;
+  background-color: $material-marsala;
 }
