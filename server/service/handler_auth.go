@@ -24,6 +24,10 @@ func (s *Service) LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	s.login(w, r, user)
+}
+
+func (s *Service) login(w http.ResponseWriter, r *http.Request, user *model.User) {
 	token, err := jwt.New(user.Username)
 	if err != nil {
 		s.errorHandler(w, r, err)

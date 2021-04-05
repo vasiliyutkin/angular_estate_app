@@ -4,6 +4,12 @@ import (
 	"time"
 )
 
+var (
+	UserTypeGeneral  = "general"
+	UserTypeGoogle   = "google"
+	UserTypeFacebook = "facebook"
+)
+
 type User struct {
 	ID         uint32    `db:"id"`
 	Username   string    `db:"username"`
@@ -19,7 +25,7 @@ type User struct {
 }
 
 func (s *Store) UserExits(username string) (bool, error) {
-	q := "SELECT EXISTS(SELECT * FROM users WHERE username = ?) AS exists"
+	q := "SELECT EXISTS(SELECT * FROM users WHERE username = ? AND user_type = 'general') AS exists"
 
 	var exists bool
 	if err := s.db.QueryRowx(s.db.Rebind(q), username).Scan(&exists); err != nil {
@@ -45,6 +51,23 @@ func (s *Store) CreateUser(u *User) (*User, error) {
 	return s.GetUser(id)
 }
 
+func (s *Store) CreateExternalUser(u *User) (*User, error) {
+	q := `
+		INSERT INTO users
+			(username, user_type, password, firstname, lastname, mobile, is_admin, enabled, external_id)
+		VALUES
+			(?, ?, '', ?, ?, '', false, true, ?)
+		RETURNING id
+	`
+
+	var id uint32
+	if err := s.db.QueryRowx(s.db.Rebind(q), u.Username, u.UserType, u.Firstname, u.Lastname, u.ExternalID).Scan(&id); err != nil {
+		return nil, err
+	}
+
+	return s.GetUser(id)
+}
+
 func (s *Store) GetUser(id uint32) (*User, error) {
 	var u User
 	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE id = ?"), id); err != nil {
@@ -53,9 +76,9 @@ func (s *Store) GetUser(id uint32) (*User, error) {
 	return &u, nil
 }
 
-func (s *Store) GetUserByName(username string) (*User, error) {
+func (s *Store) GetUserByName(username, userType string) (*User, error) {
 	var u User
-	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE username = ? AND user_type = 'general'"), username); err != nil {
+	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE username = ? AND user_type = ?"), username, userType); err != nil {
 		return nil, err
 	}
 	return &u, nil

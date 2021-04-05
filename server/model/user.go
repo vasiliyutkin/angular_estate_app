@@ -31,6 +31,20 @@ func userFromStore(u *store.User) *User {
 	}
 }
 
+func (u *User) toStore() *store.User {
+	return &store.User{
+		ID:         u.ID,
+		Username:   u.Username,
+		UserType:   u.UserType,
+		Firstname:  u.Firstname,
+		Lastname:   u.Lastname,
+		Mobile:     u.Mobile,
+		IsAdmin:    u.IsAdmin,
+		Enabled:    u.Enabled,
+		ExternalID: u.ExternalID,
+	}
+}
+
 func (m *Model) GetUsers() ([]*User, error) {
 	us, err := m.store.GetUsers()
 	if err != nil {

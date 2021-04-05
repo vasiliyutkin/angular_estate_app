@@ -47,7 +47,7 @@ func (m *Model) Login(a *AuthData) (*User, error) {
 		return nil, err
 	}
 
-	u, err := m.store.GetUserByName(a.Username)
+	u, err := m.store.GetUserByName(a.Username, store.UserTypeGeneral)
 	if err != nil {
 		log.Printf("get user %q: %v", a.Username, err)
 		return nil, ErrUserNotExists
@@ -139,7 +139,7 @@ func (m *Model) ForgotPassword(a *AuthData) error {
 		return err
 	}
 
-	u, err := m.store.GetUserByName(a.Username)
+	u, err := m.store.GetUserByName(a.Username, store.UserTypeGeneral)
 	if err != nil {
 		log.Printf("get user %q: %v", a.Username, err)
 		return ErrUserNotExists
@@ -174,7 +174,7 @@ func (m *Model) ResetPassword(a *AuthData) (*User, error) {
 		return nil, err
 	}
 
-	u, err := m.store.GetUserByName(a.Username)
+	u, err := m.store.GetUserByName(a.Username, store.UserTypeGeneral)
 	if err != nil {
 		log.Printf("get user %q: %v", a.Username, err)
 		return nil, ErrUserNotExists
@@ -191,6 +191,19 @@ func (m *Model) ResetPassword(a *AuthData) (*User, error) {
 
 	if err := m.store.UpdatePassword(u.ID, string(hashed)); err != nil {
 		return nil, fmt.Errorf("update password: %w", err)
+	}
+
+	return userFromStore(u), nil
+}
+
+func (m *Model) LoginExternal(a *User) (*User, error) {
+	u, err := m.store.GetUserByName(a.Username, a.UserType)
+	if err != nil {
+		u, err = m.store.CreateExternalUser(a.toStore())
+		if err != nil {
+			return nil, fmt.Errorf("create %s user %s: %w", a.UserType, a.Username, err)
+		}
+		return userFromStore(u), nil
 	}
 
 	return userFromStore(u), nil
