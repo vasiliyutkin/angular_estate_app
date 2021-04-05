@@ -1,25 +1,35 @@
 package service
 
 import (
+	"be/server/config"
 	"be/server/model"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"strings"
+
+	"golang.org/x/oauth2"
 )
 
 type Service struct {
-	rest        *REST
-	model       *model.Model
-	chatSockets []*Socket
+	rest            *REST
+	model           *model.Model
+	oauthConfGoogle *oauth2.Config
+	chatSockets     []*Socket
 }
 
-func New(m *model.Model) *Service {
+func New(c *config.Config) (*Service, error) {
+	m, err := model.New(c)
+	if err != nil {
+		return nil, err
+	}
+
 	s := &Service{
-		rest:        newREST(),
-		model:       m,
-		chatSockets: []*Socket{},
+		rest:            newREST(),
+		model:           m,
+		oauthConfGoogle: c.GoogleOauth,
+		chatSockets:     []*Socket{},
 	}
 
 	s.rest.AddRoute(http.MethodPost, "/api/auth/login", s.LoginHandler, false)
@@ -28,13 +38,15 @@ func New(m *model.Model) *Service {
 	s.rest.AddRoute(http.MethodGet, "/api/auth/forgot-password", s.ForgotPasswordHandler, false)
 	s.rest.AddRoute(http.MethodPost, "/api/auth/forgot-password", s.ForgotPasswordHandler, false)
 	s.rest.AddRoute(http.MethodPost, "/api/auth/reset-password", s.ResetPasswordHandler, false)
+	s.rest.AddRoute(http.MethodGet, "/api/auth/google-login", s.GoogleLoginHandler, false)
+	s.rest.AddRoute(http.MethodGet, "/api/auth/google-callback", s.GoogleCallbackHandler, false)
 
 	s.rest.AddRoute(http.MethodGet, "/api/users", s.UsersHandler, false)
 	s.rest.AddRoute(http.MethodGet, "/api/user", s.UserHandler, false)
 
 	s.rest.AddRoute(http.MethodGet, "/api/chat", s.ChatHandler, false)
 
-	return s
+	return s, nil
 }
 
 func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {

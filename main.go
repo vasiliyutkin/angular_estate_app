@@ -2,7 +2,6 @@ package main
 
 import (
 	"be/server/config"
-	"be/server/model"
 	"be/server/service"
 	_ "be/server/translations"
 	"flag"
@@ -23,11 +22,11 @@ func main() {
 		log.Println("Running in solo mode ;)")
 	}
 
-	m, err := model.New(c)
+	s, err := service.New(c)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	log.Println("Server is started on port:", c.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", c.Port), service.New(m)))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", c.Port), s))
 }
