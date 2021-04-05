@@ -5,15 +5,17 @@ import (
 )
 
 type User struct {
-	ID        uint32    `db:"id"`
-	Username  string    `db:"username"`
-	Password  string    `db:"password"`
-	Firstname string    `db:"firstname"`
-	Lastname  string    `db:"lastname"`
-	Mobile    string    `db:"mobile"`
-	IsAdmin   bool      `db:"is_admin"`
-	CreatedAt time.Time `db:"created_at"`
-	Enabled   bool      `db:"enabled"`
+	ID         uint32    `db:"id"`
+	Username   string    `db:"username"`
+	UserType   string    `db:"user_type"`
+	Password   string    `db:"password"`
+	Firstname  string    `db:"firstname"`
+	Lastname   string    `db:"lastname"`
+	Mobile     string    `db:"mobile"`
+	IsAdmin    bool      `db:"is_admin"`
+	CreatedAt  time.Time `db:"created_at"`
+	Enabled    bool      `db:"enabled"`
+	ExternalID string    `db:"external_id"`
 }
 
 func (s *Store) UserExits(username string) (bool, error) {
@@ -53,7 +55,7 @@ func (s *Store) GetUser(id uint32) (*User, error) {
 
 func (s *Store) GetUserByName(username string) (*User, error) {
 	var u User
-	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE username = ?"), username); err != nil {
+	if err := s.db.Get(&u, s.db.Rebind("SELECT * FROM users WHERE username = ? AND user_type = 'general'"), username); err != nil {
 		return nil, err
 	}
 	return &u, nil

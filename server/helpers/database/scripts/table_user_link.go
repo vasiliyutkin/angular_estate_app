@@ -6,8 +6,6 @@ func CreateTableUserLink() Script {
 		Query: `
 			DROP TABLE IF EXISTS user_link;
 
-			DROP trigger IF EXISTS user_link_expire ON user_link;
-
 			CREATE TABLE IF NOT EXISTS user_link (
 				id serial NOT NULL,
 				user_id int NOT NULL,

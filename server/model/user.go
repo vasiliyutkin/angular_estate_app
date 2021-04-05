@@ -6,24 +6,28 @@ import (
 )
 
 type User struct {
-	ID        uint32 `json:"id"`
-	Username  string `json:"username"`
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
-	Mobile    string `json:"mobile"`
-	IsAdmin   bool   `json:"isAdmin"`
-	Enabled   bool   `json:"enabled"`
+	ID         uint32 `json:"id"`
+	Username   string `json:"username"`
+	UserType   string `json:"userType"`
+	Firstname  string `json:"firstname"`
+	Lastname   string `json:"lastname"`
+	Mobile     string `json:"mobile"`
+	IsAdmin    bool   `json:"isAdmin"`
+	Enabled    bool   `json:"enabled"`
+	ExternalID string `json:"externalId"`
 }
 
 func userFromStore(u *store.User) *User {
 	return &User{
-		ID:        u.ID,
-		Username:  u.Username,
-		Firstname: u.Firstname,
-		Lastname:  u.Lastname,
-		Mobile:    u.Mobile,
-		IsAdmin:   u.IsAdmin,
-		Enabled:   u.Enabled,
+		ID:         u.ID,
+		Username:   u.Username,
+		UserType:   u.UserType,
+		Firstname:  u.Firstname,
+		Lastname:   u.Lastname,
+		Mobile:     u.Mobile,
+		IsAdmin:    u.IsAdmin,
+		Enabled:    u.Enabled,
+		ExternalID: u.ExternalID,
 	}
 }
 
