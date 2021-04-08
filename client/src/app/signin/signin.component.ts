@@ -60,10 +60,6 @@ export class SigninComponent implements OnInit {
     this.authenticationService.signInWithGoogle();
   }
 
-  signInWithFB(): void {
-    this.authenticationService.signInWithFB();
-  }
-
   signInWithVK(): void {
     this.authenticationService.signInWithVK();
   }

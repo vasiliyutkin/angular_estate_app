@@ -1,4 +1,5 @@
 @import '~@angular/material/prebuilt-themes/pink-bluegrey';
+@import '../abstracts/mixins';
 
 *,
 *::after,
@@ -29,7 +30,8 @@ html {
 
 html,
 body {
-  background: linear-gradient(to top, $main-background, $secondary-background);
+  @include appBg();
+
   min-height: 100vh;
 
   &.no-overflow {

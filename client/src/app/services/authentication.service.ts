@@ -138,10 +138,6 @@ export class AuthenticationService {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
-
   signInWithVK(): void {
     this.authService.signIn(VKLoginProvider.PROVIDER_ID);
   }
