@@ -90,7 +90,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastrModule.forRoot({
       maxOpened: 1,
       preventDuplicates: true,
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-bottom-center',
       closeButton: false,
     }),
     TranslateModule.forRoot({

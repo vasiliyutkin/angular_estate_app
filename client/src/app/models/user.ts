@@ -6,4 +6,6 @@ export class User {
   firstname: string;
   lastname: string;
   mobile: string;
+  socialToken: string;
+  socialProvider: string;
 }

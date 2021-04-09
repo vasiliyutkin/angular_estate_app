@@ -5,16 +5,14 @@
 }
 
 .main-content {
-  padding: 7rem 2rem 5.5rem 2rem;
+  padding: 7.5rem 2rem 2rem 2rem;
   min-height: 100vh;
-  background-color: $flash-white;
+  background-color: $white;
 }
 
 footer {
-  padding: 4rem 2rem;
-  margin-top: -4rem;
+  padding: 2rem;
   display: block;
-  clip-path: polygon(0% 3%, 100% 0, 100% 100%, 0 100%);
   background-color: $dark;
-  color: $flash-white;
+  color: $white;
 }

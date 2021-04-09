@@ -24,7 +24,7 @@
         align-content: center;
         align-items: center;
         justify-self: center;
-        color: $main-background;
+        color: $smoke-rose;
         margin-left: 1rem;
 
         i {
@@ -210,16 +210,16 @@
     }
 
     span {
-      color: $flash-white;
+      color: $white;
     }
   }
 
   &.active {
-    background-color: $main-background !important;
+    background-color: $smoke-rose !important;
 
     mat-icon,
     span {
-      color: $flash-white !important;
+      color: $dark-charkoal !important;
     }
   }
 }

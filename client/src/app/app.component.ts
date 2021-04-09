@@ -1,8 +1,9 @@
-import { Component, NgModule } from '@angular/core';
-import { SpinnerType } from './component_library/spinner/spinner.type.enum';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
-import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-estate',
@@ -12,12 +13,19 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(
     private socialAuthService: SocialAuthService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {
-    this.socialAuthService.authState.subscribe((socialUser: SocialUser) =>
-      socialUser
-        ? this.router.navigate(['/'])
-        : this.router.navigate(['/signin'])
-    );
+    this.socialAuthService.authState.subscribe((socialUserData: SocialUser) => {
+      const socialUser: User = new User();
+      socialUser.socialToken = socialUserData.authToken;
+      socialUser.socialProvider = socialUserData.provider;
+
+      this.authService.login(socialUser).subscribe((res) => {
+        if (!res.error) {
+          this.router.navigate(['/']);
+        }
+      });
+    });
   }
 }

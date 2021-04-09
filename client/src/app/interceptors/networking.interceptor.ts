@@ -26,12 +26,12 @@ export class NetworkingInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap((evt) => {
         if (evt instanceof HttpResponse) {
-          setTimeout(() => this.spinnerManager.decreaseStateCounter(), 1900);
+          this.spinnerManager.decreaseStateCounter();
         }
       }),
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
-          setTimeout(() => this.spinnerManager.decreaseStateCounter(), 1900);
+          this.spinnerManager.decreaseStateCounter();
         }
 
         return throwError(err.error.message || err.statusText);

@@ -9,13 +9,13 @@ import * as $ from 'jquery';
   styleUrls: ['spinner.component.scss'],
 })
 export class SpinnerComponent {
-  spinnerType: SpinnerType = SpinnerType.Domino;
-  spinners: SpinnerType[] = [
+  spinnerType: SpinnerType = SpinnerType.Modern;
+  /*   spinners: SpinnerType[] = [
     SpinnerType.Modern,
     SpinnerType.Bounce,
     SpinnerType.Pacman,
     SpinnerType.Domino,
-  ];
+  ]; */
 
   constructor(private spinnerManager: SpinnerManagerService) {
     /*     setInterval(() => {

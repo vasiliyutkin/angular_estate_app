@@ -22,8 +22,8 @@ export class ChatComponent {
     });
   }
 
-  public get user(): User | SocialUser {
-    return this.authService.userValue || this.authService.socialUserValue;
+  public get user(): User {
+    return this.authService.userValue;
   }
 
   public get isAdmin(): boolean {

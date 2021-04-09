@@ -23,17 +23,11 @@ export class ExceptionsInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      tap((_) => {
-        /*         if (evt instanceof HttpResponse) {
-          if (evt.body && evt.body.ok) {
-            this.toasterService.success(evt.body);
-          }
-        } */
-      }),
+      tap((_) => {}),
       catchError((res: any) => {
         if (res instanceof HttpErrorResponse) {
           try {
-            this.toasterService.warning(res.error.error, '', {});
+            this.toasterService.error(res.error.error, '', {});
           } catch (e) {
             this.toasterService.error(res.error, '', {});
           }
