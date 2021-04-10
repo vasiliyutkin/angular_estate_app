@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 
 	"golang.org/x/text/message"
@@ -21,6 +22,9 @@ func unmarshalRequest(b io.ReadCloser, v interface{}) error {
 	if err != nil {
 		return err
 	}
+
+	log.Printf("request %s", string(body))
+
 	defer b.Close()
 
 	if err := json.Unmarshal(body, &v); err != nil {

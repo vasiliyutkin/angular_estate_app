@@ -5,9 +5,10 @@ import (
 )
 
 var (
-	UserTypeGeneral  = "general"
-	UserTypeGoogle   = "google"
-	UserTypeFacebook = "facebook"
+	UserTypeGeneral  = "GENERAL"
+	UserTypeGoogle   = "GOOGLE"
+	UserTypeFacebook = "FACEBOOK"
+	UserTypeVk       = "VK"
 )
 
 type User struct {

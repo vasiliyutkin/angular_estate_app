@@ -3,6 +3,7 @@ package service
 import (
 	"be/server/helpers/jwt"
 	"be/server/model"
+	"be/server/store"
 	"fmt"
 	"net/http"
 )
@@ -16,6 +17,17 @@ func (s *Service) LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if err := unmarshalRequest(r.Body, &ad); err != nil {
 		s.errorHandler(w, r, err)
 		return
+	}
+
+	if ad.SocialToken != "" {
+		switch ad.SocialProvider {
+		case store.UserTypeGoogle:
+			s.googleLogin(w, r, ad.SocialToken)
+			return
+		case store.UserTypeVk:
+			// tbd
+			return
+		}
 	}
 
 	user, err := s.model.Login(ad)

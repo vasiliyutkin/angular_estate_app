@@ -10,11 +10,13 @@ import (
 )
 
 type AuthData struct {
-	Username  string `json:"username"`
-	Password  string `json:"password"`
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
-	Mobile    string `json:"mobile"`
+	Username       string `json:"username"`
+	Password       string `json:"password"`
+	Firstname      string `json:"firstname"`
+	Lastname       string `json:"lastname"`
+	Mobile         string `json:"mobile"`
+	SocialProvider string `json:"socialProvider"`
+	SocialToken    string `json:"socialToken"`
 }
 
 func (a *AuthData) validate(checkPassword bool) error {

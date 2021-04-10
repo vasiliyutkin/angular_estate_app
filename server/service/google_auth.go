@@ -71,7 +71,11 @@ func (s *Service) GoogleCallbackHandler(w http.ResponseWriter, r *http.Request) 
 	log.Printf("Expiration Time %v", token.Expiry)
 	log.Printf("RefreshToken %v", token.RefreshToken)
 
-	resp, err := http.Get("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + url.QueryEscape(token.AccessToken))
+	s.googleLogin(w, r, token.AccessToken)
+}
+
+func (s *Service) googleLogin(w http.ResponseWriter, r *http.Request, token string) {
+	resp, err := http.Get("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + url.QueryEscape(token))
 	if err != nil {
 		log.Printf("Get: %s", err)
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
@@ -84,8 +88,6 @@ func (s *Service) GoogleCallbackHandler(w http.ResponseWriter, r *http.Request) 
 		s.errorHandler(w, r, err)
 		return
 	}
-
-	log.Println(agr.ID, agr.Email, agr.Firstname, agr.Lastname, agr.Picture)
 
 	user, err := s.model.LoginExternal(&model.User{
 		Username:   agr.Email,
