@@ -12,17 +12,6 @@ import (
 	"golang.org/x/oauth2/google"
 )
 
-/*
-  "id": "115524903388752453854",
-  "email": "andrii.soloviov@gmail.com",
-  "verified_email": true,
-  "name": "Andrii Soloviov",
-  "given_name": "Andrii",
-  "family_name": "Soloviov",
-  "picture": "https://lh3.googleusercontent.com/a-/AOh14GgiCchVLwWdqnaUYSqw9S8DNDqu1E6doKLqpp-p=s96-c",
-  "locale": "de"
-*/
-
 type authGoogleResponse struct {
 	ID        string `json:"id"`
 	Email     string `json:"email"`

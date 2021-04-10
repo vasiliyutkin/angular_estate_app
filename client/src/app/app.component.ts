@@ -17,15 +17,17 @@ export class AppComponent {
     private authService: AuthenticationService
   ) {
     this.socialAuthService.authState.subscribe((socialUserData: SocialUser) => {
-      const socialUser: User = new User();
-      socialUser.socialToken = socialUserData.authToken;
-      socialUser.socialProvider = socialUserData.provider;
+      if (socialUserData) {
+        const socialUser: User = new User();
+        socialUser.socialToken = socialUserData.authToken;
+        socialUser.socialProvider = socialUserData.provider;
 
-      this.authService.login(socialUser).subscribe((res) => {
-        if (!res.error) {
-          this.router.navigate(['/']);
-        }
-      });
+        this.authService.login(socialUser).subscribe((res) => {
+          if (!res.error) {
+            this.router.navigate(['/']);
+          }
+        });
+      }
     });
   }
 }
