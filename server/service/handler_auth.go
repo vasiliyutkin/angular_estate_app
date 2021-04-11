@@ -24,9 +24,6 @@ func (s *Service) LoginHandler(w http.ResponseWriter, r *http.Request) {
 		case store.UserTypeGoogle:
 			s.googleLogin(w, r, ad.SocialToken)
 			return
-		case store.UserTypeVk:
-			// tbd
-			return
 		}
 	}
 
