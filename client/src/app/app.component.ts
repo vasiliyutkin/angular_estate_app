@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { filter } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from './models/user';
 
@@ -16,18 +17,19 @@ export class AppComponent {
     private router: Router,
     private authService: AuthenticationService
   ) {
-    this.socialAuthService.authState.subscribe((socialUserData: SocialUser) => {
-      if (socialUserData) {
+    this.socialAuthService.authState
+      .pipe(filter((i) => !!i))
+      .subscribe((socialUserData: SocialUser) => {
         const socialUser: User = new User();
+
         socialUser.socialToken = socialUserData.authToken;
         socialUser.socialProvider = socialUserData.provider;
 
-        this.authService.login(socialUser).subscribe((res) => {
-          if (!res.error) {
+        this.authService.login(socialUser).subscribe((r) => {
+          if (!r.error) {
             this.router.navigate(['/']);
           }
         });
-      }
-    });
+      });
   }
 }

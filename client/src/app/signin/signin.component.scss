@@ -15,14 +15,11 @@
   display: flex;
   flex-wrap: wrap;
   flex: 0 0 auto;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: flex-end;
+  align-items: center;
+  justify-items: center;
 
-  .socials {
-    & > * {
-      margin-right: 0.6rem;
-    }
-
-    margin-bottom: 1.5rem;
+  .social-auth {
+    margin-right: 16px;
   }
 }

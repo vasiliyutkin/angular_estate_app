@@ -8,7 +8,7 @@ import { jwtTokenName, userTokenName } from './auth.constants';
 import { User } from '../models/user';
 
 import { SocialAuthService } from 'angularx-social-login';
-import { GoogleLoginProvider, VKLoginProvider } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -42,10 +42,6 @@ export class AuthenticationService {
 
   public get loggedIn() {
     return localStorage.getItem(jwtTokenName) !== null;
-  }
-
-  public get isVkAvailable() {
-    return window[VKLoginProvider.PROVIDER_ID];
   }
 
   signUpUser(userData: User) {
@@ -102,10 +98,6 @@ export class AuthenticationService {
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithVK(): void {
-    this.authService.signIn(VKLoginProvider.PROVIDER_ID);
   }
 
   async signOut(): Promise<void> {

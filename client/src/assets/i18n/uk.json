@@ -21,9 +21,9 @@
 	"signin": {
 		"login-label": "Увійти",
 		"signin-label": "Увійти",
-		"signup-label": "Зареєструйтесь"
+		"signup-label": "Реєстрацiя"
 	},
 	"signup": {
-		"signup-label": "Зареєструйтесь"
+		"signup-label": "Реєстрацiя"
 	}
 }

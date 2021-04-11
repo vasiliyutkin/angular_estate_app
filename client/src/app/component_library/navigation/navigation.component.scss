@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: 1fr 25fr;
     align-items: center;
-    min-height: 65px;
+    height: 55px;
     overflow: hidden;
 
     .functional-area {
@@ -74,10 +74,10 @@
             font-size: 1rem;
             text-decoration: none;
             transition: all 0.2s ease-out;
-            padding: 0.6rem 0.8rem;
+            padding: 0.2rem 0.6rem;
             text-transform: capitalize;
             user-select: none;
-            border-radius: 4px;
+            border-radius: 3px;
             background-color: lighten($dark, 5%);
 
             mat-icon {
@@ -139,10 +139,10 @@
       position: fixed;
       justify-content: flex-start !important;
       align-items: center;
-      top: 65px;
+      top: 55px;
       background-color: $dark;
       width: 100%;
-      height: calc(100vh - 65px);
+      height: calc(100vh - 55px);
       transform: translate(-103%);
       text-align: center;
       overflow: hidden;

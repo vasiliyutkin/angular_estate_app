@@ -3,6 +3,9 @@
         <h1 class="display-4 mb-5 word-break">{{ 'signup.signup-label' | translate }}</h1>
 
         <form [formGroup]="registrationForm" class="d-flex flex-column" (submit)="signUp()">
+            <!-- Needed to turn off autocopletion in Browsers -->
+            <input style="display:none" type="password" name="password" autocomplete="new-password" />
+
             <mat-card-content>
                 <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Username</mat-label>
@@ -62,7 +65,8 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button [disabled]="!registrationForm.valid" color="primary" mat-raised-button class="align-self-center">
+                <button [disabled]="!registrationForm.valid" color="primary" mat-raised-button
+                    class="align-self-center">
                     {{ 'signup.signup-label' | translate }}
                 </button>
             </mat-card-actions>

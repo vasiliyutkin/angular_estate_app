@@ -59,12 +59,4 @@ export class SigninComponent implements OnInit {
   signInWithGoogle(): void {
     this.authenticationService.signInWithGoogle();
   }
-
-  signInWithVK(): void {
-    this.authenticationService.signInWithVK();
-  }
-
-  public get isVkAvailable(): boolean {
-    return this.authenticationService.isVkAvailable;
-  }
 }

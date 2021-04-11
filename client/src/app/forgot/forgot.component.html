@@ -3,6 +3,9 @@
          <h1 class="display-4 mb-5 word-break">{{ 'forgot.forgot-password-label' | translate }}</h1>
 
          <form [formGroup]="forgotForm" class="d-flex flex-column" (submit)="resetPassword()">
+             <!-- Needed to turn off autocopletion in Browsers -->
+             <input style="display:none" type="password" name="password" autocomplete="new-password" />
+
              <mat-card-content>
                  <mat-form-field class="col-md-7 mt-3 mx-auto">
                      <mat-label>New Password</mat-label>

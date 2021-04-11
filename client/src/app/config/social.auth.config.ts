@@ -1,7 +1,6 @@
 import {
   GoogleLoginProvider,
   SocialAuthServiceConfig,
-  VKLoginProvider,
 } from 'angularx-social-login';
 
 const autoLogin = false;
@@ -14,13 +13,6 @@ const providers: any = [
     ),
   },
 ];
-
-if (window[VKLoginProvider.PROVIDER_ID]) {
-  providers.push({
-    id: VKLoginProvider.PROVIDER_ID,
-    provider: new VKLoginProvider('7786037'),
-  });
-}
 
 export const SOCIAL_AUTH_CONFIG = {
   provide: 'SocialAuthServiceConfig',

@@ -1,15 +1,9 @@
 <div class="container">
     <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
         <div class="auth-actions mb-5">
-            <div class="socials">
-                <button *ngIf="isVkAvailable" (click)="signInWithVK()" color="warn" mat-mini-fab>
-                    <i class="fab fa-vk"></i>
-                </button>
-
-                <button (click)="signInWithGoogle()" color="primary" mat-mini-fab>
-                    <i class="fab fa-google"></i>
-                </button>
-            </div>
+            <button class="social-auth" (click)="signInWithGoogle()" color="primary" mat-mini-fab>
+                <i class="fab fa-google"></i>
+            </button>
 
             <button type="button" class="signup-button" mat-stroked-button routerLink="/signup">
                 <mat-icon inline>how_to_reg</mat-icon>
@@ -20,6 +14,9 @@
         <h1 class="display-4 mb-5 word-break">{{ 'signin.signin-label' | translate }}</h1>
 
         <form #formRef="ngForm" [formGroup]="loginForm" class="d-flex flex-column" (submit)="login()">
+            <!-- Needed to turn off autocopletion in Browsers -->
+            <input style="display:none" type="password" name="password" autocomplete="new-password" />
+
             <mat-card-content>
                 <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Username</mat-label>
