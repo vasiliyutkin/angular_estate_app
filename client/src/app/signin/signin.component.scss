@@ -20,6 +20,12 @@
   justify-items: center;
 
   .social-auth {
-    margin-right: 16px;
+    margin-right: 8px;
+    transform: scale(0.9);
+    transition: all 0.2s;
+
+    &:hover {
+      transform: rotate(25deg);
+    }
   }
 }

@@ -78,7 +78,7 @@
             text-transform: capitalize;
             user-select: none;
             border-radius: 3px;
-            background-color: lighten($dark, 5%);
+            background-color: lighten($dark, 3%);
 
             mat-icon {
               margin-right: 0.1rem;
@@ -88,10 +88,11 @@
 
             &.active-link,
             &:hover {
-              background-color: $main-background;
+              background-color: lighten($flash-white, 3%);
+              color: $dark;
 
               mat-icon {
-                color: $flash-white;
+                color: $dark;
               }
             }
           }
@@ -158,6 +159,7 @@
         li {
           margin-right: 0 !important;
           margin: 0.5rem 0;
+          width: 80vw;
 
           a {
             font-size: 1.4rem !important;
@@ -165,7 +167,7 @@
             display: flex;
             text-transform: uppercase;
             justify-content: center;
-            padding: 0.8rem 8rem !important;
+            padding: 0.8rem !important;
           }
         }
       }
