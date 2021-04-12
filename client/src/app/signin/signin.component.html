@@ -20,7 +20,7 @@
             <mat-card-content>
                 <mat-form-field class="col-md-7 mt-3 mx-auto">
                     <mat-label>Username</mat-label>
-                    <input type="email" matInput required formControlName="username" placeholder="email address" />
+                    <input type="email" matInput required formControlName="username" />
                     <mat-error *ngIf="loginForm.get('username').hasError('email')
                           && !loginForm.get('username').hasError('required')">
                         Please enter a valid email address
