@@ -2,7 +2,7 @@
     <mat-card class="col-md-8 mx-auto text-center pt-5 pb-5 mat-elevation-z8">
         <h1 class="display-4 mb-5 word-break">{{ 'signup.signup-label' | translate }}</h1>
 
-        <form [formGroup]="registrationForm" class="d-flex flex-column" (submit)="signUp()">
+        <form autocomplete="off" [formGroup]="registrationForm" class="d-flex flex-column" (submit)="signUp()">
             <!-- Needed to turn off autocopletion in Browsers -->
             <input style="display:none" type="password" name="password" autocomplete="new-password" />
 

@@ -13,7 +13,8 @@
 
         <h1 class="display-4 mb-5 word-break">{{ 'signin.signin-label' | translate }}</h1>
 
-        <form #formRef="ngForm" [formGroup]="loginForm" class="d-flex flex-column" (submit)="login()">
+        <form autocomplete="off" #formRef="ngForm" [formGroup]="loginForm" class="d-flex flex-column"
+            (submit)="login()">
             <!-- Needed to turn off autocopletion in Browsers -->
             <input style="display:none" type="password" name="password" autocomplete="new-password" />
 
