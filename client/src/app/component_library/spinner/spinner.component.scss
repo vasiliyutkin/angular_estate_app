@@ -35,21 +35,21 @@
   left: 0%;
   top: 0%;
   animation: rotate-one 0.75s linear infinite;
-  border-bottom: 0.6rem solid $cool-yellow;
+  border-bottom: 0.6rem solid $slightly-light-background;
 }
 
 .inner.two {
   right: 0%;
   top: 0%;
   animation: rotate-two 0.85s linear infinite;
-  border-right: 0.6rem solid $cool-yellow;
+  border-right: 0.6rem solid $slightly-light-background;
 }
 
 .inner.three {
   right: 0%;
   bottom: 0%;
   animation: rotate-three 0.95s linear infinite;
-  border-top: 0.6rem solid $cool-yellow;
+  border-top: 0.6rem solid $slightly-light-background;
 }
 
 .bounce-wrap {
