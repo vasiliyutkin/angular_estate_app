@@ -61,8 +61,8 @@ select:-webkit-autofill:focus {
 }
 
 ::selection {
-  background: $main-background;
-  color: $dark;
+  background: $slightly-light-background;
+  color: $material-dark;
 }
 
 *::-webkit-scrollbar {
@@ -71,13 +71,13 @@ select:-webkit-autofill:focus {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: $main-background;
+  scrollbar-color: $slightly-light-background;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: $main-background;
+  background-color: $slightly-light-background;
 }
 
 *::-webkit-scrollbar-track {
-  background-color: $dark;
+  background-color: $material-dark;
 }

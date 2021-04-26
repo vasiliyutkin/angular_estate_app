@@ -34,6 +34,10 @@ $pink-yarrow: #ce4a7eff;
 
 $main-background: #ff6b6b;
 $secondary-background: #556270;
+$slightly-light-background: darken(
+  $color: $flash-white,
+  $amount: 3%,
+);
 
 // FONT
 $default-font-size: 1.6rem;

@@ -3,7 +3,11 @@
 
 .navbar-wrap {
   position: fixed;
-  background-color: $dark;
+  background: linear-gradient(
+    45deg,
+    $material-dark 0 75%,
+    $slightly-light-background 75% 100%
+  );
   min-width: 100vw;
   z-index: 999999;
 
@@ -38,13 +42,13 @@
         i,
         mat-icon {
           font-size: medium;
-          color: $main-background;
+          color: $slightly-light-background;
           transition: all 0.2s ease-out;
           transform: scale(1.5);
           margin-top: -2px;
 
           &:hover {
-            color: $smoke-rose;
+            color: $cool-yellow;
           }
         }
       }
@@ -74,25 +78,25 @@
             font-size: 1rem;
             text-decoration: none;
             transition: all 0.2s ease-out;
-            padding: 0.2rem 0.6rem;
+            padding: 0.3rem 0.6rem;
             text-transform: capitalize;
             user-select: none;
             border-radius: 3px;
-            background-color: lighten($dark, 3%);
+            background-color: lighten($material-dark, 3%);
 
             mat-icon {
-              margin-right: 0.1rem;
+              margin-right: 0.2rem;
               font-size: 1rem;
-              color: $main-background;
+              color: $white;
             }
 
             &.active-link,
             &:hover {
-              background-color: lighten($flash-white, 3%);
-              color: $dark;
+              background-color: $material-primary;
+              color: $white;
 
               mat-icon {
-                color: $dark;
+                color: $white;
               }
             }
           }
@@ -105,7 +109,7 @@
 .menu-toggle .bar {
   width: 25px;
   height: 3px;
-  background-color: $main-background;
+  background-color: $material-dark;
   margin: 5px auto;
   transition: all 0.2s ease-out;
 }
@@ -141,12 +145,13 @@
       justify-content: flex-start !important;
       align-items: center;
       top: 55px;
-      background-color: $dark;
+      background-color: $material-dark;
       width: 100%;
       height: calc(100vh - 55px);
       transform: translate(-103%);
       text-align: center;
       overflow: hidden;
+      padding-top: 2rem;
 
       .right-nav {
         margin-top: $space-big;
@@ -165,9 +170,14 @@
             font-size: 1.4rem !important;
             font-style: inherit;
             display: flex;
-            text-transform: uppercase;
+            text-transform: uppercase !important;
             justify-content: center;
             padding: 0.8rem !important;
+
+            mat-icon {
+              font-size: large !important;
+              margin-right: .5rem !important;
+            }
           }
         }
       }
@@ -205,14 +215,14 @@
   }
 
   &[disabled] {
-    background-color: $main-background;
+    background-color: $slightly-light-background;
 
     mat-icon {
-      color: $dark;
+      color: $material-dark;
     }
 
     span {
-      color: $white;
+      color: $material-dark;
     }
   }
 
@@ -221,7 +231,7 @@
 
     mat-icon,
     span {
-      color: $dark-charkoal !important;
+      color: $material-dark !important;
     }
   }
 }
