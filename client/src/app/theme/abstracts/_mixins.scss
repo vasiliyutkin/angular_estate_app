@@ -20,7 +20,11 @@
 }
 
 @mixin appBg {
-  background: linear-gradient(to top, $main-background, $secondary-background);
+  background: linear-gradient(
+    125deg,
+    $material-dark,
+    $slightly-light-background
+  );
 }
 
 @mixin respond($breakpoint) {
