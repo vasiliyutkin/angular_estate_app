@@ -1,5 +1,1 @@
-### Things needed to clarify
-
-    - app name
-    - app logo
-    - data structures
+*** Boilerplate for future use
